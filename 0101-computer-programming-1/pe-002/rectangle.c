@@ -22,7 +22,7 @@ int main() {
     // Calculate the perimeter
     P = (2*L) + (2*W);
 
-    // Prompt and return to the user the results.
+    // Return the results to the user
     printf("\nArea: %f units squared\n", A);
     printf("Perimeter: %f units\n", P);
 }

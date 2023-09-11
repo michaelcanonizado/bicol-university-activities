@@ -2,6 +2,7 @@
 #include <math.h>
 
 int main() {
+    // Initialize the variables where inputs are Integers and products are Floats.
     int a, b, c;
     float A, P, s;
 
@@ -29,7 +30,7 @@ int main() {
     // Calculate Perimeter
     P = a + b + c;
 
-     // Prompt and return to the user the results.
+     // Return the results to the user
     printf("\nArea: %f units squared\n", A);
     printf("Perimeter: %f units\n", P);
 
