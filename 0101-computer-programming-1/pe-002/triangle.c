@@ -21,18 +21,30 @@ int main() {
     printf("\nWhat is C?:");
     scanf("%d", &c);
 
-    // Calculate Area using Heron's Formula:
-    // Get semiperimeter
-    s = (a + b + c) / 2;
-    // Calculate Area
-    A = sqrt(s*(s-a)*(s-b)*(s-c));
+    if ((a > 0) && (b > 0) && (c > 0)) {
+        // Calculate Area using Heron's Formula:
 
-    // Calculate Perimeter
-    P = a + b + c;
+        // Get semiperimeter
+        // To prevent integer division truncation, one value of the divisor or dividend must be a float or must be setted to float i.e. "(float)a"
+        s = ((float)a + b + c) / 2;
+        // Calculate Area
+        A = sqrt(s*(s-a)*(s-b)*(s-c));
 
-     // Return the results to the user
-    printf("\nArea: %f units squared\n", A);
-    printf("Perimeter: %f units\n", P);
+        // Calculate Perimeter
+        P = a + b + c;
 
-    return 0;
+        // Return the results to the user
+        printf("\n\nArea: %f units squared\n", A);
+        printf("Perimeter: %f units\n", P);
+
+        return 0;
+    } else {
+        // Print error message
+        printf("\nInvalid Inputs. Please make sure all inputs are greater than 0\n");
+        printf("Please run the program again\n");
+
+        return 1;
+    }
+
+    
 }

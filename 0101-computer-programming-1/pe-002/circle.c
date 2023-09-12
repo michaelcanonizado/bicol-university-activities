@@ -15,14 +15,23 @@ int main() {
     printf("\nWhat is the radius?:");
     scanf("%d", &r);
 
-    // Calculate the area
-    A = PI * (r * r);
-    // Calculate the perimeter
-    P = 2 * PI * r;
+    if (r > 0) {
+      // Calculate the area
+      A = PI * (r * r);
+      // Calculate the perimeter
+      P = 2 * PI * r;
 
-  // Return the results to the user
-    printf("\nArea: %f units squared", A);
-    printf("\nPerimeter: %f units\n\n", P);
+      // Return the results to the user
+      printf("\nArea: %f units squared", A);
+      printf("\nPerimeter: %f units\n\n", P);
 
-    return 0;
+      return 0;
+    } else {
+      // Print error message
+      printf("\nInvalid Inputs. Please make sure all inputs are greater than 0\n");
+      printf("Please run the program again\n");
+
+      return 1;
+    }
+   
 }
