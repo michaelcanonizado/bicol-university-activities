@@ -10,15 +10,15 @@ int main() {
     printf("\nLet's calculate the Area and Perimeter of your triangle!\n");
     
     // Prompt the user for side A input.
-    printf("\nWhat is A?:");
+    printf("\nWhat is side A?:");
     scanf("%d", &a);
 
     // Prompt the user for side B input.
-    printf("\nWhat is B?:");
+    printf("\nWhat is side B?:");
     scanf("%d", &b);
     
     // Prompt the user for side C input.
-    printf("\nWhat is C?:");
+    printf("\nWhat is side C?:");
     scanf("%d", &c);
 
     if ((a > 0) && (b > 0) && (c > 0)) {
