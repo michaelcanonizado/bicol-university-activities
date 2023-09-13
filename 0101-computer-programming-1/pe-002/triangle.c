@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 
-int main() {
+int main(void) {
     // Initialize the variables where inputs are Integers and products are Floats.
     int a, b, c;
     float A, P, s;

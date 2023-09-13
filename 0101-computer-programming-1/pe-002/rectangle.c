@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main() {
+int main(void) {
     // Initialize the variables where inputs are Integers and products are Floats
     int L, W;
     float A, P;
