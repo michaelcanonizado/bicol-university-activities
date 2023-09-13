@@ -26,7 +26,7 @@ int main() {
 
         // Get semiperimeter
         // To prevent integer division truncation, one value of the divisor or dividend must be a float or must be setted to float i.e. "(float)a" or "2.0"
-        s = (a + b + c) / 2.0;
+        s = ((float)a + b + c) / 2;
         // Calculate Area
         A = sqrt(s*(s-a)*(s-b)*(s-c));
 
