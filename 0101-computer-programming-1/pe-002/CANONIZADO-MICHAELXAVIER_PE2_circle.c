@@ -27,7 +27,7 @@ int main(void) {
 
       return 0;
     } else {
-      // Print error message
+      // Print error message when invalid input
       printf("\nInvalid Input. Please make sure all inputs are greater than 0\n");
       printf("Please run the program again\n");
 
