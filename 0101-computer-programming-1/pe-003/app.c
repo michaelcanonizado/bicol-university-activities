@@ -1,4 +1,4 @@
-// Name: CANONIZADO, MICHAEL XAVIER ,E
+// Name: CANONIZADO, MICHAEL XAVIER ,E.
 // Block: BSCS-1A
 // Title; Programming Exercise 3
 // Description: A program that calculates the ratings and average of 5 quizes of a student
@@ -6,23 +6,23 @@
 #include <stdio.h>
 
 int main() {
-    // Initialized a name variable with 40 bytes
+    // initialized a name variable with 40 characters
     char name[40];
-    // Initialized score variables
+    // initialized score variables
     int q1score, q2score, q3score, q4score, q5score;
-    // Initialized total variables
+    // initialized total variables
     int q1total, q2total, q3total, q4total, q5total;
-    // Initialized rating variables
+    // initialized rating variables
     float q1rating, q2rating, q3rating, q4rating, q5rating;
-    // Initialized average variable
+    // initialized average variable
     float average;
 
-    // Ask user for name
+    // Ask user for name of student
     printf("\nInput name of student: ");
     scanf("%s", name);
 
     // Prompt user for the instructions
-    printf("\nPlease input five pairs of integer values representing the total number of points and score of Juan's quizzes. ");
+    printf("\nPlease input five pairs of integer values representing the total number of points and score of Juan's quizzes.");
     
     // Ask user for the quiz scores, with the format: <total> <score>
     printf("\nInput Quiz 1 : ");
