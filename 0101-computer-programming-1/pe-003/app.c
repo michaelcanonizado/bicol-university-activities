@@ -6,15 +6,15 @@
 #include <stdio.h>
 
 int main() {
-    // initialized a name variable with 40 characters
+    // declare a name variable with 40 characters
     char name[40];
-    // initialized score variables
+    // declare score variables
     int q1score, q2score, q3score, q4score, q5score;
-    // initialized total variables
+    // declare total variables
     int q1total, q2total, q3total, q4total, q5total;
-    // initialized rating variables
+    // declare rating variables
     float q1rating, q2rating, q3rating, q4rating, q5rating;
-    // initialized average variable
+    // declare average variable
     float average;
 
     // Ask user for name of student
