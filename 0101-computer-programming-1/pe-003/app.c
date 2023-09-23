@@ -6,13 +6,13 @@
 #include <stdio.h>
 
 int main() {
-    // declare a name variable with 40 characters
+    // declare a name variable with a max of 40 characters
     char name[40];
-    // declare score variables
+    // declare quiz score variables
     int q1score, q2score, q3score, q4score, q5score;
-    // declare total variables
+    // declare quiz total variables
     int q1total, q2total, q3total, q4total, q5total;
-    // declare rating variables
+    // declare quiz rating variables
     float q1rating, q2rating, q3rating, q4rating, q5rating;
     // declare average variable
     float average;
@@ -22,7 +22,7 @@ int main() {
     scanf("%s", name);
 
     // Prompt user for the instructions
-    printf("\nPlease input five pairs of integer values representing the total number of points and score of Juan's quizzes.");
+    printf("\nPlease input five pairs of integer values representing the total number of points and score of %s's quizzes.", name);
     
     // Ask user for the quiz scores, with the format: <total> <score>
     printf("\nInput Quiz 1 : ");
@@ -50,7 +50,6 @@ int main() {
     printf("\n----------------------------------");
     printf("\n|%6s |%6s |%6s |%6s  |", "Quiz#", "SCORE", "TOTAL", "RATE");
     printf("\n----------------------------------");
-    
     printf("\n|%-6d |%6d |%6d |%6.2f%% |", 1, q1score, q1total, q1rating);
     printf("\n|%-6d |%6d |%6d |%6.2f%% |", 2, q2score, q2total, q2rating);
     printf("\n|%-6d |%6d |%6d |%6.2f%% |", 3, q3score, q3total, q3rating);
