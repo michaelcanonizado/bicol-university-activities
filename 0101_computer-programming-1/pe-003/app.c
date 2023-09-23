@@ -36,6 +36,34 @@ int main() {
     printf("Input Quiz 5 : ");
     scanf("%hi %hi", &q5total, &q5score);
 
+    // Use a guard clause to check if user inputs are valid
+    if(
+        // Quiz total should be greater than 0
+        (q1total <= 0 || 
+        q2total <= 0 || 
+        q3total <= 0 || 
+        q4total <= 0 || 
+        q5total <= 0)
+        || 
+        // Quiz score should not be a negative number
+        (q1score < 0 || 
+        q2score < 0 || 
+        q3score < 0 || 
+        q4score < 0 || 
+        q5score < 0)
+        ||
+        // Quiz score cannot be greater its total
+        (q1score > q1total || 
+        q2score > q2total || 
+        q3score > q3total || 
+        q4score > q4total || 
+        q5score > q5total)
+    ) {
+        printf("\nInvalid inputs! Please rerun program and consider the following:\n- Quiz input format is: <total> <score>\n- Quiz total must be greater than 0\n- Quiz score must not be a negative number\n- Quiz score must not be greater than Quiz total");
+
+        return 1;
+    }
+
     // Calculate the ratings for each quiz
     q1rating = ((float)q1score / q1total) * 100;
     q2rating = ((float)q2score / q2total) * 100;
@@ -48,7 +76,7 @@ int main() {
 
     // Print out the results properly formatted as a table
     printf("\n----------------------------------");
-    printf("\n|%6s |%6s |%6s |%6s  |", "Quiz#", "SCORE", "TOTAL", "RATE");
+    printf("\n|%6s |%6s |%6s |%6s  |", "QUIZ#", "SCORE", "TOTAL", "RATE");
     printf("\n----------------------------------");
     printf("\n|%-6d |%6hi |%6hi |%6.2f%% |", 1, q1score, q1total, q1rating);
     printf("\n|%-6d |%6hi |%6hi |%6.2f%% |", 2, q2score, q2total, q2rating);
