@@ -8,10 +8,10 @@
 int main() {
     // declare a name variable with a max of 40 characters
     char name[40];
-    // declare quiz score variables
-    int q1score, q2score, q3score, q4score, q5score;
-    // declare quiz total variables
-    int q1total, q2total, q3total, q4total, q5total;
+    // declare quiz score variables as unsigned int to utilize what was learned in lesson 6
+    unsigned int q1score, q2score, q3score, q4score, q5score;
+    // declare quiz total variables as unsigned int to utilize what was learned in lesson 6
+    unsigned int q1total, q2total, q3total, q4total, q5total;
     // declare quiz rating variables
     float q1rating, q2rating, q3rating, q4rating, q5rating;
     // declare average variable
@@ -26,15 +26,15 @@ int main() {
     
     // Ask user for the quiz scores, with the format: <total> <score>
     printf("\nInput Quiz 1 : ");
-    scanf("%d %d", &q1total, &q1score);
+    scanf("%u %u", &q1total, &q1score);
     printf("Input Quiz 2 : ");
-    scanf("%d %d", &q2total, &q2score);
+    scanf("%u %u", &q2total, &q2score);
     printf("Input Quiz 3 : ");
-    scanf("%d %d", &q3total, &q3score);
+    scanf("%u %u", &q3total, &q3score);
     printf("Input Quiz 4 : ");
-    scanf("%d %d", &q4total, &q4score);    
+    scanf("%u %u", &q4total, &q4score);    
     printf("Input Quiz 5 : ");
-    scanf("%d %d", &q5total, &q5score);
+    scanf("%u %u", &q5total, &q5score);
 
     // Calculate the ratings for each quiz
     q1rating = ((float)q1score / q1total) * 100;
@@ -50,11 +50,11 @@ int main() {
     printf("\n----------------------------------");
     printf("\n|%6s |%6s |%6s |%6s  |", "Quiz#", "SCORE", "TOTAL", "RATE");
     printf("\n----------------------------------");
-    printf("\n|%-6d |%6d |%6d |%6.2f%% |", 1, q1score, q1total, q1rating);
-    printf("\n|%-6d |%6d |%6d |%6.2f%% |", 2, q2score, q2total, q2rating);
-    printf("\n|%-6d |%6d |%6d |%6.2f%% |", 3, q3score, q3total, q3rating);
-    printf("\n|%-6d |%6d |%6d |%6.2f%% |", 4, q4score, q4total, q4rating);
-    printf("\n|%-6d |%6d |%6d |%6.2f%% |", 5, q5score, q5total, q5rating);
+    printf("\n|%-6d |%6u |%6u |%6.2f%% |", 1, q1score, q1total, q1rating);
+    printf("\n|%-6d |%6u |%6u |%6.2f%% |", 2, q2score, q2total, q2rating);
+    printf("\n|%-6d |%6u |%6u |%6.2f%% |", 3, q3score, q3total, q3rating);
+    printf("\n|%-6d |%6u |%6u |%6.2f%% |", 4, q4score, q4total, q4rating);
+    printf("\n|%-6d |%6u |%6u |%6.2f%% |", 5, q5score, q5total, q5rating);
 
     printf("\n\nQuiz Average: %.2f%%", average);
 
