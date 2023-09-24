@@ -15,7 +15,7 @@ int main() {
     // declare quiz rating variables
     float q1rating, q2rating, q3rating, q4rating, q5rating;
     // declare average variable
-    float average;
+    float averageRating;
 
     // Ask user for name of student
     printf("\nInput name of student: ");
@@ -31,7 +31,7 @@ int main() {
     scanf("%hi %hi", &q2total, &q2score);
     printf("Input Quiz 3 : ");
     scanf("%hi %hi", &q3total, &q3score);
-    printf("Input Quiz 4 : ");
+    printf("Input Q  uiz 4 : ");
     scanf("%hi %hi", &q4total, &q4score);    
     printf("Input Quiz 5 : ");
     scanf("%hi %hi", &q5total, &q5score);
@@ -72,7 +72,7 @@ int main() {
     q5rating = ((float)q5score / q5total) * 100;
 
     // Calculate average rating for all 5 quizes
-    average = (q1rating + q2rating + q3rating + q4rating + q5rating) / 5.0;
+    averageRating = (q1rating + q2rating + q3rating + q4rating + q5rating) / 5.0;
 
     // Print out the results properly formatted as a table
     printf("\n----------------------------------");
@@ -84,7 +84,7 @@ int main() {
     printf("\n|%-6d |%6hi |%6hi |%6.2f%% |", 4, q4score, q4total, q4rating);
     printf("\n|%-6d |%6hi |%6hi |%6.2f%% |", 5, q5score, q5total, q5rating);
 
-    printf("\n\nQuiz Average: %.2f%%", average);
+    printf("\n\nQuiz Average: %.2f%%", averageRating);
 
     return 0;
 }
