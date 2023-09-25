@@ -24,9 +24,6 @@ int main(void) {
 
     printf("\n\nTask complete...");
 
-
-
-
     fclose(inputFile);
     fclose(outputFile);
 
