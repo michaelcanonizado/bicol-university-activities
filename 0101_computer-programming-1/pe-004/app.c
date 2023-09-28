@@ -1,13 +1,13 @@
 // Name: CANONIZADO, MICHAEL XAVIER ,E.
 // Block: BSCS-1A
 // Title; Programming Exercise 3
-// Description: A program that calculates the ratings and average of 5 quizes of a student
+// Description: A program that calculates the ratings and average of 5 quizes of a student from an input file and outputs it in an output file.
 
 #include <stdio.h>
 
 int main() {
     // declare a name variable with a max of 40 characters
-    char name[400];
+    char name[50];
     // declare quiz score variables as short int to lessen memory usage, and utilize what was learned in lesson 6
     short int q1score, q2score, q3score, q4score, q5score;
     // declare quiz total variables as short int to lessen memory usage, and utilize what was learned in lesson 6
@@ -17,8 +17,9 @@ int main() {
     // declare average variable
     float averageRating;
 
-    char inputFileName[] = "input.txt";
-    char outputFileName[] = "output.txt";
+    // Use a string constant as paths for input and output instead of hardcoding. For ease of access and usability in prompts: e.g. printf("Reading %s...", inputFileName); or printf("Outputting results to %s", outputFileName);
+    const char inputFileName[] = "input.txt";
+    const char outputFileName[] = "output.txt";
 
     FILE *inputFile;
     FILE *outputFile;
@@ -36,6 +37,9 @@ int main() {
     fscanf(inputFile, "%hi %hi", &q3total, &q3score);
     fscanf(inputFile, "%hi %hi", &q4total, &q4score);
     fscanf(inputFile, "%hi %hi", &q5total, &q5score);
+
+    // Close input file as soon as scanning is done for best practice (Resource Managment, Error Handling, Predictability, etc.).
+    fclose(inputFile);
 
 
     // Use a guard clause to check if user inputs are valid
@@ -61,7 +65,7 @@ int main() {
         q4score > q4total || 
         q5score > q5total)
     ) {
-        printf("\nInvalid inputs! Please rerun program and consider the following:\n- Quiz input format is: <total> <score>\n- Quiz total must be greater than 0\n- Quiz score must not be a negative number\n- Quiz score must not be greater than Quiz total");
+        printf("\nInvalid inputs! Please rerun program. Check your input file and consider the following:\n- First line must be the name of the student\n- One quiz input per line\n- Quiz input format is: <total> <score>\n- Quiz total must be greater than 0\n- Quiz score must not be a negative number\n- Quiz score must not be greater than quiz total\n\n");
 
         return 1;
     }
@@ -77,20 +81,10 @@ int main() {
     averageRating = (q1rating + q2rating + q3rating + q4rating + q5rating) / 5.0;
 
 
-    // Print name and the results properly formatted as a table in the terminal
-    printf("Name of student: %s", name);
-    printf("\n----------------------------------");
-    printf("\n %6s |%6s |%6s |%6s  |", "QUIZ#", "SCORE", "TOTAL", "RATE");
-    printf("\n----------------------------------");
-    printf("\n|%-6d |%6hi |%6hi |%6.2f%% |", 1, q1score, q1total, q1rating);
-    printf("\n|%-6d |%6hi |%6hi |%6.2f%% |", 2, q2score, q2total, q2rating);
-    printf("\n|%-6d |%6hi |%6hi |%6.2f%% |", 3, q3score, q3total, q3rating);
-    printf("\n|%-6d |%6hi |%6hi |%6.2f%% |", 4, q4score, q4total, q4rating);
-    printf("\n|%-6d |%6hi |%6hi |%6.2f%% |", 5, q5score, q5total, q5rating);
-    printf("\n\nRATE AVERAGE: %.2f%%", averageRating);
-
-
-    // Print name and the results properly formatted as a table as output.txt
+    //
+    // OUTPUTING IN RESULTS AND AVERAGE IN A TXT FILE
+    //
+    // OUPUT name and the results properly formatted as a table as output.txt
     fprintf(outputFile, "Name of student: %s", name);
     fprintf(outputFile, "\n----------------------------------");
     fprintf(outputFile, "\n %6s |%6s |%6s |%6s  |", "QUIZ#", "SCORE", "TOTAL", "RATE");
@@ -102,7 +96,25 @@ int main() {
     fprintf(outputFile, "\n|%-6d |%6hi |%6hi |%6.2f%% |", 5, q5score, q5total, q5rating);
     fprintf(outputFile, "\n\nRATE AVERAGE: %.2f%%", averageRating);
 
-    fclose(inputFile);
+    // Close output file
+    fclose(outputFile);
+
+
+
+    //
+    // PRINTING results and average in the terminal
+    //
+    // PRINT name and the results properly formatted as a table in the terminal
+    printf("Name of student: %s", name);
+    printf("\n----------------------------------");
+    printf("\n %6s |%6s |%6s |%6s  |", "QUIZ#", "SCORE", "TOTAL", "RATE");
+    printf("\n----------------------------------");
+    printf("\n|%-6d |%6hi |%6hi |%6.2f%% |", 1, q1score, q1total, q1rating);
+    printf("\n|%-6d |%6hi |%6hi |%6.2f%% |", 2, q2score, q2total, q2rating);
+    printf("\n|%-6d |%6hi |%6hi |%6.2f%% |", 3, q3score, q3total, q3rating);
+    printf("\n|%-6d |%6hi |%6hi |%6.2f%% |", 4, q4score, q4total, q4rating);
+    printf("\n|%-6d |%6hi |%6hi |%6.2f%% |", 5, q5score, q5total, q5rating);
+    printf("\n\nRATE AVERAGE: %.2f%%", averageRating);
 
     return 0;
 }
