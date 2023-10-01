@@ -96,7 +96,7 @@ int main() {
     fprintf(outputFile, "\n|%-6d |%6hi |%6hi |%6.2f%% |", 5, q5score, q5total, q5rating);
     fprintf(outputFile, "\n\nRATE AVERAGE: %.2f%%", averageRating);
 
-    // Close output file
+    
     fclose(outputFile);
 
 
