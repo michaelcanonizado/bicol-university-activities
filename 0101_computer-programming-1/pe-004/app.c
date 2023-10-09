@@ -21,7 +21,7 @@ int main() {
     const char inputFileName[] = "input.txt";
     const char outputFileName[] = "output.txt";
 
-    FILE *inputFile;
+    FILE*inputFile;
     FILE *outputFile;
     inputFile = fopen(inputFileName, "rt");
     outputFile = fopen(outputFileName, "wt");
