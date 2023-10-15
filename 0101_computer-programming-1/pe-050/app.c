@@ -4,11 +4,11 @@
 
 int main() {
     // Declare Variables
-    const float weightQuizzes = 0.25;
-    const float  weightMidterms = 0.20;
-    const float  weightFinals = 0.25;
-    const float weightProject = 0.20;
-    const float  weightRecitation = 0.1;
+    const int weightQuizzes = 25;
+    const int  weightMidterms = 20;
+    const int  weightFinals = 25;
+    const int weightProject = 20;
+    const int  weightRecitation = 10;
 
     float gradeQuizzes, gradeMidterms, gradeFinals, gradeProject, gradeRecitation;
     float AG, TG, GP;
@@ -30,10 +30,10 @@ int main() {
     printf("Enter grade for Recitation: ");
     scanf("%f", &gradeRecitation);
 
-    // Calculate
-    AG = (gradeQuizzes * weightQuizzes) + (gradeMidterms * weightMidterms) + (gradeFinals * weightFinals) + (gradeProject * weightProject) + (gradeRecitation * weightRecitation);
 
-    AG = floor(AG);
+
+    // Calculate
+    AG = ((gradeQuizzes * weightQuizzes) + (gradeMidterms * weightMidterms) + (gradeFinals * weightFinals) + (gradeProject * weightProject) + (gradeRecitation * weightRecitation)) / 100.0;
 
     if (AG < 60) {
         TG = 60 + (AG / 4);
@@ -41,7 +41,20 @@ int main() {
         TG = 75 + ((AG - 60)/ 1.6);
     }
 
-    if (TG >= 95 && TG <= 100) {
+    TG = floor(TG);
+
+
+    // Output
+    printf("\n--------------------------------------");
+    printf("\n%-20s %-10s %s", "REQUIREMENT", "GRADE", "WEIGHT");
+    printf("\n--------------------------------------");
+    printf("\n%-20s %-10.2f %d%%", "Quizzes", gradeQuizzes, weightQuizzes);
+    printf("\n%-20s %-10.2f %d%%", "Midterm Exam", gradeMidterms, weightMidterms);
+    printf("\n%-20s %-10.2f %d%%", "Final Exam", gradeFinals, weightFinals);
+    printf("\n%-20s %-10.2f %d%%", "Project", gradeProject, weightProject);
+    printf("\n%-20s %-10.2f %d%%", "Recitation", gradeRecitation, weightRecitation);
+
+       if (TG >= 95 && TG <= 100) {
         GP = 1.00;
         strcpy(description, "Outstanding");
     } else if (TG >= 91 && TG <= 94) {
@@ -73,22 +86,11 @@ int main() {
         strcpy(description,"Failure");
     }
 
+    printf("\n\n%-20s %-10.2f", "Actual Grade:", AG);
+    printf("\n%-20s %-10.0f", "Transmuted Grade:", TG);
 
-
-    // Output
-    printf("\n-------------------------------------------");
-    printf("\n%-20s %10s %10s", "REQUIREMENT", "GRADE", "WEIGHT");
-    printf("\n-------------------------------------------");
-    printf("\n%-20s %10.2f %-10.0f%%", "Quizzes", gradeQuizzes, weightQuizzes * 100);
-    printf("\n%-20s %10.2f %-10.0f%%", "Midterm Exam", gradeMidterms, weightMidterms * 100);
-    printf("\n%-20s %10.2f %-10.0f%%", "Final Exam", gradeFinals, weightFinals * 100);
-    printf("\n%-20s %10.2f %-10.0f%%", "Project", gradeProject, weightProject * 100);
-    printf("\n%-20s %10.2f %-10.0f%%", "Recitation", gradeRecitation, weightRecitation * 100);
-
-    printf("\n\nActual Grade: %.2f", AG);
-    printf("\nTransmuted Grade: %.0f", TG);
-    printf("\nGrade Point: %.2f", GP);
-    printf("\nDescription: %s", description);
+    printf("\n%-20s %-10.2f", "Grade Point:", GP);
+    printf("\n%-20s %-10s", "Description:", description);
     
     return 0;
 }
