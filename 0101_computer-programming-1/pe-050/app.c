@@ -12,7 +12,10 @@ int main() {
 
     float gradeQuizzes, gradeMidterms, gradeFinals, gradeProject, gradeRecitation;
     float AG, TG, GP;
-    char description[25];
+
+    // Open File
+    FILE *ofp;
+    ofp = fopen("grade.txt", "wt");
 
     // Get grades from user
     printf("\nEnter grade for Quizzes: ");
@@ -54,43 +57,86 @@ int main() {
     printf("\n%-20s %-10.2f %d%%", "Project", gradeProject, weightProject);
     printf("\n%-20s %-10.2f %d%%", "Recitation", gradeRecitation, weightRecitation);
 
-       if (TG >= 95 && TG <= 100) {
-        GP = 1.00;
-        strcpy(description, "Outstanding");
-    } else if (TG >= 91 && TG <= 94) {
-        GP = 1.25;
-        strcpy(description, "Superior");
-    }else if (TG >= 88 && TG <= 90) {
-        GP = 1.50;
-        strcpy(description,"Very Satisfactory");
-    }else if (TG >= 86 && TG <= 87) {
-        GP = 1.75;
-        strcpy(description,"Very Satisfactory");
-    }else if (TG >= 84 && TG <= 85) {
-        GP = 2.00;
-        strcpy(description,"Satisfactory");
-    }else if (TG >= 82 && TG <= 83) {
-        GP = 2.25;
-        strcpy(description,"Satisfactory");
-    }else if (TG >= 79 && TG <= 81) {
-        GP = 2.50;
-        strcpy(description,"Fair");
-    }else if (TG >= 77 && TG <= 78) {
-        GP = 2.75;
-        strcpy(description,"Fair");
-    }else if (TG >= 75 && TG <= 76) {
-        GP = 3.00;
-        strcpy(description,"Fair");
-    }else if (TG >= 60 && TG <= 74) {
-        GP = 5.00;
-        strcpy(description,"Failure");
-    }
-
     printf("\n\n%-20s %-10.2f", "Actual Grade:", AG);
     printf("\n%-20s %-10.0f", "Transmuted Grade:", TG);
 
-    printf("\n%-20s %-10.2f", "Grade Point:", GP);
-    printf("\n%-20s %-10s", "Description:", description);
+
+    fprintf(ofp, "\n--------------------------------------");
+    fprintf(ofp, "\n%-20s %-10s %s", "REQUIREMENT", "GRADE", "WEIGHT");
+    fprintf(ofp, "\n--------------------------------------");
+    fprintf(ofp, "\n%-20s %-10.2f %d%%", "Quizzes", gradeQuizzes, weightQuizzes);
+    fprintf(ofp, "\n%-20s %-10.2f %d%%", "Midterm Exam", gradeMidterms, weightMidterms);
+    fprintf(ofp, "\n%-20s %-10.2f %d%%", "Final Exam", gradeFinals, weightFinals);
+    fprintf(ofp, "\n%-20s %-10.2f %d%%", "Project", gradeProject, weightProject);
+    fprintf(ofp, "\n%-20s %-10.2f %d%%", "Recitation", gradeRecitation, weightRecitation);
+
+    fprintf(ofp, "\n\n%-20s %-10.2f", "Actual Grade:", AG);
+    fprintf(ofp, "\n%-20s %-10.0f", "Transmuted Grade:", TG);
+
+
+    if (TG >= 95 && TG <= 100) {
+        printf("\n%-20s %-10.2f", "Grade Point:", 1.00);
+        printf("\n%-20s %-10s", "Description:", "Outstanding");
+
+        fprintf(ofp, "\n%-20s %-10.2f", "Grade Point:", 1.00);
+        fprintf(ofp, "\n%-20s %-10s", "Description:", "Outstanding");
+    } else if (TG >= 91 && TG <= 94) {
+        printf("\n%-20s %-10.2f", "Grade Point:", 1.25);
+        printf("\n%-20s %-10s", "Description:", "Superior");
+        
+        fprintf(ofp, "\n%-20s %-10.2f", "Grade Point:", 1.25);
+        fprintf(ofp, "\n%-20s %-10s", "Description:", "Superior");
+    }else if (TG >= 88 && TG <= 90) {
+        printf("\n%-20s %-10.2f", "Grade Point:", 1.50);
+        printf("\n%-20s %-10s", "Description:", "Very Satisfactory");
+        
+        fprintf(ofp, "\n%-20s %-10.2f", "Grade Point:", 1.50);
+        fprintf(ofp, "\n%-20s %-10s", "Description:", "Very Satisfactory");
+    }else if (TG >= 86 && TG <= 87) {
+        printf("\n%-20s %-10.2f", "Grade Point:", 1.75);
+        printf("\n%-20s %-10s", "Description:", "Very Satisfactory");
+        
+        fprintf(ofp, "\n%-20s %-10.2f", "Grade Point:", 1.75);
+        fprintf(ofp, "\n%-20s %-10s", "Description:", "Very Satisfactory");
+    }else if (TG >= 84 && TG <= 85) {
+        printf("\n%-20s %-10.2f", "Grade Point:", 2.00);
+        printf("\n%-20s %-10s", "Description:", "Satisfactory");
+        
+        fprintf(ofp, "\n%-20s %-10.2f", "Grade Point:", 2.00);
+        fprintf(ofp, "\n%-20s %-10s", "Description:", "Satisfactory");
+    }else if (TG >= 82 && TG <= 83) {
+        printf("\n%-20s %-10.2f", "Grade Point:", 2.25);
+        printf("\n%-20s %-10s", "Description:", "Satisfactory");
+        
+        fprintf(ofp, "\n%-20s %-10.2f", "Grade Point:", 2.25);
+        fprintf(ofp, "\n%-20s %-10s", "Description:", "Satisfactory");
+    }else if (TG >= 79 && TG <= 81) {
+        printf("\n%-20s %-10.2f", "Grade Point:", 2.50);
+        printf("\n%-20s %-10s", "Description:", "Fair");
+        
+        fprintf(ofp, "\n%-20s %-10.2f", "Grade Point:", 2.50);
+        fprintf(ofp, "\n%-20s %-10s", "Description:", "Fair");
+    }else if (TG >= 77 && TG <= 78) {
+        printf("\n%-20s %-10.2f", "Grade Point:", 2.75);
+        printf("\n%-20s %-10s", "Description:", "Fair");
+        
+        fprintf(ofp, "\n%-20s %-10.2f", "Grade Point:", 2.75);
+        fprintf(ofp, "\n%-20s %-10s", "Description:", "Fair");
+    }else if (TG >= 75 && TG <= 76) {
+        printf("\n%-20s %-10.2f", "Grade Point:", 3.00);
+        printf("\n%-20s %-10s", "Description:", "Fair");
+        
+        fprintf(ofp, "\n%-20s %-10.2f", "Grade Point:", 3.00);
+        fprintf(ofp, "\n%-20s %-10s", "Description:", "Fair");
+    }else if (TG >= 60 && TG <= 74) {
+        printf("\n%-20s %-10.2f", "Grade Point:", 5.00);
+        printf("\n%-20s %-10s", "Description:", "Failure");
+        
+        fprintf(ofp, "\n%-20s %-10.2f", "Grade Point:", 5.00);
+        fprintf(ofp, "\n%-20s %-10s", "Description:", "Failure");
+    }
     
+    fclose(ofp);
+
     return 0;
 }
