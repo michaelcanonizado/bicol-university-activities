@@ -2,53 +2,59 @@
 // This program asks the user to input 5 values corresponding to the grades of quizzes, midterms, finals, project, and recitation.  And computes the actual total grade.
 #include <stdio.h>
 #include <math.h>
-#include <string.h>
 
 int main() {
+    //
+    // DECLARE VARIABLES AND OPEN OUTPUT FILE
+    //
+    // Declare weights as const for readability, maintainability, and error avoidance. As these values are used throughout and in multiple parts of the program.
     const int WEIGHT_QUIZZES = 25;
     const int  WEIGHT_MIDTERMS = 20;
     const int  WEIGHT_FINALS = 25;
     const int WEIGHT_PORJECT = 20;
     const int  WEIGHT_RECITATION = 10;
-
+    // Declare nessessary variables for inputted grades and totals
     float gradeQuizzes, gradeMidterms, gradeFinals, gradeProject, gradeRecitation;
-    float AG, TG, GP;
-
-    // Open File
+    float AG, TG;
+    // Open file
     FILE *ofp;
     ofp = fopen("grade.txt", "wt");
 
-    // Get grades from user
+
+    //
+    // GET GRADE INPUTS FROM USER
+    //
     printf("\nEnter grade for Quizzes: ");
     scanf("%f", &gradeQuizzes);
-
     printf("Enter grade for Midterm exam: ");
     scanf("%f", &gradeMidterms);
-
     printf("Enter grade for Final exam: ");
     scanf("%f", &gradeFinals);
-
     printf("Enter grade for Project: ");
     scanf("%f", &gradeProject);
-
     printf("Enter grade for Recitation: ");
     scanf("%f", &gradeRecitation);
 
 
-
-    // Calculate
+    //
+    // CALCULATIONS
+    //
+    // Calculate Actual Grade
     AG = ((gradeQuizzes * WEIGHT_QUIZZES) + (gradeMidterms * WEIGHT_MIDTERMS) + (gradeFinals * WEIGHT_FINALS) + (gradeProject * WEIGHT_PORJECT) + (gradeRecitation * WEIGHT_RECITATION)) / 100.0;
-
+    // Calculate Transmuted Grade
     if (AG < 60) {
         TG = 60 + (AG / 4);
     } else {
         TG = 75 + ((AG - 60)/ 1.6);
     }
-
+    // Floor/Round down Transmuted Grade to nearest integer
     TG = floor(TG);
 
 
-    // Output
+    //
+    // OUTPUT RESULTS
+    //
+    // Output to screen/terminal
     printf("\n--------------------------------------");
     printf("\n%-20s %-10s %s", "REQUIREMENT", "GRADE", "WEIGHT");
     printf("\n--------------------------------------");
@@ -61,7 +67,7 @@ int main() {
     printf("\n\n%-20s %-10.2f", "Actual Grade:", AG);
     printf("\n%-20s %-10.0f", "Transmuted Grade:", TG);
 
-
+    // Output to txt file
     fprintf(ofp, "\n--------------------------------------");
     fprintf(ofp, "\n%-20s %-10s %s", "REQUIREMENT", "GRADE", "WEIGHT");
     fprintf(ofp, "\n--------------------------------------");
@@ -74,7 +80,7 @@ int main() {
     fprintf(ofp, "\n\n%-20s %-10.2f", "Actual Grade:", AG);
     fprintf(ofp, "\n%-20s %-10.0f", "Transmuted Grade:", TG);
 
-
+    // Conditionally check Transmuted Grade to determine Grade Point and Description. Then output to screen/terminal and text file
     if (TG >= 95 && TG <= 100) {
         printf("\n%-20s %-10.2f", "Grade Point:", 1.00);
         printf("\n%-20s %-10s", "Description:", "Outstanding");
@@ -137,6 +143,9 @@ int main() {
         fprintf(ofp, "\n%-20s %-10s", "Description:", "Failure");
     }
     
+    //
+    // CLOSE FILE
+    //
     fclose(ofp);
 
     return 0;

@@ -2,13 +2,13 @@
 --------------------------------------
 REQUIREMENT          GRADE      WEIGHT
 --------------------------------------
-Quizzes              90.00      25%
+Quizzes              50.00      25%
 Midterm Exam         90.00      20%
 Final Exam           90.00      25%
 Project              90.00      20%
-Recitation           90.00      10%
+Recitation           50.00      10%
 
-Actual Grade:        90.00     
-Transmuted Grade:    93        
-Grade Point:         1.25      
-Description:         Superior  
+Actual Grade:        76.00     
+Transmuted Grade:    85        
+Grade Point:         2.00      
+Description:         Satisfactory
