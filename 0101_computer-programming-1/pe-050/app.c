@@ -1,14 +1,15 @@
+// Michael Xavier Canonizado | BSCS-1A
+// This program asks the user to input 5 values corresponding to the grades of quizzes, midterms, finals, project, and recitation.  And computes the actual total grade.
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
 
 int main() {
-    // Declare Variables
-    const int weightQuizzes = 25;
-    const int  weightMidterms = 20;
-    const int  weightFinals = 25;
-    const int weightProject = 20;
-    const int  weightRecitation = 10;
+    const int WEIGHT_QUIZZES = 25;
+    const int  WEIGHT_MIDTERMS = 20;
+    const int  WEIGHT_FINALS = 25;
+    const int WEIGHT_PORJECT = 20;
+    const int  WEIGHT_RECITATION = 10;
 
     float gradeQuizzes, gradeMidterms, gradeFinals, gradeProject, gradeRecitation;
     float AG, TG, GP;
@@ -36,7 +37,7 @@ int main() {
 
 
     // Calculate
-    AG = ((gradeQuizzes * weightQuizzes) + (gradeMidterms * weightMidterms) + (gradeFinals * weightFinals) + (gradeProject * weightProject) + (gradeRecitation * weightRecitation)) / 100.0;
+    AG = ((gradeQuizzes * WEIGHT_QUIZZES) + (gradeMidterms * WEIGHT_MIDTERMS) + (gradeFinals * WEIGHT_FINALS) + (gradeProject * WEIGHT_PORJECT) + (gradeRecitation * WEIGHT_RECITATION)) / 100.0;
 
     if (AG < 60) {
         TG = 60 + (AG / 4);
@@ -51,11 +52,11 @@ int main() {
     printf("\n--------------------------------------");
     printf("\n%-20s %-10s %s", "REQUIREMENT", "GRADE", "WEIGHT");
     printf("\n--------------------------------------");
-    printf("\n%-20s %-10.2f %d%%", "Quizzes", gradeQuizzes, weightQuizzes);
-    printf("\n%-20s %-10.2f %d%%", "Midterm Exam", gradeMidterms, weightMidterms);
-    printf("\n%-20s %-10.2f %d%%", "Final Exam", gradeFinals, weightFinals);
-    printf("\n%-20s %-10.2f %d%%", "Project", gradeProject, weightProject);
-    printf("\n%-20s %-10.2f %d%%", "Recitation", gradeRecitation, weightRecitation);
+    printf("\n%-20s %-10.2f %d%%", "Quizzes", gradeQuizzes, WEIGHT_QUIZZES);
+    printf("\n%-20s %-10.2f %d%%", "Midterm Exam", gradeMidterms, WEIGHT_MIDTERMS);
+    printf("\n%-20s %-10.2f %d%%", "Final Exam", gradeFinals, WEIGHT_FINALS);
+    printf("\n%-20s %-10.2f %d%%", "Project", gradeProject, WEIGHT_PORJECT);
+    printf("\n%-20s %-10.2f %d%%", "Recitation", gradeRecitation, WEIGHT_RECITATION);
 
     printf("\n\n%-20s %-10.2f", "Actual Grade:", AG);
     printf("\n%-20s %-10.0f", "Transmuted Grade:", TG);
@@ -64,11 +65,11 @@ int main() {
     fprintf(ofp, "\n--------------------------------------");
     fprintf(ofp, "\n%-20s %-10s %s", "REQUIREMENT", "GRADE", "WEIGHT");
     fprintf(ofp, "\n--------------------------------------");
-    fprintf(ofp, "\n%-20s %-10.2f %d%%", "Quizzes", gradeQuizzes, weightQuizzes);
-    fprintf(ofp, "\n%-20s %-10.2f %d%%", "Midterm Exam", gradeMidterms, weightMidterms);
-    fprintf(ofp, "\n%-20s %-10.2f %d%%", "Final Exam", gradeFinals, weightFinals);
-    fprintf(ofp, "\n%-20s %-10.2f %d%%", "Project", gradeProject, weightProject);
-    fprintf(ofp, "\n%-20s %-10.2f %d%%", "Recitation", gradeRecitation, weightRecitation);
+    fprintf(ofp, "\n%-20s %-10.2f %d%%", "Quizzes", gradeQuizzes, WEIGHT_QUIZZES);
+    fprintf(ofp, "\n%-20s %-10.2f %d%%", "Midterm Exam", gradeMidterms, WEIGHT_MIDTERMS);
+    fprintf(ofp, "\n%-20s %-10.2f %d%%", "Final Exam", gradeFinals, WEIGHT_FINALS);
+    fprintf(ofp, "\n%-20s %-10.2f %d%%", "Project", gradeProject, WEIGHT_PORJECT);
+    fprintf(ofp, "\n%-20s %-10.2f %d%%", "Recitation", gradeRecitation, WEIGHT_RECITATION);
 
     fprintf(ofp, "\n\n%-20s %-10.2f", "Actual Grade:", AG);
     fprintf(ofp, "\n%-20s %-10.0f", "Transmuted Grade:", TG);
