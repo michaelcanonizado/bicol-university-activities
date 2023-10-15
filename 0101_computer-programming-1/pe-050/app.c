@@ -35,20 +35,30 @@ int main() {
     printf("Enter grade for Recitation: ");
     scanf("%f", &gradeRecitation);
 
+    //
+    // CHECK IF VALID USER INPUT
+    //
+    if (gradeQuizzes > 100 || gradeMidterms > 100 || gradeFinals > 100 || gradeProject > 100 || gradeRecitation > 100) {
+        // Prompt error in the screen/terminal
+        printf("\nInvalid Inputs! Please make sure that grades are equal to or less than 100. Please rerun the program.\n");
+        // Clear txt file and close file
+        fprintf(ofp, "");
+        fclose(ofp);
+        return 1;
+    }
+
 
     //
     // CALCULATIONS
     //
     // Calculate Actual Grade
     AG = ((gradeQuizzes * WEIGHT_QUIZZES) + (gradeMidterms * WEIGHT_MIDTERMS) + (gradeFinals * WEIGHT_FINALS) + (gradeProject * WEIGHT_PORJECT) + (gradeRecitation * WEIGHT_RECITATION)) / 100.0;
-    // Calculate Transmuted Grade
+    // Calculate and floor Transmuted Grade
     if (AG < 60) {
-        TG = 60 + (AG / 4);
+        TG = floor(60 + (AG / 4));
     } else {
-        TG = 75 + ((AG - 60)/ 1.6);
+        TG = floor(75 + ((AG - 60)/ 1.6));
     }
-    // Floor/Round down Transmuted Grade to nearest integer
-    TG = floor(TG);
 
 
     //
