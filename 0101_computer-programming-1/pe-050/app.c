@@ -1,5 +1,5 @@
 // Michael Xavier Canonizado | BSCS-1A
-
+// This program asks the user to input 5 values corresponding to the grades of quizzes, midterms, finals, project, and recitation.  And computes the actual total grade.
 #include <stdio.h>
 #include <math.h>
 
