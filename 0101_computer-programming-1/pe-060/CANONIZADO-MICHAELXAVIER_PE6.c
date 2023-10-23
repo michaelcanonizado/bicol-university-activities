@@ -26,7 +26,7 @@ int main() {
         printf("\t\'%c\' - Invalid character", userCharInput);
         return 1;
     }
-   
+    // Check if letter is lowercase. If true, turn letter to uppercase by manipulating the ASCII value, then assign it to another variable that is going to be switched through.
     if (userCharInput >= 'a' && userCharInput <= 'z') {
         verifiedChar = userCharInput - 32;
     } else {
