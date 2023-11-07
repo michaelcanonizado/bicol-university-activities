@@ -10,6 +10,9 @@ int main(void) {
     while(1) {
         printf("Please input a pair of integers (ctrl-D to end): ");
         if (scanf("%f %f", &centavos, &hour) == EOF) {
+            printf("This is the end of your input.\n\n");
+
+            printf("TOTAL PAY: %.2f pesos", totalPay);
             break;
         }
 
