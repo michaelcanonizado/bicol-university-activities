@@ -8,4 +8,5 @@ Computation of your payment for this week
 |        280 |      68 |     240.80 |
 |        240 |      68 |     206.40 |
 |        260 |      48 |     135.20 |
+
 TOTAL PAY: PhP 928.80

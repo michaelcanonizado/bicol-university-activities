@@ -1,3 +1,6 @@
+// Michael Xavier Canonizado | BSCS-1A
+// This program asks the user to input 2 
+
 #include <stdio.h>
 
 int main(void) {
@@ -5,7 +8,8 @@ int main(void) {
     const float rate2 = 1.5;
     const float rate3 = 2.0;
 
-    float centavos, pesos, hours, payInPhp, totalPay;
+    int centavos, hours;
+    float pesos,  payInPhp, totalPay;
 
     FILE *ofp;
     ofp = fopen("payment.txt", "wt");
@@ -16,8 +20,8 @@ int main(void) {
     fprintf(ofp, "-------------------------------------\n");
 
     while(1) {
-        printf("Please input a pair of integers (ctrl-D to end): ");
-        if (scanf("%f %f", &centavos, &hours) == EOF) {
+        printf("Please input a pair of integers(ctrl-D to end): ");
+        if (scanf("%d %d", &centavos, &hours) == EOF) {
             printf("This is the end of your input.\n\n");
 
             printf("TOTAL PAY: %.2f pesos", totalPay);
@@ -25,13 +29,13 @@ int main(void) {
             break;
         }
 
-        pesos = centavos / 100;
+        pesos = centavos / 100.0;
 
         if (hours <= 40) {
             payInPhp = (pesos * rate1) * hours;
             totalPay += payInPhp;
 
-            fprintf(ofp, "|%11.0f |%8.0f |%11.2f |\n", centavos, hours, payInPhp);
+            fprintf(ofp, "|%11d |%8d |%11.2f |\n", centavos, hours, payInPhp);
 
         } else if (hours >= 41 && hours <= 60) {   
             payInPhp += pesos * 40;
@@ -40,7 +44,7 @@ int main(void) {
 
             totalPay += payInPhp;
 
-            fprintf(ofp, "|%11.0f |%8.0f |%11.2f |\n", centavos, hours, payInPhp);
+            fprintf(ofp, "|%11d |%8d |%11.2f |\n", centavos, hours, payInPhp);
 
         } else if (hours > 60) {
             payInPhp += pesos * 40;
@@ -51,15 +55,14 @@ int main(void) {
 
             totalPay += payInPhp;
 
-            fprintf(ofp, "|%11.0f |%8.0f |%11.2f |\n", centavos, hours, payInPhp);
+            fprintf(ofp, "|%11d |%8d |%11.2f |\n", centavos, hours, payInPhp);
         }
 
-        printf("Pay at %.0f centavos/hr for %.0f hours is %.2f pesos\n\n", centavos, hours, payInPhp);
+        printf("Pay at %d centavos/hr for %d hours is %.2f pesos\n\n", centavos, hours, payInPhp);
         
         payInPhp = 0;
     }
-
-    // Print to txt here
+    
     fclose(ofp);
     return 0;
 }
