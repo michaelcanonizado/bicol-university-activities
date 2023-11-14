@@ -1,8 +1,9 @@
 #include <stdio.h>
 
 int main(void) {
-    // Initialize Varablez
-    int integer, total;
+    // Initialize Varablez. Use an unsigned long long int for total as the result of factorials can get quite big
+    unsigned long long int total;
+    int integer;
 
     // Prompt user
     printf("Factorial Calculator\n");
@@ -19,7 +20,7 @@ int main(void) {
     }
 
     // Output results
-    printf("The factorial of 5 is %d\n", total);
+    printf("The factorial of %d is %llu\n", integer, total);
 
     return 1;
 }
