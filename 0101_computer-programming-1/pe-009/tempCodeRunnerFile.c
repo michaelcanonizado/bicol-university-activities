@@ -1,1 +1,1 @@
-digitCounter++;
+    // digitCounter = 0;

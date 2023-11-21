@@ -15,22 +15,27 @@ int main (void) {
         return 1;
     }
 
+    printf("\n%-10s %4s %4s %4s %4s %4s %4s %4s %4s %4s %4s\n", "INTEGER","0s","1s","2s","3s","4s","5s","6s","7s","8s","9s");
+    printf("------------------------------------------------------------");
+
     while (1) {
         fscanf(inputFile, "%d", &integer);
         if (integer == 0) {
-            printf("REACHED 0");
+            printf("\n\n");
             break;
         }
 
+        printf("\n%-10d", integer);
+
         for (int digit = 0; digit <= 9; digit++) {
                 int result = frequencyOfDigit(integer, digit);
-                // printf("\n%ds in %d is: %d", digit, integer, result);
+                printf("%4d ", result);
+
                 digitCounter = 0;
         }
 
-        printf("\n");    
     }
-    
+
     fclose(inputFile);
     return 0;
 }
