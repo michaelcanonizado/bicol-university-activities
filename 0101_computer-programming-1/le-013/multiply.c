@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-int square(int num) {
-    //
+int multiply(int num) {
+    
 }
 
 int main(void) {
@@ -11,7 +11,7 @@ int main(void) {
     printf("Please enter a positive integer: ");
     scanf("%d", &integer);
 
-    result = square(integer);
+    result = multiply(integer);
 
-    printf("Factorial of %d is: %llu\n", integer, result);
+    printf("Square of %d is: %llu\n", integer, result);
 }
