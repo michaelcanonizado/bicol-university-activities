@@ -48,6 +48,7 @@ int main(void) {
     // Variable to hold the inputted integer
     int integer;
 
+
     // Contiously ask user
      do {
 
@@ -75,7 +76,6 @@ int main(void) {
             printf(" please enter a positive integer.\n");
         }       
      } while (1);
-
-
+     
     return 1;
 }
