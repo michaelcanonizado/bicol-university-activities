@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int power(int base,int exponent) {
+long power(int base,int exponent) {
     if (exponent == 1) {
         return base;
     } else {
