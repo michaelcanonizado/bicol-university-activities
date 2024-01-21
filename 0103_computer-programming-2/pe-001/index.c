@@ -1,3 +1,6 @@
+// Canonizado, Michael Xavier E. | BSCS 1-A
+// This program will take in floating point data from an input.dat file where the first line is the size of the array, and the second line is the list of values of the array. It will read the file and compute the mean and standard deviation. Where it will then output the results in an output.dat file and print the results to the terminal.
+
 #include <stdio.h>
 #include <math.h>
 
