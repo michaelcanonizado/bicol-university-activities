@@ -1,8 +1,10 @@
 #include <stdio.h>
+#include <math.h>
 
 #define MAX_DATA_ARRAY_LENGTH 100
 
 float getDataMean(float pDataArray[], int dataLength);
+float getDataStandardDeviation(float pDataArray[], int dataLength, float dataMean);
 
 int main(void) {
     int dataArrayLength;
@@ -30,6 +32,10 @@ int main(void) {
 
     printf("\n\nData Mean: %f\n", dataMean);
 
+    float dataStandardDeviation = getDataStandardDeviation(dataArray, dataArrayLength, dataMean);
+
+    printf("Data Standard Deviation: %f\n", dataStandardDeviation);
+
     return 0;
 }
 
@@ -45,4 +51,22 @@ float getDataMean(float pDataArray[], int dataLength) {
     float dataMean = dataSum / dataLength;
 
     return dataMean;
+}
+
+float getDataStandardDeviation(float pDataArray[], int dataLength, float dataMean) {
+    float sumofValueMinusMeanSquared = 0;
+    float variance, standardDeviation;
+
+    // Sum up the squares of value - mean
+    for(int i = 0; i < dataLength; i++) {
+        sumofValueMinusMeanSquared += pow(pDataArray[i] - dataMean, 2);
+    }
+
+    // Get variance
+    variance = sumofValueMinusMeanSquared/(dataLength - 1);
+
+    // Sqaure root variance to get standard deviation
+    standardDeviation =  sqrt(variance);
+
+    return standardDeviation;
 }
