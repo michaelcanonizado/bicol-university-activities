@@ -2,6 +2,8 @@
 
 #define MAX_DATA_ARRAY_LENGTH 100
 
+float getDataMean(float pDataArray[], int dataLength);
+
 int main(void) {
     int dataArrayLength;
     float dataArray[MAX_DATA_ARRAY_LENGTH];
@@ -23,10 +25,24 @@ int main(void) {
         counter++;
     }
 
-    printf("Array Length: %d\n", dataArrayLength);
-    for (int i = 0; i < dataArrayLength; i++) {
-        printf("%f ", dataArray[i]);
-    }
+    // Get data array mean
+    float dataMean = getDataMean(dataArray, dataArrayLength);
+
+    printf("\n\nData Mean: %f\n", dataMean);
 
     return 0;
+}
+
+float getDataMean(float pDataArray[], int dataLength) {
+    float dataSum = 0;
+
+    // Sum up all the data values
+    for(int i = 0; i < dataLength; i++) {
+        dataSum += pDataArray[i];
+    }
+
+    // Get mean (sum / number of values)
+    float dataMean = dataSum / dataLength;
+
+    return dataMean;
 }
