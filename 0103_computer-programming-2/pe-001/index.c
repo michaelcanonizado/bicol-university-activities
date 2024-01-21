@@ -11,7 +11,9 @@ int main(void) {
     float dataArray[MAX_DATA_ARRAY_LENGTH];
 
     FILE *pInputFile;
-    pInputFile = fopen("input.txt", "rt");
+    pInputFile = fopen("input.dat", "r");
+    FILE *pOutputFile;
+    pOutputFile = fopen("output.dat", "w");
 
     if (pInputFile == NULL) {
         printf("input.txt not found...");
@@ -29,12 +31,28 @@ int main(void) {
 
     // Get data array mean
     float dataMean = getDataMean(dataArray, dataArrayLength);
-
-    printf("\n\nData Mean: %f\n", dataMean);
-
+    // Get data array standard deviation
     float dataStandardDeviation = getDataStandardDeviation(dataArray, dataArrayLength, dataMean);
 
-    printf("Data Standard Deviation: %f\n", dataStandardDeviation);
+    // Print results to screen
+    printf("The mean is: %.4f.\n", dataMean);
+    printf("The standard deviation is: %.4f.\n", dataStandardDeviation);
+    printf("\nTable of differences between the data values and mean deviation");
+    printf("\n %-5s %8s %19s", "Index", "Data", "Data-Mean");
+    for(int i = 0; i < dataArrayLength; i++) {
+        printf("\n %-5i %8.2f %16.2f", i, dataArray[i], dataArray[i]-dataMean);
+    }
+    printf("\n\n");
+
+    // Output results to output.dat
+    fprintf(pOutputFile, "The mean is: %.4f.\n", dataMean);
+    fprintf(pOutputFile, "The standard deviation is: %.4f.\n", dataStandardDeviation);
+    fprintf(pOutputFile, "\nTable of differences between the data values and mean deviation");
+    fprintf(pOutputFile, "\n %-5s %8s %19s", "Index", "Data", "Data-Mean");
+    for(int i = 0; i < dataArrayLength; i++) {
+        fprintf(pOutputFile, "\n %-5i %8.2f %16.2f", i, dataArray[i], dataArray[i]-dataMean);
+    }
+    fprintf(pOutputFile, "\n");
 
     return 0;
 }

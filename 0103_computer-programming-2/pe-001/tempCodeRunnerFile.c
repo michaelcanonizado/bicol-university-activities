@@ -1,1 +1,1 @@
-dataLength-1
+dataArray[counter]
