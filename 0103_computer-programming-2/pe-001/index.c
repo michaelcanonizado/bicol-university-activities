@@ -32,6 +32,9 @@ int main(void) {
         counter++;
     }
 
+    // Close input file stream
+    fclose(pInputFile);
+
     // Get data array mean
     float dataMean = getDataMean(dataArray, dataArrayLength);
     // Get data array standard deviation
@@ -56,6 +59,9 @@ int main(void) {
         fprintf(pOutputFile, "\n %-5i %8.2f %16.2f", i, dataArray[i], dataArray[i]-dataMean);
     }
     fprintf(pOutputFile, "\n");
+
+    // Close output file stream
+    fclose(pOutputFile);
 
     return 0;
 }
