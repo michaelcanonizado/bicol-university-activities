@@ -3,7 +3,7 @@
 #define MAX_ARRAY_SIZE 1000
 
 void selectionSort(float array[], int size) {
-    unsigned int minIndex, isNotSortedFlag = 0;
+    int minIndex, isNotSortedFlag = 0;
     float temp;
 
     printf("\nOuput of SELECTION Sort:");
@@ -39,8 +39,26 @@ void selectionSort(float array[], int size) {
     }
 }
 
-void insertionSort() {
-    printf("\nInsertion sort");
+void insertionSort(float array[], int size) {
+    float temp;
+
+    printf("\nOuput of INSERTION Sort:");
+    for (int i = 1; i < size; i++) {
+        for (int j = i - 1; j >= 0; j--) {
+            if (array[j] < array[j + 1]) {
+                break;
+            }
+
+            temp = array[j];
+            array[j] = array[j + 1];
+            array[j + 1] = temp;
+        }
+
+        printf("\n Iteration i=%d: ", i);
+        for(int i = 0; i < size; i++) {
+            printf("%.0f ", array[i]);
+        }
+    }
 }
 
 void bubbleSort() {
@@ -76,7 +94,7 @@ int main(void) {
             selectionSort(array, sizeOfArray);
             break;
         case 2: 
-            insertionSort();
+            insertionSort(array, sizeOfArray);
             break;
         case 3: 
             bubbleSort();
