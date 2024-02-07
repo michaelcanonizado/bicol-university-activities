@@ -61,8 +61,24 @@ void insertionSort(int array[], int size) {
     }
 }
 
-void bubbleSort() {
-    printf("\nBubble sort");
+void bubbleSort(int array[], int size) {
+    int temp;
+
+    printf("\nOuput of BUBBLE Sort:");
+    for (int i = 0; i < (size - 1); i++) {
+        for (int j = 0; j < (size - 1); j++) {
+            if (array[j] > array[j + 1]) {
+                temp = array[j];
+                array[j] = array[j + 1];
+                array[j + 1] = temp;
+            }
+        }
+        
+        printf("\n Iteration i=%d: ", i);
+        for(int i = 0; i < size; i++) {
+            printf("%d ", array[i]);
+        }
+    }
 }
 
 void mergeSort() {
@@ -97,7 +113,7 @@ int main(void) {
             insertionSort(array, sizeOfArray);
             break;
         case 3: 
-            bubbleSort();
+            bubbleSort(array, sizeOfArray);
             break;
         case 4: 
             mergeSort();
