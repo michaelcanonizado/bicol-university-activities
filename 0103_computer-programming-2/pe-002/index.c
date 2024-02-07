@@ -3,7 +3,7 @@
 #define MAX_ARRAY_SIZE 1000
 
 void selectionSort(float array[], int size) {
-    unsigned int minIndex;
+    unsigned int minIndex, swappedFlag = 0;
     float temp;
 
     printf("\nOuput of SELECTION Sort:");
@@ -13,6 +13,11 @@ void selectionSort(float array[], int size) {
         for (int j = i + 1; j < size; j++) {
             if (array[j] < array[minIndex]) {
                 minIndex = j;
+                swappedFlag++;
+            }
+
+            if (array[j - 1] > array[j]) {
+                swappedFlag++;
             }
         }
 
@@ -21,6 +26,11 @@ void selectionSort(float array[], int size) {
             array[minIndex] = array[i];
             array[i] = temp;
         }
+        
+        if ((swappedFlag == 0) && (i)) {
+            break;
+        }
+        swappedFlag = 0;
         
         printf("\n Iteration i=%d: ", i);
         for(int i = 0; i < size; i++) {
