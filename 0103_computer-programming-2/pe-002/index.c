@@ -145,7 +145,7 @@ int main(void) {
     for (int i = 0; i < sizeof(sortingAlgorithms)/sizeof(sortingAlgorithms[0]); i++) {
         printf("\n  %d. %s", i + 1, sortingAlgorithms[i]);
     }
-    printf("\nType number of choice: ");
+    printf("\n  Type number of choice: ");
     scanf("%d", &sortingAlgorithmChoice);
 
     switch(sortingAlgorithmChoice) {
@@ -163,10 +163,11 @@ int main(void) {
             break;
     }
 
-    printf("\n\nSORTED ARRAY: ");
+    printf("\n\nSorted Array: ");
     for(int i = 0; i < sizeOfArray; i++) {
         printf("%d ", array[i]);
     }
+    printf("\n\n");
 
     return 0;
 }
