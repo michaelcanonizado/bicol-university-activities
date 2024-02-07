@@ -2,8 +2,31 @@
 
 #define MAX_ARRAY_SIZE 1000
 
-void selectionSort() {
-    printf("\nSelection sort");
+void selectionSort(float array[], int size) {
+    unsigned int minIndex;
+    float temp;
+
+    printf("\nOuput of SELECTION Sort:");
+    for (int i = 0; i < size - 1; i++) {
+        minIndex = i;
+
+        for (int j = i + 1; j < size; j++) {
+            if (array[j] < array[minIndex]) {
+                minIndex = j;
+            }
+        }
+
+        if (minIndex != i) {
+            temp = array[minIndex];
+            array[minIndex] = array[i];
+            array[i] = temp;
+        }
+        
+        printf("\n Iteration i=%d: ", i);
+        for(int i = 0; i < size; i++) {
+            printf("%.0f ", array[i]);
+        }
+    }
 }
 
 void insertionSort() {
@@ -40,7 +63,7 @@ int main(void) {
 
     switch(sortingAlgorithmChoice) {
         case 1: 
-            selectionSort();
+            selectionSort(array, sizeOfArray);
             break;
         case 2: 
             insertionSort();
@@ -51,6 +74,11 @@ int main(void) {
         case 4: 
             mergeSort();
             break;
+    }
+
+    printf("\n\nSORTED ARRAY: ");
+    for(int i = 0; i < sizeOfArray; i++) {
+        printf("%.0f ", array[i]);
     }
 
     return 0;
