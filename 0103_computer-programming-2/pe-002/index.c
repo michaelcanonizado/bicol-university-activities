@@ -26,7 +26,7 @@ void selectionSort(int array[], int size) {
             array[i] = temp;
         }
         
-        if ((isNotSortedFlag == 0) && (i)) {
+        if (isNotSortedFlag == 0) {
             break;
         }
         isNotSortedFlag = 0;
