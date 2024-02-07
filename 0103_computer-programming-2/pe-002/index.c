@@ -62,7 +62,7 @@ void insertionSort(int array[], int size) {
 }
 
 void bubbleSort(int array[], int size) {
-    int temp;
+    int temp, isNotSortedFlag = 0;
 
     printf("\nOuput of BUBBLE Sort:");
     for (int i = 0; i < (size - 1); i++) {
@@ -71,8 +71,14 @@ void bubbleSort(int array[], int size) {
                 temp = array[j];
                 array[j] = array[j + 1];
                 array[j + 1] = temp;
+                isNotSortedFlag++;
             }
         }
+
+        if (isNotSortedFlag == 0) {
+            break;
+        }
+        isNotSortedFlag = 0;
         
         printf("\n Iteration i=%d: ", i);
         for(int i = 0; i < size; i++) {
