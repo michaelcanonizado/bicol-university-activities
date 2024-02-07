@@ -87,8 +87,45 @@ void bubbleSort(int array[], int size) {
     }
 }
 
-void mergeSort() {
-    printf("\nMerge sort");
+void merge(int array[], int leftHalfStart, int leftHalfEnd, int rightHalfStart, int rightHalfEnd) {
+    int tempArray[MAX_ARRAY_SIZE];
+    int leftIndex = leftHalfStart; 
+    int rightIndex = rightHalfStart; 
+    int tempIndex = 0;
+
+    while ((leftIndex <= leftHalfEnd) && (rightIndex <= rightHalfEnd)) {
+        if(array[leftIndex] < array[rightIndex]) {
+            tempArray[tempIndex++] = array[leftIndex++];
+        } else {
+            tempArray[tempIndex++] = array[rightIndex++];
+        }
+    }
+
+    while(leftIndex <= leftHalfEnd) {
+        tempArray[tempIndex++] = array[leftIndex++];
+    }
+
+    while(rightIndex <= rightHalfEnd) {
+        tempArray[tempIndex++] = array[rightIndex++];
+    }
+
+    for (int i = leftHalfStart, j = 0; i <= rightHalfEnd; i++, j++) {
+        array[i] = tempArray[j];
+    }
+}
+void mergeSort(int array[], int start, int end, int size) {
+    if (start < end) {
+        int mid = (start + end) / 2;
+        mergeSort(array, start, mid, size);
+        mergeSort(array, mid + 1, end, size);
+
+        merge(array, start, mid, mid + 1, end);
+
+        printf("\n Recursion: ");
+        for(int i = 0; i < size; i++) {
+            printf("%d ", array[i]);
+        }
+    } 
 }
 
 int main(void) {
@@ -122,7 +159,7 @@ int main(void) {
             bubbleSort(array, sizeOfArray);
             break;
         case 4: 
-            mergeSort();
+            mergeSort(array, 0, sizeOfArray - 1, sizeOfArray);
             break;
     }
 
