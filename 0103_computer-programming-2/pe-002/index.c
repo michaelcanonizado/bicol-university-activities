@@ -2,6 +2,22 @@
 
 #define MAX_ARRAY_SIZE 1000
 
+void selectionSort() {
+    printf("\nSelection sort");
+}
+
+void insertionSort() {
+    printf("\nInsertion sort");
+}
+
+void bubbleSort() {
+    printf("\nBubble sort");
+}
+
+void mergeSort() {
+    printf("\nMerge sort");
+}
+
 int main(void) {
     char sortingAlgorithms[][50] = {"SELECTION SORT", "INSERTION SORT", "BUBBLE SORT", "MERGE SORT"};
 
@@ -22,7 +38,20 @@ int main(void) {
     printf("\nType number of choice: ");
     scanf("%d", &sortingAlgorithmChoice);
 
-    printf("\n\nCHOSEN ALGO: %s\n\n", sortingAlgorithms[sortingAlgorithmChoice - 1]);
+    switch(sortingAlgorithmChoice) {
+        case 1: 
+            selectionSort();
+            break;
+        case 2: 
+            insertionSort();
+            break;
+        case 3: 
+            bubbleSort();
+            break;
+        case 4: 
+            mergeSort();
+            break;
+    }
 
     return 0;
 }
