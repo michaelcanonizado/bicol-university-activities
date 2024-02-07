@@ -2,9 +2,9 @@
 
 #define MAX_ARRAY_SIZE 1000
 
-void selectionSort(float array[], int size) {
+void selectionSort(int array[], int size) {
     int minIndex, isNotSortedFlag = 0;
-    float temp;
+    int temp;
 
     printf("\nOuput of SELECTION Sort:");
     for (int i = 0; i < size - 1; i++) {
@@ -34,13 +34,13 @@ void selectionSort(float array[], int size) {
         
         printf("\n Iteration i=%d: ", i);
         for(int i = 0; i < size; i++) {
-            printf("%.0f ", array[i]);
+            printf("%d ", array[i]);
         }
     }
 }
 
-void insertionSort(float array[], int size) {
-    float temp;
+void insertionSort(int array[], int size) {
+    int temp;
 
     printf("\nOuput of INSERTION Sort:");
     for (int i = 1; i < size; i++) {
@@ -56,7 +56,7 @@ void insertionSort(float array[], int size) {
 
         printf("\n Iteration i=%d: ", i);
         for(int i = 0; i < size; i++) {
-            printf("%.0f ", array[i]);
+            printf("%d ", array[i]);
         }
     }
 }
@@ -73,13 +73,13 @@ int main(void) {
     char sortingAlgorithms[][50] = {"SELECTION SORT", "INSERTION SORT", "BUBBLE SORT", "MERGE SORT"};
 
     int sizeOfArray, sortingAlgorithmChoice;
-    float array[MAX_ARRAY_SIZE];
+    int array[MAX_ARRAY_SIZE];
 
     printf("\nEnter the size of the array: ");
     scanf("%d", &sizeOfArray);
     printf("Enter the array elements: ");
     for (int i = 0; i < sizeOfArray; i++) {
-        scanf("%f", &array[i]);
+        scanf("%d", &array[i]);
     }
 
     printf("Which sorting algorithm do you want to use?");
@@ -106,7 +106,7 @@ int main(void) {
 
     printf("\n\nSORTED ARRAY: ");
     for(int i = 0; i < sizeOfArray; i++) {
-        printf("%.0f ", array[i]);
+        printf("%d ", array[i]);
     }
 
     return 0;
