@@ -3,6 +3,7 @@
 #define MAX_ARRAY_SIZE 1000
 
 void selectionSort(int array[], int size) {
+    //
     int minIndex, isNotSortedFlag = 0;
     int temp;
 
