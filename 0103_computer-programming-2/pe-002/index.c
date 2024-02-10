@@ -1,37 +1,45 @@
+// Michael Xavier E. Canonizado
+// A program that sorts an array. It prompts for the size of the array, the values of the array, and the type of sorting algorithm to be used to sort the array. I will then use that sorting algortihm to sort the array and print the state of the array after each iteration/recursion and output the final sorted array. 
+
 #include <stdio.h>
 
 #define MAX_ARRAY_SIZE 1000
 
 void selectionSort(int array[], int size) {
-    //
+    // Use a flag to indicate whether any unsorted values are found.
     int minIndex, isNotSortedFlag = 0;
     int temp;
 
     for (int i = 0; i < size - 1; i++) {
         minIndex = i;
 
+        // Look for the smallest value
         for (int j = i + 1; j < size; j++) {
             if (array[j] < array[minIndex]) {
                 minIndex = j;
                 isNotSortedFlag++;
             }
 
+            // Add to flag to indicate that the array is not yet sorted
             if (array[j - 1] > array[j]) {
                 isNotSortedFlag++;
             }
         }
 
+        // Swap the smallest value at the current index
         if (minIndex != i) {
             temp = array[minIndex];
             array[minIndex] = array[i];
             array[i] = temp;
         }
         
+        // If we've looped through all items in the array and everything is in order, break out.
         if (isNotSortedFlag == 0) {
             break;
         }
         isNotSortedFlag = 0;
         
+        // Print array state after each iteration
         printf("\n Iteration i=%d: ", i);
         for(int i = 0; i < size; i++) {
             printf("%d ", array[i]);
