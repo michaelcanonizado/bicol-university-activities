@@ -5,7 +5,7 @@
 
 #define MAX_ARRAY_SIZE 1000
 
-void selectionSort(int array[], int size) {
+void selectionSort(int array[], int size, FILE *pOutputFile) {
     // Use a flag to indicate whether any unsorted values are found.
     int minIndex, isNotSortedFlag = 0;
     int temp;
@@ -41,13 +41,15 @@ void selectionSort(int array[], int size) {
         
         // Print array state after each iteration
         printf("\n Iteration i=%d: ", i);
+        fprintf(pOutputFile, "\n Iteration i=%d: ", i);
         for(int i = 0; i < size; i++) {
             printf("%d ", array[i]);
+            fprintf(pOutputFile, "%d ", array[i]);
         }
     }
 }
 
-void insertionSort(int array[], int size) {
+void insertionSort(int array[], int size, FILE *pOutputFile) {
     int temp;
 
     for (int i = 1; i < size; i++) {
@@ -66,13 +68,15 @@ void insertionSort(int array[], int size) {
 
         // Print array state after each iteration
         printf("\n Iteration i=%d: ", i);
+        fprintf(pOutputFile, "\n Iteration i=%d: ", i);
         for(int i = 0; i < size; i++) {
             printf("%d ", array[i]);
+            fprintf(pOutputFile, "%d ", array[i]);
         }
     }
 }
 
-void bubbleSort(int array[], int size) {
+void bubbleSort(int array[], int size, FILE *pOutputFile) {
     // Use flag to check if unsorted values are left
     int temp, isNotSortedFlag = 0;
 
@@ -95,8 +99,10 @@ void bubbleSort(int array[], int size) {
 
         // Print array state after each iteration  
         printf("\n Iteration i=%d: ", i);
+        fprintf(pOutputFile, "\n Iteration i=%d: ", i);
         for(int i = 0; i < size; i++) {
             printf("%d ", array[i]);
+            fprintf(pOutputFile, "%d ", array[i]);
         }
     }
 }
@@ -129,22 +135,24 @@ void merge(int array[], int leftHalfStart, int leftHalfEnd, int rightHalfStart, 
         array[i] = tempArray[j];
     }
 }
-void mergeSort(int array[], int start, int end, int size) {
+void mergeSort(int array[], int start, int end, int size, FILE *pOutputFile) {
     // Recurse only if there is more than 1 item
     if (start < end) {
         // Cut array in half
         int mid = (start + end) / 2;
         // Sort the 2 halves
-        mergeSort(array, start, mid, size);
-        mergeSort(array, mid + 1, end, size);
+        mergeSort(array, start, mid, size, pOutputFile);
+        mergeSort(array, mid + 1, end, size, pOutputFile);
 
         // Merge the sorted halves
         merge(array, start, mid, mid + 1, end);
 
         // Print array state after each iteration
         printf("\n Recursion: ");
+        fprintf(pOutputFile, "\n Recursion: ");
         for(int i = 0; i < size; i++) {
             printf("%d ", array[i]);
+            fprintf(pOutputFile, "%d ", array[i]);
         }
     } 
 }
@@ -167,38 +175,56 @@ int main(void) {
         scanf("%d", &array[i]);
     }
 
+    // Output to output.dat
+    fprintf(pOutputFile, "Enter the size of the array: %d", sizeOfArray);
+    fprintf(pOutputFile, "\nEnter the array elements: ");
+    for (int i = 0; i < sizeOfArray; i++) {
+        fprintf(pOutputFile, "%d ", array[i]);
+    }
+
     // Ask user for what algorithm to use
+    fprintf(pOutputFile, "\nWhich sorting algorithm do you want to use?");
     printf("Which sorting algorithm do you want to use?");
     for (int i = 0; i < sizeof(sortingAlgorithms)/sizeof(sortingAlgorithms[0]); i++) {
         printf("\n  %d. %s", i + 1, sortingAlgorithms[i]);
+        fprintf(pOutputFile, "\n  %d. %s", i + 1, sortingAlgorithms[i]);
     }
     printf("\n  Type number of choice: ");
     scanf("%d", &sortingAlgorithmChoice);
+
+    fprintf(pOutputFile, "\n  Type number of choice: %d\n", sortingAlgorithmChoice);
+
 
     // Switch through user's choice
     switch(sortingAlgorithmChoice) {
         case 1:
             printf("\nOuput of SELECTION Sort:");
-            selectionSort(array, sizeOfArray);
+            fprintf(pOutputFile, "\nOuput of SELECTION Sort:");
+            selectionSort(array, sizeOfArray, pOutputFile);
             break;
         case 2:
             printf("\nOuput of INSERTION Sort:");
-            insertionSort(array, sizeOfArray);
+            fprintf(pOutputFile, "\nOuput of INSERTION Sort:");
+            insertionSort(array, sizeOfArray, pOutputFile);
             break;
         case 3:
             printf("\nOuput of BUBBLE Sort:");
-            bubbleSort(array, sizeOfArray);
+            fprintf(pOutputFile, "\nOuput of BUBBLE Sort:");
+            bubbleSort(array, sizeOfArray, pOutputFile);
             break;
         case 4: 
             printf("\nOuput of MERGE Sort:");
-            mergeSort(array, 0, sizeOfArray - 1, sizeOfArray);
+            fprintf(pOutputFile, "\nOuput of MERGE Sort:");
+            mergeSort(array, 0, sizeOfArray - 1, sizeOfArray, pOutputFile);
             break;
     }
 
     // Print Sorted Array
     printf("\n\nSorted Array: ");
+    fprintf(pOutputFile, "\n\nSorted Array: ");
     for(int i = 0; i < sizeOfArray; i++) {
         printf("%d ", array[i]);
+        fprintf(pOutputFile, "%d ", array[i]);
     }
     printf("\n\n");
 
