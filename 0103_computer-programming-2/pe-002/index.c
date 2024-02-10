@@ -156,6 +156,9 @@ int main(void) {
     int sizeOfArray, sortingAlgorithmChoice;
     int array[MAX_ARRAY_SIZE];
 
+    FILE *pOutputFile;
+    pOutputFile = fopen("output.dat", "w");
+
     // Ask user for the size of the array and elements of the array
     printf("\nEnter the size of the array: ");
     scanf("%d", &sizeOfArray);
