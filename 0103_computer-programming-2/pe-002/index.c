@@ -107,6 +107,7 @@ void merge(int array[], int leftHalfStart, int leftHalfEnd, int rightHalfStart, 
     int rightIndex = rightHalfStart; 
     int tempIndex = 0;
 
+    // Compare items of the sorted halves and sort in a temporary array
     while ((leftIndex <= leftHalfEnd) && (rightIndex <= rightHalfEnd)) {
         if(array[leftIndex] < array[rightIndex]) {
             tempArray[tempIndex++] = array[leftIndex++];
@@ -123,18 +124,24 @@ void merge(int array[], int leftHalfStart, int leftHalfEnd, int rightHalfStart, 
         tempArray[tempIndex++] = array[rightIndex++];
     }
 
+    // Transfer temporary array to the original array
     for (int i = leftHalfStart, j = 0; i <= rightHalfEnd; i++, j++) {
         array[i] = tempArray[j];
     }
 }
 void mergeSort(int array[], int start, int end, int size) {
+    // Recurse only if there is more than 1 item
     if (start < end) {
+        // Cut array in half
         int mid = (start + end) / 2;
+        // Sort the 2 halves
         mergeSort(array, start, mid, size);
         mergeSort(array, mid + 1, end, size);
 
+        // Merge the sorted halves
         merge(array, start, mid, mid + 1, end);
 
+        // Print array state after each iteration
         printf("\n Recursion: ");
         for(int i = 0; i < size; i++) {
             printf("%d ", array[i]);
