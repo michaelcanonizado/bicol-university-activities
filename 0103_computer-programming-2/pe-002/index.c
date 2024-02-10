@@ -73,9 +73,11 @@ void insertionSort(int array[], int size) {
 }
 
 void bubbleSort(int array[], int size) {
+    // Use flag to check if unsorted values are left
     int temp, isNotSortedFlag = 0;
 
     for (int i = 0; i < (size - 1); i++) {
+        // Bubble up value if it is greater than the value to its right
         for (int j = 0; j < (size - 1); j++) {
             if (array[j] > array[j + 1]) {
                 temp = array[j];
@@ -85,11 +87,13 @@ void bubbleSort(int array[], int size) {
             }
         }
 
+        // If loop has iterated through the whole array without making any swaps, break out of the loop as array is sorted
         if (isNotSortedFlag == 0) {
             break;
         }
         isNotSortedFlag = 0;
-        
+
+        // Print array state after each iteration  
         printf("\n Iteration i=%d: ", i);
         for(int i = 0; i < size; i++) {
             printf("%d ", array[i]);
