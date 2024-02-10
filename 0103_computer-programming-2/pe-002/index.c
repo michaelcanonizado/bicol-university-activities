@@ -51,16 +51,20 @@ void insertionSort(int array[], int size) {
     int temp;
 
     for (int i = 1; i < size; i++) {
+        // Check if there is a smaller value to the left of the item
         for (int j = i - 1; j >= 0; j--) {
+            // If value to the left is greater, break out of the loop
             if (array[j] < array[j + 1]) {
                 break;
             }
 
+            // If value to the left is smaller, swap item
             temp = array[j];
             array[j] = array[j + 1];
             array[j + 1] = temp;
         }
 
+        // Print array state after each iteration
         printf("\n Iteration i=%d: ", i);
         for(int i = 0; i < size; i++) {
             printf("%d ", array[i]);
