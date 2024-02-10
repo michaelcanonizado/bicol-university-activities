@@ -150,11 +150,13 @@ void mergeSort(int array[], int start, int end, int size) {
 }
 
 int main(void) {
+    // Store array names in an array, use a for loop to display the choices and use the indexes as numbering
     char sortingAlgorithms[][50] = {"SELECTION SORT", "INSERTION SORT", "BUBBLE SORT", "MERGE SORT"};
 
     int sizeOfArray, sortingAlgorithmChoice;
     int array[MAX_ARRAY_SIZE];
 
+    // Ask user for the size of the array and elements of the array
     printf("\nEnter the size of the array: ");
     scanf("%d", &sizeOfArray);
     printf("Enter the array elements: ");
@@ -162,6 +164,7 @@ int main(void) {
         scanf("%d", &array[i]);
     }
 
+    // Ask user for what algorithm to use
     printf("Which sorting algorithm do you want to use?");
     for (int i = 0; i < sizeof(sortingAlgorithms)/sizeof(sortingAlgorithms[0]); i++) {
         printf("\n  %d. %s", i + 1, sortingAlgorithms[i]);
@@ -169,6 +172,7 @@ int main(void) {
     printf("\n  Type number of choice: ");
     scanf("%d", &sortingAlgorithmChoice);
 
+    // Switch through user's choice
     switch(sortingAlgorithmChoice) {
         case 1:
             printf("\nOuput of SELECTION Sort:");
@@ -188,6 +192,7 @@ int main(void) {
             break;
     }
 
+    // Print Sorted Array
     printf("\n\nSorted Array: ");
     for(int i = 0; i < sizeOfArray; i++) {
         printf("%d ", array[i]);
