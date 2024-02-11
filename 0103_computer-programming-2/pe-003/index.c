@@ -26,9 +26,25 @@ void getMatrixRowSum(int result[MAX_MATRIX_ROWS],int matrix[MAX_MATRIX_ROWS][MAX
 
 }
 
+void getMatrixColSum(int result[MAX_MATRIX_COLS],int matrix[MAX_MATRIX_ROWS][MAX_MATRIX_COLS], int rows, int cols) {
+    int colSum;
+    
+    for (int i = 0; i < rows; i++) {
+        colSum = 0;
+
+        for (int j = 0; j < cols; j++) {
+            colSum += matrix[j][i];
+        }
+
+        result[i] = colSum;
+    }
+
+}
+
 int main (void) {
     int matrixRows, matrixCols;
     int matrixRowSum[MAX_MATRIX_ROWS];
+    int matrixColSum[MAX_MATRIX_COLS];
     int matrix[MAX_MATRIX_ROWS][MAX_MATRIX_COLS];
 
     int matrixTransposeRows, matrixTransposeCols;
@@ -63,19 +79,27 @@ int main (void) {
     // 3.0 | Get matrix row sum
     getMatrixRowSum(matrixRowSum, matrix, matrixRows, matrixCols);
 
-    printf("\nRows: %d\nCols: %d", matrixRows, matrixCols);
+    getMatrixColSum(matrixColSum, matrix, matrixRows, matrixCols);
+
+    printf("\nRows: %d\nCols: %d\n", matrixRows, matrixCols);
     printf("\nMatrix:\n");
     for (int i = 0; i < matrixRows; i++) {
         for (int j = 0; j < matrixCols; j++) {
-            printf("%d ", matrix[i][j]);
+            printf("%5d", matrix[i][j]);
         }
         printf("\n");
     }
 
-    printf("\n\nRows Sum:\n", matrixRows);
+    printf("\nRows Sum:\n", matrixRows);
     for (int i = 0; i < matrixRows; i++) {
-        printf("%d ", matrixRowSum[i]);
+        printf("%5d", matrixRowSum[i]);
     }
+    printf("\nCols Sum:\n", matrixCols);
+    for (int i = 0; i < matrixCols; i++) {
+        printf("%5d", matrixColSum[i]);
+    }
+
+    printf("\n\n");
 
     return 0;
 }
