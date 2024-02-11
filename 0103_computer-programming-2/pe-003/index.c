@@ -41,8 +41,21 @@ void getMatrixColSum(int result[MAX_MATRIX_COLS],int matrix[MAX_MATRIX_ROWS][MAX
 
 }
 
+int getMatrixTotalSum(int matrix[MAX_MATRIX_ROWS][MAX_MATRIX_COLS], int rows, int cols) {
+    int sum = 0;
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            sum += matrix[i][j];
+        }
+    }
+
+    return sum;
+
+}
+
 int main (void) {
-    int matrixRows, matrixCols;
+    int matrixRows, matrixCols, matrixTotalSum = 0;
     int matrixRowSum[MAX_MATRIX_ROWS];
     int matrixColSum[MAX_MATRIX_COLS];
     int matrix[MAX_MATRIX_ROWS][MAX_MATRIX_COLS];
@@ -81,6 +94,8 @@ int main (void) {
     // 3.1 | Get matrix col sum
     getMatrixColSum(matrixColSum, matrix, matrixRows, matrixCols);
 
+    matrixTotalSum = getMatrixTotalSum(matrix, matrixRows, matrixCols);
+
     printf("\nRows: %d\nCols: %d\n", matrixRows, matrixCols);
     printf("\nMatrix:\n");
     for (int i = 0; i < matrixRows; i++) {
@@ -98,6 +113,7 @@ int main (void) {
     for (int i = 0; i < matrixCols; i++) {
         printf("%5d", matrixColSum[i]);
     }
+    printf("\nTotal Sum: \n%5d\n", matrixTotalSum);
 
     printf("\n\n");
 
