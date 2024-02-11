@@ -96,6 +96,7 @@ int main (void) {
     // 3.2 | Get matrix total sum
     matrixTotalSum = getMatrixTotalSum(matrix, matrixRows, matrixCols);
 
+    // 4.0 | Exit out if matrix is not a square matrix
     if (matrixRows != matrixCols) {
         return 0;
     }
