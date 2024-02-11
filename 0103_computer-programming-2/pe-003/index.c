@@ -60,6 +60,7 @@ int main (void) {
     matrixTransposeRows = matrixCols;
     matrixTransposeCols = matrixRows;
 
+    // 3.0 | Get matrix row sum
     getMatrixRowSum(matrixRowSum, matrix, matrixRows, matrixCols);
 
     printf("\nRows: %d\nCols: %d", matrixRows, matrixCols);
