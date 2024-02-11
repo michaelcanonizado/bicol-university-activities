@@ -51,11 +51,22 @@ int getMatrixTotalSum(int matrix[MAX_MATRIX_ROWS][MAX_MATRIX_COLS], int rows, in
     }
 
     return sum;
+}
 
+int getMatrixUpperTriangularSum(int matrix[MAX_MATRIX_ROWS][MAX_MATRIX_COLS], int dimension) {
+    int sum = 0;
+
+    for (int i = 0; i < (dimension - 1); i++) {
+        for (int j = i + 1; j < dimension; j++) {
+            sum += matrix[i][j];
+        }
+    }
+
+    return sum;
 }
 
 int main (void) {
-    int matrixRows, matrixCols, matrixTotalSum = 0;
+    int matrixRows, matrixCols, matrixTotalSum = 0, matrixUpperTriangularSum = 0;
     int matrixRowSum[MAX_MATRIX_ROWS];
     int matrixColSum[MAX_MATRIX_COLS];
     int matrix[MAX_MATRIX_ROWS][MAX_MATRIX_COLS];
@@ -101,6 +112,8 @@ int main (void) {
         return 0;
     }
 
+    matrixUpperTriangularSum = getMatrixUpperTriangularSum(matrix, matrixRows);
+
     printf("\nRows: %d\nCols: %d\n", matrixRows, matrixCols);
     printf("\nMatrix:\n");
     for (int i = 0; i < matrixRows; i++) {
@@ -118,7 +131,8 @@ int main (void) {
     for (int i = 0; i < matrixCols; i++) {
         printf("%5d", matrixColSum[i]);
     }
-    printf("\nTotal Sum: \n%5d\n", matrixTotalSum);
+    printf("\nTotal Sum: \n%5d", matrixTotalSum);
+    printf("\nUpper T Sum: \n%5d", matrixUpperTriangularSum);
 
     printf("\n\n");
 
