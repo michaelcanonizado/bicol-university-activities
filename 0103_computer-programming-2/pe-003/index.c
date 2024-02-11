@@ -6,7 +6,9 @@
 int main (void) {
     int rows, cols;
     int matrix[MAX_MATRIX_ROWS][MAX_MATRIX_COLS];
+    int matrixTranspose[MAX_MATRIX_COLS][MAX_MATRIX_ROWS];
 
+    // 1.0 | GET MATRIX VALUES FROM matrix.in
     FILE *pInputFile;
     pInputFile = fopen("matrix.in", "r");
 
@@ -15,7 +17,9 @@ int main (void) {
         return 1;
     }
 
+    // 1.1 | Get matrix dimentions
     fscanf(pInputFile, "%d %d", &rows, &cols);
+    // 1.2 | Get matrix values
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
             fscanf(pInputFile, "%d", &matrix[i][j]);
