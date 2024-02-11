@@ -78,7 +78,7 @@ int main (void) {
 
     // 3.0 | Get matrix row sum
     getMatrixRowSum(matrixRowSum, matrix, matrixRows, matrixCols);
-
+    // 3.1 | Get matrix col sum
     getMatrixColSum(matrixColSum, matrix, matrixRows, matrixCols);
 
     printf("\nRows: %d\nCols: %d\n", matrixRows, matrixCols);
