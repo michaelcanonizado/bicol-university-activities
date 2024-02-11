@@ -96,6 +96,10 @@ int main (void) {
     // 3.2 | Get matrix total sum
     matrixTotalSum = getMatrixTotalSum(matrix, matrixRows, matrixCols);
 
+    if (matrixRows != matrixCols) {
+        return 0;
+    }
+
     printf("\nRows: %d\nCols: %d\n", matrixRows, matrixCols);
     printf("\nMatrix:\n");
     for (int i = 0; i < matrixRows; i++) {
