@@ -1,4 +1,3 @@
- int rows, cols;
+void getMatrixTranspose(int result[][], int matrix[][], int rows, int cols) {
 
-    printf("\n\nTEST\n\n");
-    int matrix[MAX_MATRIX_ROWS][MAX_MATRIX_COLS];
+// }
