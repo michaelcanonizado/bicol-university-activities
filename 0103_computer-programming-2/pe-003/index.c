@@ -216,6 +216,9 @@ int main (void) {
     // 6.4 | Matrix total sum
     printf(" | %3d", matrixTotalSum);
 
+    printf("\nSum of the Upper Triangular Matrix: %d", matrixUpperTriangularSum);
+    printf("\nSum of the Lower Triangular Matrix: %d", matrixLowerTriangularSum);
+
     printf("\n\n***********************************************************");
 
     // 7.0 | Print Transpose of matrix
@@ -242,6 +245,9 @@ int main (void) {
     }
     // 7.4 | Matrix transpose total sum
     printf(" | %3d", matrixTransposeTotalSum);
+
+    printf("\nSum of the Upper Triangular Matrix: %d", matrixTransposeUpperTriangularSum);
+    printf("\nSum of the Lower Triangular Matrix: %d", matrixTransposeLowerTriangularSum);
 
     printf("\n\n");
 
