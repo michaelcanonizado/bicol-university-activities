@@ -80,7 +80,9 @@ int main (void) {
     int matrixColSum[MAX_MATRIX_COLS];
     int matrix[MAX_MATRIX_ROWS][MAX_MATRIX_COLS];
 
-    int matrixTransposeRows, matrixTransposeCols;
+    int matrixTransposeRows, matrixTransposeCols, matrixTransposeTotalSum = 0, matrixTransposeUpperTriangularSum = 0, matrixTransposeLowerTriangularSum = 0;
+    int matrixTransposeRowSum[MAX_MATRIX_ROWS];
+    int matrixTransposeColSum[MAX_MATRIX_COLS];
     int matrixTranspose[MAX_MATRIX_COLS][MAX_MATRIX_ROWS];
 
     // 1.0 | Get matrix values matrix.in
@@ -115,6 +117,13 @@ int main (void) {
     getMatrixColSum(matrixColSum, matrix, matrixRows, matrixCols);
     // 3.2 | Get matrix total sum
     matrixTotalSum = getMatrixTotalSum(matrix, matrixRows, matrixCols);
+
+    // 3.3 | Get matrix transpose row sum
+    getMatrixRowSum(matrixTransposeRowSum, matrixTranspose, matrixTransposeRows, matrixTransposeCols);
+    // 3.4 | Get matrix transpose col sum
+    getMatrixColSum(matrixTransposeColSum, matrixTranspose, matrixTransposeRows, matrixTransposeCols);
+    // 3.5 | Get matrix transpose total sum
+    matrixTransposeTotalSum = getMatrixTotalSum(matrixTranspose, matrixTransposeRows, matrixTransposeCols);
 
     // 4.0 | Exit out if matrix is not a square matrix
     if (1) {
