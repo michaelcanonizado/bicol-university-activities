@@ -130,14 +130,14 @@ int main (void) {
         // 5.0 | Print Original Matrix
         printf("\nOriginal Matrix: Rectangular Matrix\n");
         // 5.1 | Matrix Header
-        printf("             ");
+        printf("              ");
         for (int i = 0; i < matrixCols; i++) {
             printf("%3c ", ' ');
         }
-        printf("%-4s", "  Sum-of_Row");
+        printf("%-4s", "  Sum-of-Row");
         // 5.2 | Matrix values and sum-of-rows
         for (int i = 0; i < matrixRows; i++) {
-            printf("\n             ");
+            printf("\n              ");
             for (int j = 0; j < matrixCols; j++) {
                 printf("%3d ", matrix[i][j]);
             }
@@ -145,7 +145,7 @@ int main (void) {
         }
         // 5.3 | Matrix sum-of-columns
         printf("\n              -------------------------");
-        printf("\nSum-of-Colum:");
+        printf("\nSum-of-Column:");
         for (int i = 0; i < matrixCols; i++) {
             printf("%3d ", matrixColSum[i]);
         }
@@ -155,16 +155,16 @@ int main (void) {
         printf("\n\n");
 
         // 6.0 | Print Transpose of matrix
-        printf("\nTranspose of the matrix\n");        
+        printf("\nTranspose of the matrix:\n");        
         // 6.1 | Matrix transpose header
-        printf("             ");
+        printf("              ");
         for (int i = 0; i < matrixTransposeCols; i++) {
             printf("%3c ", ' ');
         }
-        printf("%-4s", "  Sum-of_Row");
+        printf("%-4s", "  Sum-of-Row");
         // 6.2 | Matrix transpose value sand sum-of-rows
         for (int i = 0; i < matrixTransposeRows; i++) {
-            printf("\n             ");
+            printf("\n              ");
             for (int j = 0; j < matrixTransposeCols; j++) {
                 printf("%3d ", matrixTranspose[i][j]);
             }
@@ -172,7 +172,7 @@ int main (void) {
         }
         // 6.3 | Matrix sum-of-columns
         printf("\n              -------------------------");
-        printf("\nSum-of-Colum:");
+        printf("\nSum-of-Column:");
         for (int i = 0; i < matrixTransposeCols; i++) {
             printf("%3d ", matrixTransposeColSum[i]);
         }
