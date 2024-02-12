@@ -28,17 +28,14 @@ void getMatrixRowSum(int result[MAX_MATRIX_ROWS],int matrix[MAX_MATRIX_ROWS][MAX
 
 void getMatrixColSum(int result[MAX_MATRIX_COLS],int matrix[MAX_MATRIX_ROWS][MAX_MATRIX_COLS], int rows, int cols) {
     int colSum;
-    
-    for (int i = 0; i < rows; i++) {
-        colSum = 0;
 
-        for (int j = 0; j < cols; j++) {
+    for (int i = 0; i < cols; i++) {
+        colSum = 0;
+        for (int j = 0; j < rows; j++) {
             colSum += matrix[j][i];
         }
-
         result[i] = colSum;
     }
-
 }
 
 int getMatrixTotalSum(int matrix[MAX_MATRIX_ROWS][MAX_MATRIX_COLS], int rows, int cols) {
@@ -120,7 +117,35 @@ int main (void) {
     matrixTotalSum = getMatrixTotalSum(matrix, matrixRows, matrixCols);
 
     // 4.0 | Exit out if matrix is not a square matrix
-    if (matrixRows != matrixCols) {
+    if (1 ) {
+        printf("Rows: %d, Cols: %d\n", matrixRows, matrixCols);
+        printf("\nOriginal Matrix: Rectangular Matrix\n");
+
+        printf("             ");
+        for (int i = 0; i < matrixCols; i++) {
+            printf("%3c ", ' ');
+        }
+        printf("%-4s", "  Sum-of_Row");
+
+        for (int i = 0; i < matrixRows; i++) {
+            printf("\n             ");
+            for (int j = 0; j < matrixCols; j++) {
+                printf("%3d ", matrix[i][j]);
+            }
+            printf(" | %3d ", matrixRowSum[i]);
+        }
+
+        printf("\n               -------------------------");
+        printf("\nSum-of-Colum:");
+
+        for (int i = 0; i < matrixCols; i++) {
+            printf("%3d ", matrixColSum[i]);
+        }
+
+        printf(" | %3d", matrixTotalSum);
+
+        printf("\n\n");
+
         return 0;
     }
 
