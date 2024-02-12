@@ -184,6 +184,7 @@ int main (void) {
         return 0;
     }
 
+    // 5.0 | Get upper and lower triangular sums of matrix
     matrixUpperTriangularSum = getMatrixUpperTriangularSum(matrix, matrixRows);
     matrixLowerTriangularSum = getMatrixLowerTriangularSum(matrix, matrixRows);
 
