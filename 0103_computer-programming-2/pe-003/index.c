@@ -187,26 +187,30 @@ int main (void) {
     matrixUpperTriangularSum = getMatrixUpperTriangularSum(matrix, matrixRows);
     matrixLowerTriangularSum = getMatrixLowerTriangularSum(matrix, matrixRows);
 
-    printf("\nRows: %d\nCols: %d\n", matrixRows, matrixCols);
-    printf("\nMatrix:\n");
-    for (int i = 0; i < matrixRows; i++) {
-        for (int j = 0; j < matrixCols; j++) {
-            printf("%5d", matrix[i][j]);
-        }
-        printf("\n");
-    }
-
-    printf("\nRows Sum:\n", matrixRows);
-    for (int i = 0; i < matrixRows; i++) {
-        printf("%5d", matrixRowSum[i]);
-    }
-    printf("\nCols Sum:\n", matrixCols);
+    // 5.0 | Print Original Matrix
+    printf("\nOriginal Matrix: Rectangular Matrix\n");
+    // 5.1 | Matrix Header
+    printf("              ");
     for (int i = 0; i < matrixCols; i++) {
-        printf("%5d", matrixColSum[i]);
+        printf("%3c ", ' ');
     }
-    printf("\nTotal Sum: \n%5d", matrixTotalSum);
-    printf("\nUpper T Sum: \n%5d", matrixUpperTriangularSum);
-    printf("\nLower T Sum: \n%5d", matrixLowerTriangularSum);
+    printf("%-4s", "  Sum-of-Row");
+    // 5.2 | Matrix values and sum-of-rows
+    for (int i = 0; i < matrixRows; i++) {
+        printf("\n              ");
+        for (int j = 0; j < matrixCols; j++) {
+            printf("%3d ", matrix[i][j]);
+        }
+        printf(" | %3d ", matrixRowSum[i]);
+    }
+    // 5.3 | Matrix sum-of-columns
+    printf("\n              -------------------------");
+    printf("\nSum-of-Column:");
+    for (int i = 0; i < matrixCols; i++) {
+        printf("%3d ", matrixColSum[i]);
+    }
+    // 5.4 | Matrix total sum
+    printf(" | %3d", matrixTotalSum);
 
     printf("\n\n");
 
