@@ -117,16 +117,17 @@ int main (void) {
     matrixTotalSum = getMatrixTotalSum(matrix, matrixRows, matrixCols);
 
     // 4.0 | Exit out if matrix is not a square matrix
-    if (1 ) {
+    if (1) {
+        // 5.0 | Print Original Matrix
         printf("Rows: %d, Cols: %d\n", matrixRows, matrixCols);
         printf("\nOriginal Matrix: Rectangular Matrix\n");
-
+        // 5.1 | Matrix Header
         printf("             ");
         for (int i = 0; i < matrixCols; i++) {
             printf("%3c ", ' ');
         }
         printf("%-4s", "  Sum-of_Row");
-
+        // 5.2 | Matrix values and sum-of-rows
         for (int i = 0; i < matrixRows; i++) {
             printf("\n             ");
             for (int j = 0; j < matrixCols; j++) {
@@ -134,14 +135,13 @@ int main (void) {
             }
             printf(" | %3d ", matrixRowSum[i]);
         }
-
+        // 5.3 | Matrix sum-of-columns
         printf("\n               -------------------------");
         printf("\nSum-of-Colum:");
-
         for (int i = 0; i < matrixCols; i++) {
             printf("%3d ", matrixColSum[i]);
         }
-
+        // 5.4 | Matrix total sum
         printf(" | %3d", matrixTotalSum);
 
         printf("\n\n");
