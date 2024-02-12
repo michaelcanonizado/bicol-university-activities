@@ -126,7 +126,7 @@ int main (void) {
     matrixTransposeTotalSum = getMatrixTotalSum(matrixTranspose, matrixTransposeRows, matrixTransposeCols);
 
     // 4.0 | Exit out if matrix is not a square matrix
-    if (1) {
+    if (matrixRows != matrixCols) {
         // 5.0 | Print Original Matrix
         printf("\nOriginal Matrix: Rectangular Matrix\n");
         // 5.1 | Matrix Header
