@@ -194,11 +194,11 @@ int main (void) {
         return 0;
     }
 
-    // 5.0 | Get upper and lower triangular sums of matrix
+    // 5.0 | Get main diagonal, upper and lower triangular sums of matrix
     matrixMainDiagonalSum = getMatrixDiagonalSum(matrix, matrixRows);
     matrixUpperTriangularSum = getMatrixUpperTriangularSum(matrix, matrixRows);
     matrixLowerTriangularSum = getMatrixLowerTriangularSum(matrix, matrixRows);
-    // 5.1 | Get upper and lower triangular sums of matrix transpose
+    // 5.1 | Get main diagonal, upper and lower triangular sums of matrix transpose
     matrixTransposeMainDiagonalSum = getMatrixDiagonalSum(matrixTranspose, matrixTransposeRows);
     matrixTransposeUpperTriangularSum = getMatrixUpperTriangularSum(matrixTranspose, matrixTransposeRows);
     matrixTransposeLowerTriangularSum = getMatrixLowerTriangularSum(matrixTranspose, matrixTransposeRows);
