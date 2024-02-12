@@ -187,6 +187,9 @@ int main (void) {
     // 5.0 | Get upper and lower triangular sums of matrix
     matrixUpperTriangularSum = getMatrixUpperTriangularSum(matrix, matrixRows);
     matrixLowerTriangularSum = getMatrixLowerTriangularSum(matrix, matrixRows);
+    // 5.1 | Get upper and lower triangular sums of matrix transpose
+    matrixTransposeUpperTriangularSum = getMatrixUpperTriangularSum(matrixTranspose, matrixTransposeRows);
+    matrixTransposeLowerTriangularSum = getMatrixLowerTriangularSum(matrixTranspose, matrixTransposeRows);
 
     // 6.0 | Print Original Matrix
     printf("\nOriginal Matrix: Rectangular Matrix\n");
