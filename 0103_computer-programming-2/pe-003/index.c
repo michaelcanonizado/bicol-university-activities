@@ -62,6 +62,16 @@ int getMatrixUpperTriangularSum(int matrix[MAX_MATRIX_ROWS][MAX_MATRIX_COLS], in
     return sum;
 }
 
+int getMatrixDiagonalSum(int matrix[MAX_MATRIX_ROWS][MAX_MATRIX_COLS], int dimension) {
+    int sum = 0;
+
+    for (int i = 0; i < dimension; i++) {
+        sum += matrix[i][i];
+    }
+
+    return sum;
+}
+
 int getMatrixLowerTriangularSum(int matrix[MAX_MATRIX_ROWS][MAX_MATRIX_COLS], int dimension) {
     int sum = 0;
 
@@ -75,12 +85,12 @@ int getMatrixLowerTriangularSum(int matrix[MAX_MATRIX_ROWS][MAX_MATRIX_COLS], in
 }
 
 int main (void) {
-    int matrixRows, matrixCols, matrixTotalSum = 0, matrixUpperTriangularSum = 0, matrixLowerTriangularSum = 0;
+    int matrixRows, matrixCols, matrixTotalSum = 0, matrixMainDiagonalSum = 0, matrixUpperTriangularSum = 0, matrixLowerTriangularSum = 0;
     int matrixRowSum[MAX_MATRIX_ROWS];
     int matrixColSum[MAX_MATRIX_COLS];
     int matrix[MAX_MATRIX_ROWS][MAX_MATRIX_COLS];
 
-    int matrixTransposeRows, matrixTransposeCols, matrixTransposeTotalSum = 0, matrixTransposeUpperTriangularSum = 0, matrixTransposeLowerTriangularSum = 0;
+    int matrixTransposeRows, matrixTransposeCols, matrixTransposeMainDiagonalSum = 0, matrixTransposeTotalSum = 0, matrixTransposeUpperTriangularSum = 0, matrixTransposeLowerTriangularSum = 0;
     int matrixTransposeRowSum[MAX_MATRIX_ROWS];
     int matrixTransposeColSum[MAX_MATRIX_COLS];
     int matrixTranspose[MAX_MATRIX_COLS][MAX_MATRIX_ROWS];
@@ -185,11 +195,14 @@ int main (void) {
     }
 
     // 5.0 | Get upper and lower triangular sums of matrix
+    matrixMainDiagonalSum = getMatrixDiagonalSum(matrix, matrixRows);
     matrixUpperTriangularSum = getMatrixUpperTriangularSum(matrix, matrixRows);
     matrixLowerTriangularSum = getMatrixLowerTriangularSum(matrix, matrixRows);
     // 5.1 | Get upper and lower triangular sums of matrix transpose
+    matrixTransposeMainDiagonalSum = getMatrixDiagonalSum(matrixTranspose, matrixTransposeRows);
     matrixTransposeUpperTriangularSum = getMatrixUpperTriangularSum(matrixTranspose, matrixTransposeRows);
     matrixTransposeLowerTriangularSum = getMatrixLowerTriangularSum(matrixTranspose, matrixTransposeRows);
+
 
     // 6.0 | Print Original Matrix
     printf("\nOriginal Matrix: Rectangular Matrix\n");
