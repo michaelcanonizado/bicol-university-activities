@@ -128,7 +128,6 @@ int main (void) {
     // 4.0 | Exit out if matrix is not a square matrix
     if (1) {
         // 5.0 | Print Original Matrix
-        printf("Rows: %d, Cols: %d\n", matrixRows, matrixCols);
         printf("\nOriginal Matrix: Rectangular Matrix\n");
         // 5.1 | Matrix Header
         printf("             ");
@@ -155,8 +154,6 @@ int main (void) {
 
         printf("\n\n");
 
-        
-        printf("Rows: %d, Cols: %d\n", matrixTransposeRows, matrixTransposeCols);
         printf("\nTranspose of the matrix\n");
         
         printf("             ");
