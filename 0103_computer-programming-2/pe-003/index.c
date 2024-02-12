@@ -212,6 +212,33 @@ int main (void) {
     // 5.4 | Matrix total sum
     printf(" | %3d", matrixTotalSum);
 
+    printf("\n\n***********************************************************");
+
+    // 6.0 | Print Transpose of matrix
+    printf("\nTranspose of the matrix:\n");        
+    // 6.1 | Matrix transpose header
+    printf("              ");
+    for (int i = 0; i < matrixTransposeCols; i++) {
+        printf("%3c ", ' ');
+    }
+    printf("%-4s", "  Sum-of-Row");
+    // 6.2 | Matrix transpose value sand sum-of-rows
+    for (int i = 0; i < matrixTransposeRows; i++) {
+    printf("\n              ");
+    for (int j = 0; j < matrixTransposeCols; j++) {
+        printf("%3d ", matrixTranspose[i][j]);
+    }
+    printf(" | %3d ", matrixTransposeRowSum[i]);
+    }
+    // 6.3 | Matrix sum-of-columns
+    printf("\n              -------------------------");
+    printf("\nSum-of-Column:");
+    for (int i = 0; i < matrixTransposeCols; i++) {
+       printf("%3d ", matrixTransposeColSum[i]);
+    }
+    // 6.4 | Matrix transpose total sum
+    printf(" | %3d", matrixTransposeTotalSum);
+
     printf("\n\n");
 
     return 0;
