@@ -1,7 +1,10 @@
 #include <stdio.h>
 
+#define MAX_STR_LEN 50
+#define MAX_NUM_WORDS 100
+
 int main(void) {
-    char singularString[100][100];
+    char singularString[MAX_NUM_WORDS][MAX_STR_LEN];
     int singularStringsCount = 0;
     FILE *pInputFile;
     pInputFile = fopen("singular.in", "r");
