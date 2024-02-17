@@ -1,4 +1,4 @@
-// Michael Xavier E. Canonizado
+// Michael Xavier E. Canonizado | BSCS 1A
 // A program that converts scanned singular words from a file called 'singular.in' and converts it to plural, and outputs it into a file called 'plural.out' 
 
 #include <stdio.h>
