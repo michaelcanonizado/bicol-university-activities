@@ -57,6 +57,8 @@ int main(void) {
 
     FILE *pInputFile;
     pInputFile = fopen("singular.in", "r");
+    FILE *pOutputFile;
+    pOutputFile = fopen("plural.out", "w");
 
     if (pInputFile == NULL) {
         printf("Error! singular.in file not found!");
@@ -77,11 +79,14 @@ int main(void) {
 
     toPlural(pluralStrings, singularStrings, singularStringsCount);
 
-    printf("\n");
+    fprintf(pOutputFile, "%-13s %-13s", "SINGULAR", "PLURAL");
+    fprintf(pOutputFile, "\n---------------------------");
     for (int i = 0; i < singularStringsCount; i++) {
-        printf("\n%s -> %s", singularStrings[i], pluralStrings[i]);
+        fprintf(pOutputFile, "\n%-13s %-13s", singularStrings[i], pluralStrings[i]);
     }
     printf("\n\n");
+
+    fclose(pOutputFile);
 
     return 0;
 }
