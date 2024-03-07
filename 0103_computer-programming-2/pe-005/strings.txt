@@ -1,0 +1,12 @@
+10
+
+Variable
+Computer
+Science
+student
+Programming
+char
+ARRAY
+int
+functiON
+String
