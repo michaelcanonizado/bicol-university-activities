@@ -1,4 +1,9 @@
 #include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+#define MAX_STRING_LENGTH 100
+#define MAX_NUM_OF_STRINGS 100
 
 int main(int argc, char *argv[]) {
     if (argc <= 1) {
@@ -20,14 +25,22 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    char strings[100];
+    char unsortedStrings[MAX_NUM_OF_STRINGS][MAX_STRING_LENGTH];
+    char sortedStrings[MAX_NUM_OF_STRINGS][MAX_STRING_LENGTH];
+    int stringsCount = 0, tempCount = 0;
     char stringBuffer[100];
-    int stringsCount = 0;
 
     fscanf(pInputFile, "%d", &stringsCount);
 
     while(fscanf(pInputFile, "%s", stringBuffer) != EOF) {
-        printf("%s\n", stringBuffer);
+        for(int i = 0; i < strlen(stringBuffer); i++) {
+            unsortedStrings[tempCount][i] = tolower(stringBuffer[i]);
+        }
+        tempCount++;
+    }
+
+    for(int i = 0; i < stringsCount; i++) {
+        printf("string: %s\n", unsortedStrings[i]);
     }
 
     printf("\n\nScanned %d strings!", stringsCount);
