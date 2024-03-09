@@ -1,9 +1,17 @@
 #include <stdio.h>
 
-int main(void) {
+int main(int argc, char *argv[]) {
+    if (argc <= 1) {
+        printf("\nPlease specify the input file and output file names when executing the program...\n\n");
+        return 1;
+    }
+
+    printf("\narg 0: %s\n", argv[0]);
+    printf("arg 1: %s\n", argv[1]);
+    printf("arg 2: %s\n\n", argv[2]);
 
     FILE *pInputFile;
-    pInputFile = fopen("strings.txt", "r");
+    pInputFile = fopen(argv[1], "r");
 
     if (pInputFile == NULL) {
         printf("Error! string.txt is not found!\n");
