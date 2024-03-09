@@ -6,7 +6,15 @@
 #define MAX_NUM_OF_STRINGS 100
 
 void toLowerStrings(char *stringsArr[], int stringsCount) {
+    for (int i = 0; i < stringsCount; i++) {
+        int stringOffset = 0;
+        char *pString = stringsArr[i];
 
+        while (*(pString + stringOffset) != '\0') {
+            *(pString + stringOffset) = tolower(*(pString + stringOffset));
+            stringOffset++;
+        }
+    }
 }
 
 int main(int argc, char *argv[]) {
@@ -29,7 +37,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    char *stringsPointerArray[MAX_NUM_OF_STRINGS];
+    char *stringsPointerArray[MAX_NUM_OF_STRINGS] = {NULL};
     char stringsStorage[MAX_NUM_OF_STRINGS][MAX_STRING_LENGTH];
     int stringsCount = 0, tempCount = 0;
     char stringBuffer[100];
@@ -44,7 +52,11 @@ int main(int argc, char *argv[]) {
     for(int i = 0; i < stringsCount; i++) {
         printf("string: %-15s - address: %10p\n", stringsStorage[i], &stringsStorage[i]);
     }
+
     printf("\n");
+    toLowerStrings(stringsPointerArray, stringsCount);
+    printf("\n");
+
     for(int i = 0; i < stringsCount; i++) {
         printf("string: %-15s - address: %10p\n", stringsPointerArray[i], stringsPointerArray[i]);
     }

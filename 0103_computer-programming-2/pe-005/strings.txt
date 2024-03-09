@@ -1,6 +1,6 @@
 10
 
-Variable
+VARIABLE
 Computer
 Science
 student
