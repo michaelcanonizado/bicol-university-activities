@@ -11,7 +11,9 @@ int main(int argc, char *argv[]) {
     printf("arg 2: %s\n\n", argv[2]);
 
     FILE *pInputFile;
+    FILE *pOutputFile;
     pInputFile = fopen(argv[1], "r");
+    pOutputFile = fopen(argv[2], "w");
 
     if (pInputFile == NULL) {
         printf("Error! string.txt is not found!\n");
@@ -31,6 +33,7 @@ int main(int argc, char *argv[]) {
     printf("\n\nScanned %d strings!", stringsCount);
 
     fclose(pInputFile);
+    fclose(pOutputFile);
 
     return 0;
 }
