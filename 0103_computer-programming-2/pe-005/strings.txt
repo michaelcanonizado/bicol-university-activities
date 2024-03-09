@@ -7,6 +7,6 @@ student
 Programming
 char
 ARRAY
-int
+inT
 functiON
 String
