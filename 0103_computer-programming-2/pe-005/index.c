@@ -3,7 +3,7 @@
 #include <ctype.h>
 
 #define MAX_STRING_LENGTH 100
-#define MAX_NUM_OF_STRINGS 100
+#define MAX_NUM_OF_STRINGS 999
 
 void toLowerStrings(char *stringsArr[], int stringsCount) {
     for (int i = 0; i < stringsCount; i++) {
