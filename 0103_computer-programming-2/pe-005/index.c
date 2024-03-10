@@ -17,6 +17,72 @@ void toLowerStrings(char *stringsArr[], int stringsCount) {
     }
 }
 
+void mergeStrings(char *stringsArr[], int leftHalfStart, int leftHalfEnd, int rightHalfStart, int rightHalfEnd) {
+    char *tempArray[MAX_STRING_LENGTH];
+    int leftIndex = leftHalfStart; 
+    int rightIndex = rightHalfStart; 
+    int tempIndex = 0;
+
+    // Compare items of the sorted halves and sort in a temporary array
+    while ((leftIndex <= leftHalfEnd) && (rightIndex <= rightHalfEnd)) {
+        if(strlen(stringsArr[leftIndex]) < strlen(stringsArr[rightIndex])) {
+
+            tempArray[tempIndex++] = stringsArr[leftIndex++];
+
+        } else if (strlen(stringsArr[leftIndex]) > strlen(stringsArr[rightIndex])) {
+
+            tempArray[tempIndex++] = stringsArr[rightIndex++];
+
+        } else if (strlen(stringsArr[leftIndex]) == strlen(stringsArr[rightIndex])) {
+            int stringOffset = 0;
+
+            if (
+                strcmp(stringsArr[leftIndex], stringsArr[rightIndex]) < 0
+            ) {
+
+                tempArray[tempIndex++] = stringsArr[leftIndex++];
+
+            } else if (
+                strcmp(stringsArr[leftIndex], stringsArr[rightIndex]) > 0
+            ) {
+
+                tempArray[tempIndex++] = stringsArr[rightIndex++];
+
+            } else if (
+                strcmp(stringsArr[leftIndex], stringsArr[rightIndex]) == 0
+            ) {
+
+                tempArray[tempIndex++] = stringsArr[rightIndex++];
+
+            }
+        }
+    }
+
+    while(leftIndex <= leftHalfEnd) {
+        tempArray[tempIndex++] = stringsArr[leftIndex++];
+    }
+
+    while(rightIndex <= rightHalfEnd) {
+        tempArray[tempIndex++] = stringsArr[rightIndex++];
+    }
+
+    for (int i = leftHalfStart, j = 0; i <= rightHalfEnd; i++, j++) {
+        stringsArr[i] = tempArray[j];
+    }
+}
+
+void mergeSortStrings(char *stringsArr[], int start, int end, int stringsCount) {
+    if (start < end) {
+
+        int mid = (start + end) / 2;
+
+        mergeSortStrings(stringsArr, start, mid, stringsCount);
+        mergeSortStrings(stringsArr, mid + 1, end, stringsCount);
+
+        mergeStrings(stringsArr, start, mid, mid + 1, end);
+    } 
+}
+
 int main(int argc, char *argv[]) {
     if (argc <= 1) {
         printf("\nPlease specify the input file and output file names when executing the program...\n\n");
@@ -55,6 +121,7 @@ int main(int argc, char *argv[]) {
 
     printf("\n");
     toLowerStrings(stringsPointerArray, stringsCount);
+    mergeSortStrings(stringsPointerArray, 0, stringsCount-1, stringsCount);
     printf("\n");
 
     for(int i = 0; i < stringsCount; i++) {
