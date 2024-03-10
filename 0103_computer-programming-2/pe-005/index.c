@@ -116,7 +116,7 @@ int main(int argc, char *argv[]) {
     }
 
     for(int i = 0; i < stringsCount; i++) {
-        printf("string: %-15s - address: %10p\n", stringsStorage[i], &stringsStorage[i]);
+        printf("%d: string: %-15s - address: %10p\n", i+1, stringsStorage[i], &stringsStorage[i]);
     }
 
     printf("\n");
@@ -125,7 +125,7 @@ int main(int argc, char *argv[]) {
     printf("\n");
 
     for(int i = 0; i < stringsCount; i++) {
-        printf("string: %-15s - address: %10p\n", stringsPointerArray[i], stringsPointerArray[i]);
+        printf("%d: string: %-15s - address: %10p\n", i+1, stringsPointerArray[i], stringsPointerArray[i]);
     }
 
     printf("\n\nScanned %d strings!", stringsCount);
