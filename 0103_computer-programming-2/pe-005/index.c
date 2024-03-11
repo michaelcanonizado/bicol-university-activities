@@ -89,10 +89,6 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    printf("\narg 0: %s\n", argv[0]);
-    printf("arg 1: %s\n", argv[1]);
-    printf("arg 2: %s\n\n", argv[2]);
-
     FILE *pInputFile;
     FILE *pOutputFile;
     pInputFile = fopen(argv[1], "r");
@@ -115,20 +111,16 @@ int main(int argc, char *argv[]) {
         tempCount++;
     }
 
-    for(int i = 0; i < stringsCount; i++) {
-        printf("%d: string: %-15s - address: %10p\n", i+1, stringsStorage[i], &stringsStorage[i]);
-    }
-
-    printf("\n");
     toLowerStrings(stringsPointerArray, stringsCount);
     mergeSortStrings(stringsPointerArray, 0, stringsCount-1, stringsCount);
-    printf("\n");
 
+    printf("\n%-15s %-15s      %-5s", "STRING", "MEMORY ADDRESS", "LENGTH");
+    printf("\n-------------------------------------------\n");
     for(int i = 0; i < stringsCount; i++) {
-        printf("%d: string: %-15s - address: %10p\n", i+1, stringsPointerArray[i], stringsPointerArray[i]);
+        printf("%-15s    %-10p         %-3d\n", stringsPointerArray[i], stringsPointerArray[i], strlen(stringsPointerArray[i]));
     }
 
-    printf("\n\nScanned %d strings!", stringsCount);
+    printf("\n");
 
     fclose(pInputFile);
     fclose(pOutputFile);
