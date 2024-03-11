@@ -124,7 +124,11 @@ int main(int argc, char *argv[]) {
     // Sort the strings using merge sort. 
     mergeSortStrings(stringsPointerArray, 0, stringsCount-1, stringsCount);
 
+<<<<<<< HEAD
     // Print results to scree and output file
+=======
+    // Prit results
+>>>>>>> 6233024752d8a62c7f73f13493147662f58a39b8
     printf("\n%-15s %-15s      %-5s", "STRING", "MEMORY ADDRESS", "LENGTH");
     printf("\n-------------------------------------------\n");
     fprintf(pOutputFile, "\n%-15s %-15s      %-5s", "STRING", "MEMORY ADDRESS", "LENGTH");
