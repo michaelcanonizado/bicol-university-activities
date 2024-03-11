@@ -127,8 +127,11 @@ int main(int argc, char *argv[]) {
     // Print results to scree and output file
     printf("\n%-15s %-15s      %-5s", "STRING", "MEMORY ADDRESS", "LENGTH");
     printf("\n-------------------------------------------\n");
+    fprintf(pOutputFile, "\n%-15s %-15s      %-5s", "STRING", "MEMORY ADDRESS", "LENGTH");
+    fprintf(pOutputFile, "\n-------------------------------------------\n");
     for(int i = 0; i < stringsCount; i++) {
         printf("%-15s    %-10p         %-3d\n", stringsPointerArray[i], stringsPointerArray[i], strlen(stringsPointerArray[i]));
+        fprintf(pOutputFile, "%-15s    %-10p         %-3d\n", stringsPointerArray[i], stringsPointerArray[i], strlen(stringsPointerArray[i]));
     }
 
     printf("\n");
