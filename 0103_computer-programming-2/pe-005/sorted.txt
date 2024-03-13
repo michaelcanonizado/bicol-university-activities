@@ -1,7 +1,6 @@
 
 STRING          MEMORY ADDRESS       LENGTH
 -------------------------------------------
-a                  00606AC8           1  
 ad                 006073C4           2  
 do                 00606F14           2  
 ea                 00607810           2  
@@ -40,6 +39,7 @@ sint               00607FE0           4
 sunt               006081D4           4  
 test               00606B2C           4  
 this               00606A00           4  
+apple              00606AC8           5  
 culpa              0060829C           5  
 dolor              00607A68           5  
 dolor              00606C58           5  
