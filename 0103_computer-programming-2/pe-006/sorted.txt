@@ -1,0 +1,16 @@
+
+NAME              ID#   AGE
+---------------------------
+MALE:
+Anton              07    19
+Berto              12    19
+Carlos             11    16
+Juan               05    18
+Pedro              06    17
+
+FEMALE:
+Ana                10    17
+Bella              09    18
+Clara              01    18
+Maria              02    19
+Victoria           03    18

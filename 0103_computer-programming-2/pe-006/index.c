@@ -96,7 +96,17 @@ int main(int argc, char *argv[]) {
         printf("%-15s %5.2d %5.2d\n", femaleStudentsArray[i].name, femaleStudentsArray[i].idNumber, femaleStudentsArray[i].age);
     }
 
-    printf("\n\n COUNT: %d\n", allStudentsCount);
+    fprintf(pOutputFile, "\n%-15s %5s %5s", "NAME", "ID#", "AGE");
+    fprintf(pOutputFile, "\n---------------------------");
+
+    fprintf(pOutputFile, "\nMALE:\n");
+    for (int i = 0; i < maleStudentsCount; i++) {
+        fprintf(pOutputFile, "%-15s %5.2d %5.2d\n", maleStudentsArray[i].name, maleStudentsArray[i].idNumber, maleStudentsArray[i].age);
+    }
+    fprintf(pOutputFile, "\nFEMALE:\n");
+    for (int i = 0; i < femaleStudentsCount; i++) {
+        fprintf(pOutputFile, "%-15s %5.2d %5.2d\n", femaleStudentsArray[i].name, femaleStudentsArray[i].idNumber, femaleStudentsArray[i].age);
+    }
 
     fclose(pInputFile);
     fclose(pOutputFile);
