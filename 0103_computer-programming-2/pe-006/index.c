@@ -84,13 +84,16 @@ int main(int argc, char *argv[]) {
 
     groupStudents(allStudentsArray, allStudentsCount, maleStudentsArray, &maleStudentsCount, femaleStudentsArray, &femaleStudentsCount);
 
-    printf("\nMALE STUDENTS:\n");
+    printf("\n%-15s %5s %5s", "NAME", "ID#", "AGE");
+    printf("\n---------------------------");
+
+    printf("\nMALE:\n");
     for (int i = 0; i < maleStudentsCount; i++) {
-        printf("name: %10s | id: %5d | age: %4d | gender %3c\n", maleStudentsArray[i].name, maleStudentsArray[i].idNumber, maleStudentsArray[i].age, maleStudentsArray[i].gender);
+        printf("%-15s %5.2d %5.2d\n", maleStudentsArray[i].name, maleStudentsArray[i].idNumber, maleStudentsArray[i].age);
     }
-    printf("\n\nFEMALE STUDENTS:\n");
+    printf("\nFEMALE:\n");
     for (int i = 0; i < femaleStudentsCount; i++) {
-        printf("name: %10s | id: %5d | age: %4d | gender %3c\n", femaleStudentsArray[i].name, femaleStudentsArray[i].idNumber, femaleStudentsArray[i].age, femaleStudentsArray[i].gender);
+        printf("%-15s %5.2d %5.2d\n", femaleStudentsArray[i].name, femaleStudentsArray[i].idNumber, femaleStudentsArray[i].age);
     }
 
     printf("\n\n COUNT: %d\n", allStudentsCount);
