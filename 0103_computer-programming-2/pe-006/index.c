@@ -7,7 +7,7 @@
 
 typedef struct {
     char name[MAX_NAME_LENGTH];
-    int id;
+    int idNumber;
     int age;
     char gender;
 } Student;
@@ -72,7 +72,7 @@ int main(int argc, char *argv[]) {
     while(1) {
         Student student;
 
-        if (fscanf(pInputFile, "%s %d %d %c", student.name, &student.id, &student.age, &student.gender) == EOF) {
+        if (fscanf(pInputFile, "%s %d %d %c", student.name, &student.idNumber, &student.age, &student.gender) == EOF) {
             break;
         }
 
@@ -86,11 +86,11 @@ int main(int argc, char *argv[]) {
 
     printf("\nMALE STUDENTS:\n");
     for (int i = 0; i < maleStudentsCount; i++) {
-        printf("name: %10s | id: %5d | age: %4d | gender %3c\n", maleStudentsArray[i].name, maleStudentsArray[i].id, maleStudentsArray[i].age, maleStudentsArray[i].gender);
+        printf("name: %10s | id: %5d | age: %4d | gender %3c\n", maleStudentsArray[i].name, maleStudentsArray[i].idNumber, maleStudentsArray[i].age, maleStudentsArray[i].gender);
     }
     printf("\n\nFEMALE STUDENTS:\n");
     for (int i = 0; i < femaleStudentsCount; i++) {
-        printf("name: %10s | id: %5d | age: %4d | gender %3c\n", femaleStudentsArray[i].name, femaleStudentsArray[i].id, femaleStudentsArray[i].age, femaleStudentsArray[i].gender);
+        printf("name: %10s | id: %5d | age: %4d | gender %3c\n", femaleStudentsArray[i].name, femaleStudentsArray[i].idNumber, femaleStudentsArray[i].age, femaleStudentsArray[i].gender);
     }
 
     printf("\n\n COUNT: %d\n", allStudentsCount);
