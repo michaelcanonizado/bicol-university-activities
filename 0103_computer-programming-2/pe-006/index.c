@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 #define MAX_NAME_LENGTH 100
 #define MAX_NUM_OF_STUDENTS 100
@@ -25,6 +26,27 @@ void groupStudents(Student allStudentsArray[MAX_NUM_OF_STUDENTS], int studentsCo
 
     *maleStudentsCount = m;
     *femaleStudentsCount = f;
+}
+
+void sortStudents(Student studentsArray[MAX_NUM_OF_STUDENTS], int studentsCount) {
+    int isNotSortedFlag = 0;
+    Student temp;
+
+    for (int i = 0; i < (studentsCount - 1); i++) {
+        for (int j = 0; j < (studentsCount - 1); j++) {
+            if (strcmp(studentsArray[j].name, studentsArray[j+1].name) > 0) {
+                temp = studentsArray[j];
+                studentsArray[j] = studentsArray[j + 1];
+                studentsArray[j + 1] = temp;
+                isNotSortedFlag++;
+            }
+        }
+
+        if (isNotSortedFlag == 0) {
+            break;
+        }
+        isNotSortedFlag = 0;
+    }
 }
 
 int main(int argc, char *argv[]) {
@@ -57,6 +79,8 @@ int main(int argc, char *argv[]) {
         allStudentsArray[arrayIndex] = student;
         arrayIndex++;
     }
+
+    sortStudents(allStudentsArray, allStudentsCount);
 
     groupStudents(allStudentsArray, allStudentsCount, maleStudentsArray, &maleStudentsCount, femaleStudentsArray, &femaleStudentsCount);
 
