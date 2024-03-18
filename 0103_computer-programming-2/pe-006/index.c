@@ -51,24 +51,28 @@ void sortStudents(Student studentsArray[MAX_NUM_OF_STUDENTS], int studentsCount)
 
 int main(int argc, char *argv[]) {
     
+    // Check if user has executed the program along with the input and output paths
     if (argc < 3) {
         printf("\nPlease specify the input file and output file names when executing the program...\n\n");
         return 1;
     }
 
+    // Open file pointers using what user inputted
     FILE *pInputFile = NULL;
     FILE *pOutputFile = NULL;    
     pInputFile = fopen(argv[1], "r");
     pOutputFile = fopen(argv[2], "w");
 
-
+    // Declar variables 
     int allStudentsCount = 0, maleStudentsCount = 0, femaleStudentsCount = 0, arrayIndex = 0;
     Student allStudentsArray[MAX_NUM_OF_STUDENTS];
     Student maleStudentsArray[MAX_NUM_OF_STUDENTS];
     Student femaleStudentsArray[MAX_NUM_OF_STUDENTS];
 
+    // Scan the first line of the input file which contains the total number of students in the file
     fscanf(pInputFile, "%d", &allStudentsCount);
 
+    // Iterate through the whole file until EOF, reading each student, storing them in a struct, and pushing it into allStudentsArray
     while(1) {
         Student student;
 
@@ -80,10 +84,12 @@ int main(int argc, char *argv[]) {
         arrayIndex++;
     }
 
+    // Sort allStudentsArray
     sortStudents(allStudentsArray, allStudentsCount);
-
+    // Group the students into male and female
     groupStudents(allStudentsArray, allStudentsCount, maleStudentsArray, &maleStudentsCount, femaleStudentsArray, &femaleStudentsCount);
 
+    // Print results to terminal/screen
     printf("\n%-15s %5s %5s", "NAME", "ID#", "AGE");
     printf("\n---------------------------");
 
@@ -96,6 +102,7 @@ int main(int argc, char *argv[]) {
         printf("%-15s %5.2d %5.2d\n", femaleStudentsArray[i].name, femaleStudentsArray[i].idNumber, femaleStudentsArray[i].age);
     }
 
+    // Print results to output file
     fprintf(pOutputFile, "\n%-15s %5s %5s", "NAME", "ID#", "AGE");
     fprintf(pOutputFile, "\n---------------------------");
 
@@ -108,6 +115,7 @@ int main(int argc, char *argv[]) {
         fprintf(pOutputFile, "%-15s %5.2d %5.2d\n", femaleStudentsArray[i].name, femaleStudentsArray[i].idNumber, femaleStudentsArray[i].age);
     }
 
+    // Close file pointers
     fclose(pInputFile);
     fclose(pOutputFile);
 
