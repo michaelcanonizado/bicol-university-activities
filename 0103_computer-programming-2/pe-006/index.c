@@ -34,6 +34,7 @@ void sortStudents(Student studentsArray[MAX_NUM_OF_STUDENTS], int studentsCount)
     int isNotSortedFlag = 0;
     Student temp;
 
+    // Use bubble sort to sort the students alphabetically
     for (int i = 0; i < (studentsCount - 1); i++) {
         for (int j = 0; j < (studentsCount - 1); j++) {
             if (strcmp(studentsArray[j].name, studentsArray[j+1].name) > 0) {
@@ -44,6 +45,7 @@ void sortStudents(Student studentsArray[MAX_NUM_OF_STUDENTS], int studentsCount)
             }
         }
 
+        // If array is already sorted, exit out
         if (isNotSortedFlag == 0) {
             break;
         }
