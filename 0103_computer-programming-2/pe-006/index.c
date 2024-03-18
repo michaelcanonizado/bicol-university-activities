@@ -4,7 +4,7 @@
 #define MAX_NAME_LENGTH 100
 #define MAX_NUM_OF_STUDENTS 100
 
-
+// Define student struct
 typedef struct {
     char name[MAX_NAME_LENGTH];
     int idNumber;
