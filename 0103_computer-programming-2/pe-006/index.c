@@ -16,6 +16,7 @@ void groupStudents(Student allStudentsArray[MAX_NUM_OF_STUDENTS], int studentsCo
 
     int m = 0, f = 0;
 
+    // Iterate through the allStudentsArray. If male add them to maleStudentsArray; if female, add them to femaleStudentsArray.
     for (int i = 0; i < studentsCount; i++) {
         if (allStudentsArray[i].gender == 'M' || allStudentsArray[i].gender == 'm') {
             maleStudentsArray[m++] = allStudentsArray[i];
@@ -24,6 +25,7 @@ void groupStudents(Student allStudentsArray[MAX_NUM_OF_STUDENTS], int studentsCo
         }
     }
 
+    // Dereference male and female counters and give them the count fo the found male and female
     *maleStudentsCount = m;
     *femaleStudentsCount = f;
 }
