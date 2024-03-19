@@ -71,6 +71,11 @@ int main(int argc, char *argv[]) {
     pInputFile = fopen(argv[1], "r");
     pOutputFile = fopen(argv[2], "w");
 
+    if (pInputFile == NULL) {
+        printf("\nInput file %s was not found. Please try again.\n\n", argv[1]);
+        return 1;
+    }
+
     // Declar variables 
     int allStudentsCount = 0, maleStudentsCount = 0, femaleStudentsCount = 0, arrayIndex = 0;
     Student allStudentsArray[MAX_NUM_OF_STUDENTS];
