@@ -1,6 +1,6 @@
 // Michael Xavier Canonizado
 // BSCS 1A
-// A program that will scan an iput file that contains a list of students. It will then sort them alphabetically and group them by their gender. The result will then be printed out on the terminal and be outputted in a txt file.
+// A program that will scan an iput file that contains a list of students. It will then sort them alphabetically and group them by their gender. The results will then be printed out on the terminal and be outputted in a txt file.
 
 #include <stdio.h>
 #include <string.h>
