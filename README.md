@@ -1,5 +1,1 @@
-Bicol University Activities 
-
-
-
-
+Bicol University Activities
