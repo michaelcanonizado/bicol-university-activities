@@ -1,3 +1,1 @@
 Bicol University Activities
-
-
