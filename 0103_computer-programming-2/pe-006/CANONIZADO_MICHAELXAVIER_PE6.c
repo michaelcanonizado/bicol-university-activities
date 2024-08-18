@@ -29,7 +29,7 @@ void groupStudents(Student allStudentsArray[MAX_NUM_OF_STUDENTS], int studentsCo
         }
     }
 
-    // Dereference male and female counters and give them the count fo the found male and female
+    // Dereference male and female counters and give them the count of the found male and female
     *maleStudentsCount = m;
     *femaleStudentsCount = f;
 }
