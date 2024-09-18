@@ -1,0 +1,18 @@
+Algorithm to find the roots of a quadratic equation
+	Prompt the user for the coefficients: a,b, and c
+	If a is equal to 0
+		Print invalid quadratic equation message
+		Exit program
+	Calculate discriminant
+	If discriminant is greater than 0
+		Calculate the two square roots
+		Print roots
+		Exit program
+	If discriminant is equal to 0
+		Calculate the root
+		Print root
+		Exit program
+	If discriminant is less than 0
+		Calculate the imaginary/complex roots
+		Print roots
+		Exit program
