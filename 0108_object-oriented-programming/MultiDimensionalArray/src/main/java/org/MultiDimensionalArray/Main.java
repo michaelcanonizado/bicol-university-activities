@@ -10,9 +10,6 @@ public class Main {
 
     private static void initializeMultiDimensionalArray() {
         int count = 0;
-        System.out.println("-------------------------------------");
-        System.out.println("Populating multi-dimensional array!!!");
-        System.out.println("-------------------------------------");
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 2; j++) {
                 for (int k = 0; k < 2; k++) {
@@ -42,6 +39,10 @@ public class Main {
     }
 
     private static void printMultiDimensionalArray() {
+
+        System.out.println("---------------------------------------------------------------");
+        System.out.println("MultiDimensionalArray Elements:");
+        System.out.println("---------------------------------------------------------------");
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 2; j++) {
                 for (int k = 0; k < 2; k++) {
@@ -65,6 +66,7 @@ public class Main {
                 }
             }
         }
+        System.out.println("---------------------------------------------------------------");
     }
 
     private static int getElementInMultiDimensionalArray(int i, int j, int k, int l, int m, int n, int o, int p, int q, int r, int s) {
