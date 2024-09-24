@@ -1,4 +1,4 @@
-package org.GrocerySystem;
+package org.MultiDimensionalArray;
 
 public class Main {
     static int[][][][][][][][][][][] multiDimensionalArray = new int[2][2][2][2][2][2][2][2][2][2][3];
