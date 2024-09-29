@@ -1,11 +1,12 @@
 package org.MultiDimensionalArray;
 
 public class Main {
-    static int[][][][][][][][][][][] multiDimensionalArray = new int[2][2][2][2][2][2][2][2][2][2][3];
+    static int[][][][][][][][][][][] multiDimensionalArray = new int[2][2][2][2][2][2][2][2][2][3][3];
 
     public static void main(String[] args) {
         initializeMultiDimensionalArray();
         printMultiDimensionalArray();
+        System.out.println("Element: " + getElementInMultiDimensionalArray(1,0,0,0,0,0,0,0,0,0,0));
     }
 
     private static void initializeMultiDimensionalArray() {
@@ -19,7 +20,7 @@ public class Main {
                                 for (int o = 0; o < 2; o++) {
                                     for (int p = 0; p < 2; p++) {
                                         for (int q = 0; q < 2; q++) {
-                                            for (int r = 0; r < 2; r++) {
+                                            for (int r = 0; r < 3; r++) {
                                                 for (int s = 0; s < 3; s++) {
                                                     multiDimensionalArray[i][j][k][l][m][n][o][p][q][r][s] = count;
                                                     count++;
@@ -52,7 +53,7 @@ public class Main {
                                 for (int o = 0; o < 2; o++) {
                                     for (int p = 0; p < 2; p++) {
                                         for (int q = 0; q < 2; q++) {
-                                            for (int r = 0; r < 2; r++) {
+                                            for (int r = 0; r < 3; r++) {
                                                 for (int s = 0; s < 3; s++) {
                                                     System.out.println(" multiDimensionalArray[" + i + "][" + j + "][" + k + "][" + l + "][" + m + "][" + n + "][" + o + "][" + p + "][" + q + "][" + r + "][" + s + "] = " + multiDimensionalArray[i][j][k][l][m][n][o][p][q][r][s]);
                                                 }
