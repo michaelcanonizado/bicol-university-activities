@@ -21,7 +21,19 @@ public class Main {
 
         while(scanner.hasNext()) {
             name = scanner.nextLine();
-            System.out.println("Name: "+name);
+            name = name.trim().toLowerCase();
+
+            int indexOfStartOfWord = 0;
+
+            for (int i = 0; i < name.length(); i++) {
+                if (name.charAt(i) == ' ') {
+                    System.out.print(Character.toUpperCase(name.charAt(indexOfStartOfWord)) + ". ");
+                    indexOfStartOfWord = i + 1;
+                } else if (i == name.length() - 1) {
+                    System.out.print(Character.toUpperCase(name.charAt(indexOfStartOfWord)) + name.substring(indexOfStartOfWord + 1));
+                }
+            }
+            System.out.println();
         }
     }
 }
