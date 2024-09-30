@@ -14,20 +14,22 @@ public class Main {
         while(scanner.hasNext()) {
             // Read PIN from input.in
             encodedPIN = scanner.nextLine();
-            // Remove '-' separating the characters
+            // Remove '-' separating the characters in the string
             encodedPIN = encodedPIN.replace("-","");
 
             // Iterate through the string and replace the necessary characters
             for (int i = 0; i < encodedPIN.length(); i++) {
-                // If character can be parsed through Integer.parseInt(), convert it to integer and output it.
-                try {
-                    System.out.print("[" + Integer.parseInt(String.valueOf(encodedPIN.charAt(i))) + "]");
-                }
-                // Else if the current character can't the parsed, offset the ASCII value then output it.
-                catch (NumberFormatException e) {
-                    System.out.print("[" + ((int)encodedPIN.charAt(i) - 55) + "]");
-                }
+                char currentChar = encodedPIN.charAt(i);
 
+                // If character is a digit, output it directly
+                if (Character.isDigit(currentChar)) {
+                    System.out.print("[" + currentChar + "]");
+                }
+                // If character is a letter, convert it to the corresponding number
+                else if (Character.isLetter(currentChar)) {
+                    int value = (int)currentChar - 55;
+                    System.out.print("[" + value + "]");
+                }
             }
             System.out.println();
         }
