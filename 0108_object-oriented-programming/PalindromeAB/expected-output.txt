@@ -1,0 +1,8 @@
+2 4 - abbbba - babbab
+3 3 - -1
+2 3 - abbba - babab
+4 3 - aabbbaa - baabaab
+6 6 - aaabbbbbbaaa - bbbaaaaaabbb
+8 8 - aaaabbbbbbbbaaaa - bbbbaaaaaaaabbbb
+7 8 - bbbbaaaaaaabbbb - aaabbbbabbbbaaa
+8 7 - aaaabbbbbbbaaaa - bbbaaaabaaaabbb
