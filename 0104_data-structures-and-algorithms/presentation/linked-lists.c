@@ -12,6 +12,7 @@ void insertNodeAtStart(int data);
 void insertNodeAtEnd(int data);
 void insertNodeAtIndex(int data, int index);
 int searchForItem(int data);
+void deleteNodeAtIndex(int index);
 void printList();
 
 int main(void) {
@@ -68,8 +69,13 @@ int main(void) {
     insertNodeAtEnd(0);
 
     insertNodeAtIndex(3, 2);
+    insertNodeAtIndex(3, 2);
     insertNodeAtIndex(6, 0); 
     insertNodeAtIndex(7, 0);
+    insertNodeAtIndex(7, 0);
+
+    deleteNodeAtIndex(5);
+    deleteNodeAtIndex(0);
 
     printList();
 
@@ -154,6 +160,30 @@ int searchForItem(int data) {
     }
 
     return -1;
+}
+
+void deleteNodeAtIndex(int index) {
+    Node *prevNode = NULL;
+    Node *toDeleteNode = NULL;
+    Node *currNode = listHead;
+    int currIndex = 0;
+
+    if (index == 0) {
+        toDeleteNode = listHead;
+        listHead = listHead->next;
+        free(toDeleteNode);
+        return;
+    }
+
+    while(currIndex != index) {
+        prevNode = currNode;
+        currNode = currNode->next;
+        currIndex++;
+    }
+
+    toDeleteNode = currNode;
+    prevNode->next = currNode->next;
+    free(toDeleteNode);
 }
 
 void printList(void) {
