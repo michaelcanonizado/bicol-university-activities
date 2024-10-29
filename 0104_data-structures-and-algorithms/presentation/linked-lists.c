@@ -10,6 +10,8 @@ Node *listHead = NULL;
 Node *createNode(int data);
 void insertNodeAtStart(int data);
 void insertNodeAtEnd(int data);
+void insertNodeAtIndex(int data, int index);
+int searchForItem(int data);
 void printList();
 
 int main(void) {
@@ -59,13 +61,33 @@ int main(void) {
     // }
 
     insertNodeAtStart(2);
-    insertNodeAtStart(3);
     insertNodeAtStart(4);
+    insertNodeAtStart(5);
 
     insertNodeAtEnd(1);
     insertNodeAtEnd(0);
 
+    insertNodeAtIndex(3, 2);
+    insertNodeAtIndex(6, 0); 
+    insertNodeAtIndex(7, 0);
+
     printList();
+
+    int itemToSearch = 4;
+    int itemIndex = searchForItem(itemToSearch);
+    if (itemIndex != -1) {
+        printf("%d is in the list at index %d\n", itemToSearch, itemIndex);
+    } else {
+        printf("%d is not in the list!\n", itemToSearch);
+    }
+
+    itemToSearch = 99;
+    itemIndex = searchForItem(itemToSearch);
+    if (itemIndex != -1) {
+        printf("%d is in the list at index %d\n", itemToSearch, itemIndex);
+    } else {
+        printf("%d is not in the list!\n", itemToSearch);
+    }
 
     return 0;
 }
@@ -93,6 +115,45 @@ void insertNodeAtEnd(int data) {
         }
         tempNode = tempNode->next;
     }
+}
+
+void insertNodeAtIndex(int data, int index) {
+    Node *prevNode = NULL;
+    Node *currNode = listHead;
+    int currIndex = 0;
+
+    if (index == 0) {
+        Node *newNode = createNode(data);
+        newNode->next = listHead;
+        listHead = newNode;
+        return;
+    }
+
+    while(index != currIndex) {
+        prevNode = currNode;
+        currNode = currNode->next;
+        currIndex++;
+    }
+
+    Node *newNode = createNode(data);
+    newNode->next = currNode;
+    prevNode->next = newNode;
+}
+
+int searchForItem(int data) {
+    Node *tempNode = listHead;
+    int currIndex = 0;
+
+    while (tempNode != NULL) {
+        if (tempNode->data == data) {
+            return currIndex;
+        } 
+        
+        tempNode = tempNode->next;
+        currIndex++;
+    }
+
+    return -1;
 }
 
 void printList(void) {
