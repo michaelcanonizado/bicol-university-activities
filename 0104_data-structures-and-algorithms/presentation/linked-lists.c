@@ -9,6 +9,7 @@ Node *listHead = NULL;
 
 Node *createNode(int data);
 void insertNodeAtStart(int data);
+void insertNodeAtEnd(int data);
 void printList();
 
 int main(void) {
@@ -57,9 +58,12 @@ int main(void) {
     //     printf("\n\n");
     // }
 
-    insertNodeAtStart(1);
     insertNodeAtStart(2);
     insertNodeAtStart(3);
+    insertNodeAtStart(4);
+
+    insertNodeAtEnd(1);
+    insertNodeAtEnd(0);
 
     printList();
 
@@ -79,12 +83,24 @@ void insertNodeAtStart(int data) {
     listHead = newNode; 
 }
 
+void insertNodeAtEnd(int data) {
+    Node *tempNode = listHead;
+    while(1) {
+        if (tempNode->next == NULL) {
+            Node *newNode = createNode(data);
+            tempNode->next = newNode;
+            break;
+        }
+        tempNode = tempNode->next;
+    }
+}
+
 void printList(void) {
     Node *tempNode = listHead;
-    printf("HEAD -> ");
+    printf("\nHEAD -> ");
     while(tempNode != NULL) {
         printf("%d -> ", tempNode->data);
         tempNode = tempNode->next;
     }
-    printf("NULL\n");
+    printf("NULL\n\n");
 }
