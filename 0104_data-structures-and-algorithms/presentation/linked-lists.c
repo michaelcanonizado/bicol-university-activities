@@ -194,7 +194,7 @@ void deleteNodeAtIndex(int index) {
 
 void reverseList() {
     Node *tempNode1 = NULL;
-    Node *tempNode2 = listHead->next;
+    Node *tempNode2 = NULL;
 
     while(listHead != NULL) {
         tempNode2 = listHead->next;
