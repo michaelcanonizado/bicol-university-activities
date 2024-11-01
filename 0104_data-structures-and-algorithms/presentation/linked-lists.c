@@ -13,6 +13,7 @@ void insertNodeAtEnd(int data);
 void insertNodeAtIndex(int data, int index);
 int searchForItem(int data);
 void deleteNodeAtIndex(int index);
+void reverseList();
 void printList();
 
 int main(void) {
@@ -22,6 +23,7 @@ int main(void) {
     //     "Insert an item at index",
     //     "Search for an item",
     //     "Delete an item",
+    //      "Reverse the list",
     //     "Print list"
     // };
     // int numOfMenuOptions = sizeof(menuOptions)/sizeof(menuOptions[0]);
@@ -76,6 +78,10 @@ int main(void) {
 
     deleteNodeAtIndex(5);
     deleteNodeAtIndex(0);
+
+    printList();
+
+    reverseList();
 
     printList();
 
@@ -184,6 +190,19 @@ void deleteNodeAtIndex(int index) {
     toDeleteNode = currNode;
     prevNode->next = currNode->next;
     free(toDeleteNode);
+}
+
+void reverseList() {
+    Node *tempNode1 = NULL;
+    Node *tempNode2 = listHead->next;
+
+    while(listHead != NULL) {
+        tempNode2 = listHead->next;
+        listHead->next = tempNode1;
+        tempNode1 = listHead;
+        listHead = tempNode2;
+    }
+    listHead = tempNode1;
 }
 
 void printList(void) {
