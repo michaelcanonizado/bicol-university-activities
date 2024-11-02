@@ -42,7 +42,7 @@ int main(void) {
         printf("Please choose an operation: ");
         scanf("%d", &chosenOption);
 
-        int data, index;
+        int data, index, status;
 
         switch(chosenOption) {
             case 1:
@@ -56,9 +56,9 @@ int main(void) {
             case 3:
                 data = prompt("Number: ");
                 index = prompt("Index: ");
-                int res = insertNodeAtIndex(data, index);
+                status = insertNodeAtIndex(data, index);
 
-                if (res == 1) {
+                if (status == 1) {
                     printf("\n\n\nINDEX INVALID! WILL CAUSE AN OVERFLOW!");
                     break;
                 } 
