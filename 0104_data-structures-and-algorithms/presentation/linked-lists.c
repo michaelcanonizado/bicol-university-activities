@@ -16,7 +16,7 @@ int insertNodeAtIndex(int data, int index);
 int searchForItem(int data);
 int deleteNodeAtIndex(int index);
 int reverseList();
-void printList();
+int printList();
 
 int main(void) {
     char *menuOptions[] = {
@@ -225,7 +225,7 @@ int reverseList() {
     listHead = tempNode1;
 }
 
-void printList(void) {
+int printList(void) {
     Node *tempNode = listHead;
     printf("\nHEAD -> ");
     while(tempNode != NULL) {
@@ -233,4 +233,5 @@ void printList(void) {
         tempNode = tempNode->next;
     }
     printf("NULL\n");
+    return 0;
 }
