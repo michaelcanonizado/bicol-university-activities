@@ -15,7 +15,7 @@ int insertNodeAtEnd(int data);
 int insertNodeAtIndex(int data, int index);
 int searchForItem(int data);
 int deleteNodeAtIndex(int index);
-void reverseList();
+int reverseList();
 void printList();
 
 int main(void) {
@@ -212,7 +212,7 @@ int deleteNodeAtIndex(int index) {
     return 0;
 }
 
-void reverseList() {
+int reverseList() {
     Node *tempNode1 = NULL;
     Node *tempNode2 = NULL;
 
