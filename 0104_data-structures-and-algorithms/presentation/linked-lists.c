@@ -40,7 +40,7 @@ int main(void) {
         printf("Please choose an operation: ");
         scanf("%d", &chosenOption);
 
-        int data;
+        int data, index;
 
         switch(chosenOption) {
             case 1:
@@ -48,16 +48,21 @@ int main(void) {
                 insertNodeAtStart(data);
                 break;
             case 2:
-                insertNodeAtEnd(8);
+                data = prompt("Number: ");
+                insertNodeAtEnd(data);
                 break;
             case 3:
-                insertNodeAtIndex(0, 1);
+                data = prompt("Number: ");
+                index = prompt("Index: ");
+                insertNodeAtIndex(data, index);
                 break;
             case 4:
-                searchForItem(7);
+                data = prompt("Number: ");
+                searchForItem(data);
                 break;
             case 5:
-                deleteNodeAtIndex(1);
+                index = prompt("Index: ");
+                deleteNodeAtIndex(index);
                 break;
             case 6:
                 reverseList();
