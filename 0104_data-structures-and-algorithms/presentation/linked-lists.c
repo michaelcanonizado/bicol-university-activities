@@ -10,7 +10,7 @@ int listLength = 0;
 
 int prompt(const char *message);
 Node *createNode(int data);
-void insertNodeAtStart(int data);
+int insertNodeAtStart(int data);
 void insertNodeAtEnd(int data);
 int insertNodeAtIndex(int data, int index);
 int searchForItem(int data);
@@ -114,11 +114,12 @@ Node *createNode(int data) {
     return newNode;
 }
 
-void insertNodeAtStart(int data) {
+int insertNodeAtStart(int data) {
     Node *newNode = createNode(data);
     newNode->next = listHead;
     listHead = newNode; 
     listLength++;
+    return 0;
 }
 
 void insertNodeAtEnd(int data) {
