@@ -7,6 +7,7 @@ typedef struct node {
 } Node;
 Node *listHead = NULL;
 
+int prompt(const char *message);
 Node *createNode(int data);
 void insertNodeAtStart(int data);
 void insertNodeAtEnd(int data);
@@ -23,23 +24,28 @@ int main(void) {
         "Insert an item at index",
         "Search for an item",
         "Delete an item",
-        "Reverse the list",
-        "Print list"
+        "Reverse the list"
     };
     int numOfMenuOptions = sizeof(menuOptions)/sizeof(menuOptions[0]);
     int chosenOption;
 
     while(1) {
-        printf("\n");
+        printf("\n-------------LINKED-LIST-------------");
+        printList();
+        printf("-------------------------------------\n");
+
         for (int i = 0; i < numOfMenuOptions; i++) {
             printf("%d) %s\n",i+1, menuOptions[i]);
         }
         printf("Please choose an operation: ");
         scanf("%d", &chosenOption);
 
+        int data;
+
         switch(chosenOption) {
             case 1:
-                insertNodeAtStart(7);
+                data = prompt("Number: ");
+                insertNodeAtStart(data);
                 break;
             case 2:
                 insertNodeAtEnd(8);
@@ -56,9 +62,6 @@ int main(void) {
             case 6:
                 reverseList();
                 break;
-            case 7:
-                printList();
-                break;
             default:
                 return 0;
         }
@@ -66,6 +69,29 @@ int main(void) {
     }
 
     return 0;
+}
+
+int prompt(const char *message) {
+    int userInput;
+    int result;
+
+    while (1) {
+        printf("%s", message);
+
+        // Use scanf to read an integer, checking if the input was valid
+        result = scanf("%d", &userInput);
+
+        // Check if scanf successfully read an integer
+        if (result == 1) {
+            // Clear any remaining characters from the input buffer
+            while (getchar() != '\n');
+            return userInput;
+        } else {
+            // If input was invalid, clear the buffer and show an error message
+            printf("Invalid input. Please enter a valid integer.\n");
+            while (getchar() != '\n'); // Clear the invalid input
+        }
+    }
 }
 
 Node *createNode(int data) {
@@ -176,5 +202,5 @@ void printList(void) {
         printf("%d -> ", tempNode->data);
         tempNode = tempNode->next;
     }
-    printf("NULL\n\n");
+    printf("NULL\n");
 }
