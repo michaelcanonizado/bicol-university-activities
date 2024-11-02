@@ -31,8 +31,9 @@ int main(void) {
     int chosenOption;
 
     while(1) {
-        printf("-----------------LINKED-LIST-----------------");
-        printf("\nItems in list: %d\n", listLength);
+        printf("\n-----------------LINKED-LIST-----------------");
+        printf("\n               Items in list: %d\n", listLength);
+        printf("---------------------------------------------");
         printList();
         printf("---------------------------------------------\n");
 
@@ -194,7 +195,7 @@ int deleteNodeAtIndex(int index) {
         toDeleteNode = listHead;
         listHead = listHead->next;
         free(toDeleteNode);
-        return;
+        return 0;
     }
 
     while(currIndex != index) {
