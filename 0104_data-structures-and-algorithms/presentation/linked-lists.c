@@ -6,6 +6,7 @@ typedef struct node {
     struct node *next;
 } Node;
 Node *listHead = NULL;
+int listLength = 0;
 
 int prompt(const char *message);
 Node *createNode(int data);
@@ -110,6 +111,7 @@ void insertNodeAtStart(int data) {
     Node *newNode = createNode(data);
     newNode->next = listHead;
     listHead = newNode; 
+    listLength++;
 }
 
 void insertNodeAtEnd(int data) {
@@ -122,6 +124,7 @@ void insertNodeAtEnd(int data) {
         }
         tempNode = tempNode->next;
     }
+    listLength++;
 }
 
 void insertNodeAtIndex(int data, int index) {
@@ -145,6 +148,8 @@ void insertNodeAtIndex(int data, int index) {
     Node *newNode = createNode(data);
     newNode->next = currNode;
     prevNode->next = newNode;
+
+    listLength++;
 }
 
 int searchForItem(int data) {
@@ -185,6 +190,8 @@ void deleteNodeAtIndex(int index) {
     toDeleteNode = currNode;
     prevNode->next = currNode->next;
     free(toDeleteNode);
+
+    listLength--;
 }
 
 void reverseList() {
