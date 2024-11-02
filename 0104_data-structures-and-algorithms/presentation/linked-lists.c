@@ -12,7 +12,7 @@ int prompt(const char *message);
 Node *createNode(int data);
 void insertNodeAtStart(int data);
 void insertNodeAtEnd(int data);
-void insertNodeAtIndex(int data, int index);
+int insertNodeAtIndex(int data, int index);
 int searchForItem(int data);
 void deleteNodeAtIndex(int index);
 void reverseList();
@@ -31,9 +31,10 @@ int main(void) {
     int chosenOption;
 
     while(1) {
-        printf("\n-------------LINKED-LIST-------------");
+        printf("-----------------LINKED-LIST-----------------");
+        printf("\nItems in list: %d\n", listLength);
         printList();
-        printf("-------------------------------------\n");
+        printf("---------------------------------------------\n");
 
         for (int i = 0; i < numOfMenuOptions; i++) {
             printf("%d) %s\n",i+1, menuOptions[i]);
@@ -55,7 +56,13 @@ int main(void) {
             case 3:
                 data = prompt("Number: ");
                 index = prompt("Index: ");
-                insertNodeAtIndex(data, index);
+                int res = insertNodeAtIndex(data, index);
+
+                if (res == 1) {
+                    printf("\n\n\nINDEX INVALID! WILL CAUSE AN OVERFLOW!");
+                    break;
+                } 
+
                 break;
             case 4:
                 data = prompt("Number: ");
@@ -127,7 +134,11 @@ void insertNodeAtEnd(int data) {
     listLength++;
 }
 
-void insertNodeAtIndex(int data, int index) {
+int insertNodeAtIndex(int data, int index) {
+    if (index > listLength) {
+        return 1;
+    }
+
     Node *prevNode = NULL;
     Node *currNode = listHead;
     int currIndex = 0;
@@ -136,7 +147,7 @@ void insertNodeAtIndex(int data, int index) {
         Node *newNode = createNode(data);
         newNode->next = listHead;
         listHead = newNode;
-        return;
+        return 0;
     }
 
     while(index != currIndex) {
@@ -150,6 +161,8 @@ void insertNodeAtIndex(int data, int index) {
     prevNode->next = newNode;
 
     listLength++;
+
+    return 0;
 }
 
 int searchForItem(int data) {
