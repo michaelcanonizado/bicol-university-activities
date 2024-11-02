@@ -14,7 +14,7 @@ int insertNodeAtStart(int data);
 int insertNodeAtEnd(int data);
 int insertNodeAtIndex(int data, int index);
 int searchForItem(int data);
-void deleteNodeAtIndex(int index);
+int deleteNodeAtIndex(int index);
 void reverseList();
 void printList();
 
@@ -184,7 +184,7 @@ int searchForItem(int data) {
     return -1;
 }
 
-void deleteNodeAtIndex(int index) {
+int deleteNodeAtIndex(int index) {
     Node *prevNode = NULL;
     Node *toDeleteNode = NULL;
     Node *currNode = listHead;
@@ -208,6 +208,8 @@ void deleteNodeAtIndex(int index) {
     free(toDeleteNode);
 
     listLength--;
+
+    return 0;
 }
 
 void reverseList() {
