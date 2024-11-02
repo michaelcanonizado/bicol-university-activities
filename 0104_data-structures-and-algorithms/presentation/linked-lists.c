@@ -11,7 +11,7 @@ int listLength = 0;
 int prompt(const char *message);
 Node *createNode(int data);
 int insertNodeAtStart(int data);
-void insertNodeAtEnd(int data);
+int insertNodeAtEnd(int data);
 int insertNodeAtIndex(int data, int index);
 int searchForItem(int data);
 void deleteNodeAtIndex(int index);
@@ -122,7 +122,7 @@ int insertNodeAtStart(int data) {
     return 0;
 }
 
-void insertNodeAtEnd(int data) {
+int insertNodeAtEnd(int data) {
     Node *tempNode = listHead;
     while(1) {
         if (tempNode->next == NULL) {
@@ -133,6 +133,8 @@ void insertNodeAtEnd(int data) {
         tempNode = tempNode->next;
     }
     listLength++;
+
+    return 0;
 }
 
 int insertNodeAtIndex(int data, int index) {
