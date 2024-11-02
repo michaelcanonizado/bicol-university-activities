@@ -17,88 +17,52 @@ void reverseList();
 void printList();
 
 int main(void) {
-    // char *menuOptions[] = {
-    //     "Insert an item at start",
-    //     "Insert an item at end",
-    //     "Insert an item at index",
-    //     "Search for an item",
-    //     "Delete an item",
-    //      "Reverse the list",
-    //     "Print list"
-    // };
-    // int numOfMenuOptions = sizeof(menuOptions)/sizeof(menuOptions[0]);
-    // int chosenOption;
+    char *menuOptions[] = {
+        "Insert an item at start",
+        "Insert an item at end",
+        "Insert an item at index",
+        "Search for an item",
+        "Delete an item",
+        "Reverse the list",
+        "Print list"
+    };
+    int numOfMenuOptions = sizeof(menuOptions)/sizeof(menuOptions[0]);
+    int chosenOption;
 
-    // while(1) {
-    //     printf("\n");
-    //     for (int i = 0; i < numOfMenuOptions; i++) {
-    //         printf("%d) %s\n",i+1, menuOptions[i]);
-    //     }
-    //     printf("Please choose an operation: ");
-    //     scanf("%d", &chosenOption);
+    while(1) {
+        printf("\n");
+        for (int i = 0; i < numOfMenuOptions; i++) {
+            printf("%d) %s\n",i+1, menuOptions[i]);
+        }
+        printf("Please choose an operation: ");
+        scanf("%d", &chosenOption);
 
-    //     switch(chosenOption) {
-    //         case 1:
-    //             insertNodeAtStart(7, listHead);
-    //             printf("opt 1");
-    //             break;
-    //         case 2:
-    //             printf("opt 2");
-    //             break;
-    //         case 3:
-    //             printf("opt 3");
-    //             break;
-    //         case 4:
-    //             printf("opt 4");
-    //             break;
-    //         case 5:
-    //             printf("opt 5");
-    //             break;
-    //         case 6:
-    //             printList();
-    //             break;
-    //         default:
-    //             return 0;
-    //     }
-    //     printf("\n\n");
-    // }
-
-    insertNodeAtStart(2);
-    insertNodeAtStart(4);
-    insertNodeAtStart(5);
-
-    insertNodeAtEnd(1);
-    insertNodeAtEnd(0);
-
-    insertNodeAtIndex(3, 2);
-    insertNodeAtIndex(3, 2);
-    insertNodeAtIndex(6, 0); 
-    insertNodeAtIndex(7, 0);
-    insertNodeAtIndex(7, 0);
-
-    deleteNodeAtIndex(5);
-    deleteNodeAtIndex(0);
-
-    printList();
-
-    reverseList();
-
-    printList();
-
-    int itemToSearch = 4;
-    int itemIndex = searchForItem(itemToSearch);
-    if (itemIndex != -1) {
-        printf("%d is in the list at index %d\n", itemToSearch, itemIndex);
-    } else {
-        printf("%d is not in the list!\n", itemToSearch);
-    }
-
-    itemToSearch = 99;
-    itemIndex = searchForItem(itemToSearch);
-    if (itemIndex != -1) {
-        printf("%d is in the list at index %d\n", itemToSearch, itemIndex);
-    } else {
-        printf("%d is not in the list!\n", itemToSearch);
+        switch(chosenOption) {
+            case 1:
+                insertNodeAtStart(7);
+                break;
+            case 2:
+                insertNodeAtEnd(8);
+                break;
+            case 3:
+                insertNodeAtIndex(0, 1);
+                break;
+            case 4:
+                searchForItem(7);
+                break;
+            case 5:
+                deleteNodeAtIndex(1);
+                break;
+            case 6:
+                reverseList();
+                break;
+            case 7:
+                printList();
+                break;
+            default:
+                return 0;
+        }
+        printf("\n");
     }
 
     return 0;
