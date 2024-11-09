@@ -14,6 +14,10 @@ public class FreelancerPayrollForm {
         this.grossIncome = 0.0;
     }
 
+    public double calculateProjectPayment(double hoursWorked) {
+        return hoursWorked * hourlyRate;
+    }
+
     public String getFreelancerName() {
         return freelancerName;
     }
