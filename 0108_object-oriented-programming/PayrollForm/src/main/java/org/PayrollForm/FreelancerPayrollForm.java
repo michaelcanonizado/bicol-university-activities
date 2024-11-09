@@ -15,16 +15,16 @@ public class FreelancerPayrollForm {
     }
 
     public double calculateProjectPayment(double hoursWorked) {
-        return hoursWorked * hourlyRate;
+        return this.hoursWorked * hourlyRate;
     }
 
     public void trackProjectPayment(double hoursWorked) {
         double payment = calculateProjectPayment((hoursWorked));
         this.grossIncome += payment;
         this.hoursWorked += hoursWorked;
-        System.out.println("Payment for this project: $" + payment);
-        System.out.println("Updated Gross Income: $" + this.grossIncome);
-        System.out.println("Updated Hours Worked: $" + this.hoursWorked);
+        System.out.println("Payment for this project: ₱" + payment);
+        System.out.println("Updated Gross Income: ₱" + this.grossIncome);
+        System.out.println("Updated Hours Worked: " + this.hoursWorked);
         System.out.println("----------------------------------");
     }
 
@@ -32,8 +32,8 @@ public class FreelancerPayrollForm {
         System.out.println("Freelancer Information:");
         System.out.println("Name: " + this.freelancerName);
         System.out.println("Hours Worked: " + this.hoursWorked);
-        System.out.println("Hourly Rate: $" + this.hourlyRate);
-        System.out.println("Gross Income: $" + this.grossIncome);
+        System.out.println("Hourly Rate: ₱" + this.hourlyRate + "/hr");
+        System.out.println("Gross Income: ₱" + this.grossIncome);
         System.out.println("----------------------------------");
     }
 

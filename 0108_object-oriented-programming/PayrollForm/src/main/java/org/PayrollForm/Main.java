@@ -6,7 +6,7 @@ public class Main {
 
         System.out.println("----------------------------------");
         mikeyPayroll.displayFreelancerInfo();
-        System.out.println("Hourly Rate:" + mikeyPayroll.getHourlyRate());
+        System.out.println("Hourly Rate:" + mikeyPayroll.getHourlyRate() + "/hr");
         System.out.println("----------------------------------");
         mikeyPayroll.trackProjectPayment(8);
         mikeyPayroll.displayFreelancerInfo();
