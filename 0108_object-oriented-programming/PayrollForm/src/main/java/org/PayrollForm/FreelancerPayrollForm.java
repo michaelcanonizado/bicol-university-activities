@@ -14,4 +14,19 @@ public class FreelancerPayrollForm {
         this.grossIncome = 0.0;
     }
 
+    public String getFreelancerName() {
+        return freelancerName;
+    }
+
+    public double getHourlyRate() {
+        return hourlyRate;
+    }
+
+    public void setFreelancerName(String freelancerName) {
+        this.freelancerName = freelancerName;
+    }
+
+    public void setHourlyRate(double hourlyRate) {
+        this.hourlyRate = hourlyRate;
+    }
 }
