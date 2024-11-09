@@ -2,6 +2,15 @@ package org.PayrollForm;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        FreelancerPayrollForm mikeyPayroll = new FreelancerPayrollForm("Mikey", 500);
+
+        System.out.println("----------------------------------");
+        mikeyPayroll.displayFreelancerInfo();
+        System.out.println("Hourly Rate:" + mikeyPayroll.getHourlyRate());
+        System.out.println("----------------------------------");
+        mikeyPayroll.trackProjectPayment(8);
+        mikeyPayroll.displayFreelancerInfo();
+        mikeyPayroll.trackProjectPayment(3);
+        mikeyPayroll.displayFreelancerInfo();
     }
 }
