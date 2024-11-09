@@ -18,6 +18,15 @@ public class FreelancerPayrollForm {
         return hoursWorked * hourlyRate;
     }
 
+    public void trackProjectPayment(double hoursWorked) {
+        double payment = calculateProjectPayment((hoursWorked));
+        this.grossIncome += payment;
+        this.hoursWorked += hoursWorked;
+        System.out.println("Payment for this project: $" + payment);
+        System.out.println("Updated Gross Income: $" + this.grossIncome);
+        System.out.println("Updated Hours Worked: $" + this.hoursWorked);
+    }
+
     public String getFreelancerName() {
         return freelancerName;
     }
