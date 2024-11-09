@@ -25,6 +25,7 @@ public class FreelancerPayrollForm {
         System.out.println("Payment for this project: $" + payment);
         System.out.println("Updated Gross Income: $" + this.grossIncome);
         System.out.println("Updated Hours Worked: $" + this.hoursWorked);
+        System.out.println("----------------------------------");
     }
 
     public void displayFreelancerInfo() {
@@ -33,6 +34,7 @@ public class FreelancerPayrollForm {
         System.out.println("Hours Worked: " + this.hoursWorked);
         System.out.println("Hourly Rate: $" + this.hourlyRate);
         System.out.println("Gross Income: $" + this.grossIncome);
+        System.out.println("----------------------------------");
     }
 
     public String getFreelancerName() {
