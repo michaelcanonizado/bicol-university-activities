@@ -17,14 +17,13 @@ int main(void) {
 
     int selectedOption = displayOptions(menuOptions, menuOptionsSize);
 
-    switch (selectedOption)
-    {
-    case 1:
-        linearDataStructures();
-        break;
+    switch (selectedOption) {
+        case 1:
+            linearDataStructures();
+            break;
     
-    default:
-        break;
+        default:
+            break;
     }
 
     return 0;
@@ -46,10 +45,34 @@ int displayOptions(char *menuOptions[], int menuOptionsSize) {
 
 void linearDataStructures(void) {
     char *menuOptions[] = {
-        "Array",
-        "Linked List",
+        "Arrays",
+        "Linked Lists",
         "Stacks",
         "Queues",
+        "Exit"
+    };
+    int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
+
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize);
+
+    switch (selectedOption) {
+        case 1:
+            arrays();
+            break;
+    
+        default:
+            break;
+    }
+}
+
+void arrays(void) {
+    char *menuOptions[] = {
+        "Traverse",
+        "Insert",
+        "Delete",
+        "Search",
+        "Sort",
+        "?",
         "Exit"
     };
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
