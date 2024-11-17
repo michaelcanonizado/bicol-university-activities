@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int displayOptions(char *menuOptions[], int menuOptionsSize);
+
 int main(void) {
     
-    int selectedOption = 0;
     char *menuOptions[] = {
         "Linear Data Structures", 
         "Non-Linear Data Structures", 
@@ -13,19 +14,23 @@ int main(void) {
     };
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
 
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize);
+
+    printf("Selected: %d", selectedOption);
+
+    return 0;
+}
+
+int displayOptions(char *menuOptions[], int menuOptionsSize) {
+    int selectedOption = 0;
+
     do {
         for (int i = 0; i < menuOptionsSize; i++) {
             printf("\n%d) %s", i+1, menuOptions[i]);
         }
         printf("\nPlease choose an option: ");
         scanf("%d", &selectedOption);
-
-        printf("Selected: %d", selectedOption);
-
     } while(selectedOption <= 0 || selectedOption > menuOptionsSize);
 
-    return 0;
+    return selectedOption;
 }
-
-
-
