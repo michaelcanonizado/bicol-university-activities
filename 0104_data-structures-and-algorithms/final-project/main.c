@@ -3,6 +3,8 @@
 
 int displayOptions(char *menuOptions[], int menuOptionsSize, char *header);
 void linearDataStructuresMenu(void);
+void searchingMenu(void);
+
 void arraysMenu(void);
 void linkedListsMenu(void);
 void linkedListsTraverseMenu(void);
@@ -73,6 +75,23 @@ void linearDataStructuresMenu(void) {
             break;
         case 2:
             linkedListsMenu();
+        case 5:
+            main();
+        default:
+            break;
+    }
+}
+void searchingMenu(void) {
+    char *menuOptions[] = {
+        "Linear",
+        "Binary",
+        "Exit"
+    };
+    int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
+
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize, "Main Menu > Searching");
+
+    switch (selectedOption) {
         case 5:
             main();
         default:
