@@ -5,6 +5,12 @@ int displayOptions(char *menuOptions[], int menuOptionsSize, char *header);
 void linearDataStructures(void);
 void arrays(void);
 void linkedLists(void);
+void linkedListsTraverse(void);
+void linkedListsInsert(void);
+void linkedListsDelete(void);
+void linkedListsSearch(void);
+void linkedListsReverse(void);
+void linkedListsMerge(void);
 
 int main(void) {
     char *menuOptions[] = {
@@ -103,6 +109,87 @@ void linkedLists(void) {
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
 
     int selectedOption = displayOptions(menuOptions, menuOptionsSize, "Linked Lists");
+
+   switch (selectedOption) {
+        case 1:
+            linkedListsTraverse();
+            break;
+        case 2:
+            linkedListsInsert();
+            break;
+        case 3:
+            linkedListsDelete();
+            break;
+        case 4:
+            linkedListsSearch();
+            break;
+        case 5:
+            linkedListsReverse();
+            break;
+        case 6:
+            linkedListsMerge();
+            break;
+        default:
+            break;
+    }
+}
+void linkedListsTraverse(void) {
+    char *menuOptions[] = {
+        "Temp",
+    };
+    int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
+
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize, "Linked List - Traverse");
+
+    printf("Selected: %d", selectedOption);
+}
+void linkedListsInsert(void) {
+    char *menuOptions[] = {
+        "Temp",
+    };
+    int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
+
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize, "Linked List - Insert");
+
+    printf("Selected: %d", selectedOption);
+}
+void linkedListsDelete(void){
+    char *menuOptions[] = {
+        "Temp",
+    };
+    int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
+
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize, "Linked List - Delete");
+
+    printf("Selected: %d", selectedOption);
+}
+void linkedListsSearch(void) {
+    char *menuOptions[] = {
+        "Temp",
+    };
+    int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
+
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize, "Linked List - Search");
+
+    printf("Selected: %d", selectedOption);
+}
+void linkedListsReverse(void) {
+    char *menuOptions[] = {
+        "Temp",
+    };
+    int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
+
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize, "Linked List - Reverse");
+
+    printf("Selected: %d", selectedOption);
+}
+void linkedListsMerge(void) {
+    char *menuOptions[] = {
+        "Temp",
+    };
+    int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
+
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize, "Linked List - Merge");
 
     printf("Selected: %d", selectedOption);
 }
