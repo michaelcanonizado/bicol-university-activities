@@ -76,7 +76,7 @@ void arrays(void) {
         "Delete",
         "Search",
         "Sort",
-        "?",
+        "Merge",
         "Exit"
     };
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
