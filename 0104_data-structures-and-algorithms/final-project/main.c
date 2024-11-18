@@ -5,7 +5,6 @@
 
 typedef struct AllocatedArraysNode {
     int *value;
-    size_t size;
     struct AllocatedArraysNode *next;
 } AllocatedArraysNode;
 AllocatedArraysNode *allocatedArraysHead = NULL;
@@ -74,6 +73,19 @@ int displayOptions(char *menuOptions[], int menuOptionsSize, char *header) {
 
     return selectedOption;
 }
+
+AllocatedArraysNode* createNewAllocatedArrayNode(int *allocatedArray) {
+    AllocatedArraysNode *node = (AllocatedArraysNode*)malloc(sizeof(allocatedArray));
+
+    if (node == NULL) {
+        printf("\n\nAllocated Node for array tracker is NULL!");
+        exit(-1);
+    }
+
+    node->value = allocatedArray;
+    node->next = NULL;
+    return node;
+}
 int isValidInteger(const char *str) {
     if (*str == '\0') {
         return 0;
@@ -131,6 +143,11 @@ int *getUserIntegerInputs(void) {
         allocatedArray[allocatedArrayIndex++] = atoi(token1);
         token1 = strtok(NULL, delimiter);
     }
+
+    /* Track allocated memory in linked list */
+    AllocatedArraysNode *node = createNewAllocatedArrayNode(allocatedArray);
+    node->next = allocatedArraysHead;
+    allocatedArraysHead = node;
 
     return allocatedArray;
 }
@@ -353,4 +370,5 @@ void binarySearchMenu(void) {
         printf("%d,", array[i]);
     }
     printf("]");
+
 }
