@@ -11,7 +11,7 @@ typedef struct AllocatedArraysNode {
 AllocatedArraysNode *allocatedArraysHead = NULL;
 
 int displayOptions(char *menuOptions[], int menuOptionsSize, char *header);
-void getUserIntegerInputs(void);
+int *getUserIntegerInputs(void);
 
 void linearDataStructuresMenu(void);
 void searchingMenu(void);
@@ -26,6 +26,7 @@ void linkedListsReverseMenu(void);
 void linkedListsMergeMenu(void);
 
 void linearSearchMenu(void);
+void binarySearchMenu(void);
 
 int main(void) {
     char *menuOptions[] = {
@@ -74,48 +75,64 @@ int displayOptions(char *menuOptions[], int menuOptionsSize, char *header) {
     return selectedOption;
 }
 int isValidInteger(const char *str) {
-    // Check if the string is empty
     if (*str == '\0') {
         return 0;
     }
-
-    // Allow for an optional leading negative sign
     if (*str == '-') {
-        str++; // Skip the negative sign
+        str++;
     }
 
-    // Ensure all characters are digits
     while (*str) {
         if (!isdigit(*str)) {
-            return 0; // Return 0 if any non-digit character is found
+            return 0;
         }
         str++;
     }
     
     return 1;
 }
-void getUserIntegerInputs(void) {
-    int array[5] = {0};
-    char inputStr[100];
+int *getUserIntegerInputs(void) {
+    char inputStr[100], *inputStrCopy;
     const char delimiter[] = ","; 
-    char *token;
-    int numOfInputs = 0;
-    int inputStrLength = 0;
+    char *token1, *token2;
+    int validInputCount = 0;
 
-    printf("\nPlease enter your inputs(integers): ");
+    printf("\nPlease enter your integers separated by commas: ");
     scanf("%s",inputStr);
 
-    while (inputStr[inputStrLength] != '\0') {
-        // if ()
-        inputStrLength++;
+    /* Count number of valid inputs, value will be
+    needed to allocate memoery for array. */
+    inputStrCopy = strdup(inputStr);
+    token2 = strtok(inputStrCopy, delimiter);
+    while (token2 != NULL) {
+        if (isValidInteger(token2)) {
+            validInputCount++;
+        }
+        token2 = strtok(NULL, delimiter);
+    }
+    free(inputStrCopy);
+
+    /* Allocate space for array */
+    int *allocatedArray = (int*)malloc(validInputCount * sizeof(int));
+    int allocatedArrayIndex = 0;
+
+    /* Load valid inputs to the allocated array */
+    token1 = strtok(inputStr, delimiter);
+    while (token1 != NULL) {
+        /* If is invalid, move to the next token */
+        if (!isValidInteger(token1)) {
+            token1 = strtok(NULL, delimiter);
+            continue;
+        }
+
+        /* If valid, parse to an integer and load
+        to the array */
+        printf("\n%s", token1);
+        allocatedArray[allocatedArrayIndex++] = atoi(token1);
+        token1 = strtok(NULL, delimiter);
     }
 
-    // token = strtok(inputsStr, delimiter);
-
-    while (token != NULL) {
-        printf("%s\n", token);
-        token = strtok(NULL, delimiter);
-    }
+    return allocatedArray;
 }
 
 
@@ -159,7 +176,9 @@ void searchingMenu(void) {
     switch (selectedOption) {
         case 1:
             linearSearchMenu();
-        case 5:
+        case 2:
+            binarySearchMenu();
+        case 3:
             main();
         default:
             break;
@@ -325,4 +344,13 @@ void linearSearchMenu(void) {
     }
 
     printf("Target %d is not in the list!\n", target);
+}
+void binarySearchMenu(void) {
+    int *array = getUserIntegerInputs();
+
+    printf("\n[");
+    for (int i = 0; i < 5; i++) {
+        printf("%d,", array[i]);
+    }
+    printf("]");
 }
