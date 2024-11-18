@@ -4,6 +4,7 @@
 int displayOptions(char *menuOptions[], int menuOptionsSize);
 void linearDataStructures(void);
 void arrays(void);
+void linkedLists(void);
 
 int main(void) {
     char *menuOptions[] = {
@@ -63,7 +64,8 @@ void linearDataStructures(void) {
         case 1:
             arrays();
             break;
-    
+        case 2:
+            linkedLists();
         default:
             break;
     }
@@ -76,7 +78,24 @@ void arrays(void) {
         "Delete",
         "Search",
         "Sort",
-        "Merge",
+        "Merge 2 arrays",
+        "Exit"
+    };
+    int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
+
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize);
+
+    printf("Selected: %d", selectedOption);
+}
+
+void linkedLists(void) {
+    char *menuOptions[] = {
+        "Traverse",
+        "Insert",
+        "Delete",
+        "Search",
+        "Reverse",
+        "Merge 2 lists",
         "Exit"
     };
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
