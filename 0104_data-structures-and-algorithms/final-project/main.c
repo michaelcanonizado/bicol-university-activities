@@ -65,7 +65,7 @@ void linearDataStructuresMenu(void) {
     };
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
 
-    int selectedOption = displayOptions(menuOptions, menuOptionsSize, "Linear Data Structures");
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize, "Main Menu > Linear Data Structures");
 
     switch (selectedOption) {
         case 1:
@@ -92,7 +92,7 @@ void arraysMenu(void) {
     };
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
 
-    int selectedOption = displayOptions(menuOptions, menuOptionsSize, "Arrays");
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize, "Main Menu > Arrays");
 
     switch(selectedOption) {
         case 7:
@@ -114,7 +114,7 @@ void linkedListsMenu(void) {
     };
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
 
-    int selectedOption = displayOptions(menuOptions, menuOptionsSize, "Linked Lists");
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize, "Main Menu > Linear Data Structures > Linked Lists");
 
    switch (selectedOption) {
         case 1:
@@ -147,7 +147,7 @@ void linkedListsTraverseMenu(void) {
     };
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
 
-    int selectedOption = displayOptions(menuOptions, menuOptionsSize, "Linked List - Traverse");
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize, "Main Menu > Linear Data Structures > Linked Lists > Traverse");
 
     printf("Selected: %d", selectedOption);
 }
@@ -157,7 +157,7 @@ void linkedListsInsertMenu(void) {
     };
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
 
-    int selectedOption = displayOptions(menuOptions, menuOptionsSize, "Linked List - Insert");
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize, "Main Menu > Linear Data Structures > Linked Lists > Insert");
 
     printf("Selected: %d", selectedOption);
 }
@@ -167,7 +167,7 @@ void linkedListsDeleteMenu(void){
     };
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
 
-    int selectedOption = displayOptions(menuOptions, menuOptionsSize, "Linked List - Delete");
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize, "Main Menu > Linear Data Structures > Linked Lists > Delete");
 
     printf("Selected: %d", selectedOption);
 }
@@ -177,7 +177,7 @@ void linkedListsSearchMenu(void) {
     };
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
 
-    int selectedOption = displayOptions(menuOptions, menuOptionsSize, "Linked List - Search");
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize, "Main Menu > Linear Data Structures > Linked Lists > Search");
 
     printf("Selected: %d", selectedOption);
 }
@@ -187,7 +187,7 @@ void linkedListsReverseMenu(void) {
     };
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
 
-    int selectedOption = displayOptions(menuOptions, menuOptionsSize, "Linked List - Reverse");
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize, "Main Menu > Linear Data Structures > Linked Lists > Reverse");
 
     printf("Selected: %d", selectedOption);
 }
@@ -197,7 +197,7 @@ void linkedListsMergeMenu(void) {
     };
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
 
-    int selectedOption = displayOptions(menuOptions, menuOptionsSize, "Linked List - Merge");
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize, "Main Menu > Linear Data Structures > Linked Lists > Merge");
 
     printf("Selected: %d", selectedOption);
 }
