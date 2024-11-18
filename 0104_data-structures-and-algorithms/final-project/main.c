@@ -14,6 +14,7 @@ int isValidInteger(const char *str);
 int *getUserIntegerInputs(int *size);
 void printAllocatedArrayList(void);
 AllocatedArraysNode* createNewAllocatedArrayNode(int *allocatedArray);
+void freeAllAllocatedArrays(void);
 
 void linearDataStructuresMenu(void);
 void searchingMenu(void);
@@ -53,6 +54,9 @@ int main(void) {
         case 6:
             printf("\nClosing Program...");
             printf("\nGood Bye!");
+            printAllocatedArrayList();
+            freeAllAllocatedArrays();
+            printAllocatedArrayList();
             return 0;
         default:
             break;
@@ -161,7 +165,7 @@ void printAllocatedArrayList(void) {
     AllocatedArraysNode *tempNode = allocatedArraysHead;
 
     if (allocatedArraysHead == NULL) {
-        printf("\n\nNode list empty!\n");
+        printf("\nNode list empty!\n");
         return;
     }
 
@@ -175,7 +179,26 @@ void printAllocatedArrayList(void) {
         }
     }
 }
+void freeAllAllocatedArrays(void) {
+    // Store head node in a temporary ndoe.
+    AllocatedArraysNode *tempHeadNode = allocatedArraysHead;
+    // Go through all nodes in linked list
+    while(tempHeadNode != NULL) {
 
+        if (allocatedArraysHead->value == NULL) {
+            printf("\nBignum in list is NULL");
+            printf("\n\tFunction: freeAllBignums()");
+        }
+
+        // Point temporary head node to next node
+        tempHeadNode = tempHeadNode->next;
+        free(allocatedArraysHead);
+
+        // Store new head to original head node
+        allocatedArraysHead = tempHeadNode;
+    }
+
+}
 
 
 
