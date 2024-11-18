@@ -106,11 +106,11 @@ void getUserIntegerInputs(void) {
     scanf("%s",inputStr);
 
     while (inputStr[inputStrLength] != '\0') {
-        if ()
+        // if ()
         inputStrLength++;
     }
 
-    token = strtok(inputsStr, delimiter);
+    // token = strtok(inputsStr, delimiter);
 
     while (token != NULL) {
         printf("%s\n", token);
@@ -294,5 +294,35 @@ void linkedListsMergeMenu(void) {
 }
 
 void linearSearchMenu(void) {
-    getUserIntegerInputs();
+    int numOfInputs = 0;
+    int target;
+
+    printf("\nEnter number of inputs: ");
+    scanf("%d", &numOfInputs);
+
+    int *inputs = (int*)malloc(numOfInputs * sizeof(int));
+
+    if (inputs == NULL) {
+        printf("Memory allocation failed\n");
+        return;
+    }
+
+    for (int i = 0; i < numOfInputs; i++) {
+        int currInput = 0;
+        printf("Element %d: ", i);
+        scanf("%d", &currInput);
+        inputs[i] = currInput;
+    }
+
+    printf("What do you want to search for?: ");
+    scanf("%d", &target);
+
+    for (int i = 0; i < numOfInputs; i++) {
+        if (inputs[i] == target) {
+            printf("Target %d found at index: %d!\n", target, i);
+            return;
+        }
+    }
+
+    printf("Target %d is not in the list!\n", target);
 }
