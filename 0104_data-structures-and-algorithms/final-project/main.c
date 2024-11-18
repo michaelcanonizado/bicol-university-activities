@@ -10,7 +10,10 @@ typedef struct AllocatedArraysNode {
 AllocatedArraysNode *allocatedArraysHead = NULL;
 
 int displayOptions(char *menuOptions[], int menuOptionsSize, char *header);
+int isValidInteger(const char *str);
 int *getUserIntegerInputs(void);
+void printAllocatedArrayList();
+AllocatedArraysNode* createNewAllocatedArrayNode(int *allocatedArray);
 
 void linearDataStructuresMenu(void);
 void searchingMenu(void);
@@ -150,6 +153,26 @@ int *getUserIntegerInputs(void) {
     allocatedArraysHead = node;
 
     return allocatedArray;
+}
+void printAllocatedArrayList() {
+    // Function to print the linked list of Bignums
+
+    AllocatedArraysNode *tempNode = allocatedArraysHead;
+
+    if (allocatedArraysHead == NULL) {
+        printf("\n\nNode list empty!\n");
+        return;
+    }
+
+    printf("\nHEAD -> ");
+    while(tempNode != NULL) {
+        printf("%p -> ", tempNode->value);
+        tempNode = tempNode->next;
+
+        if (tempNode == NULL) {
+            printf("NULL");
+        }
+    }
 }
 
 
@@ -371,4 +394,5 @@ void binarySearchMenu(void) {
     }
     printf("]");
 
+    printAllocatedArrayList();
 }
