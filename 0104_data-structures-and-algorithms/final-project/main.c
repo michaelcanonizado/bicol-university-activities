@@ -74,6 +74,8 @@ void linearDataStructures(void) {
             break;
         case 2:
             linkedLists();
+        case 5:
+            main();
         default:
             break;
     }
@@ -93,7 +95,12 @@ void arrays(void) {
 
     int selectedOption = displayOptions(menuOptions, menuOptionsSize, "Arrays");
 
-    printf("Selected: %d", selectedOption);
+    switch(selectedOption) {
+        case 7:
+            linearDataStructures();
+        default:
+            break;
+    }
 }
 
 void linkedLists(void) {
@@ -129,6 +136,8 @@ void linkedLists(void) {
         case 6:
             linkedListsMerge();
             break;
+        case 7:
+            linearDataStructures();
         default:
             break;
     }
