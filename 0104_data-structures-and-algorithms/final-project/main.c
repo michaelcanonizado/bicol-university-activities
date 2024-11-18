@@ -42,6 +42,7 @@ int main(void) {
     return 0;
 }
 
+/* Utility Functions */
 int displayOptions(char *menuOptions[], int menuOptionsSize, char *header) {
     int selectedOption = 0;
     
@@ -57,6 +58,11 @@ int displayOptions(char *menuOptions[], int menuOptionsSize, char *header) {
     return selectedOption;
 }
 
+
+
+
+
+/* 2nd Layer Menus */
 void linearDataStructuresMenu(void) {
     char *menuOptions[] = {
         "Arrays",
@@ -99,6 +105,11 @@ void searchingMenu(void) {
     }
 }
 
+
+
+
+
+/* 3rd Layer Menus */
 void arraysMenu(void) {
     char *menuOptions[] = {
         "Traverse",
