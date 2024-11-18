@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 int displayOptions(char *menuOptions[], int menuOptionsSize, char *header);
+
 void linearDataStructuresMenu(void);
 void searchingMenu(void);
 
@@ -30,6 +31,9 @@ int main(void) {
     switch (selectedOption) {
         case 1:
             linearDataStructuresMenu();
+            break;
+        case 5:
+            searchingMenu();
             break;
         case 6:
             printf("\nClosing Program...");
@@ -89,8 +93,8 @@ void linearDataStructuresMenu(void) {
 }
 void searchingMenu(void) {
     char *menuOptions[] = {
-        "Linear",
-        "Binary",
+        "Linear Search",
+        "Binary Search",
         "Exit"
     };
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
