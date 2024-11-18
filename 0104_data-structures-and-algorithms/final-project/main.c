@@ -11,8 +11,8 @@ AllocatedArraysNode *allocatedArraysHead = NULL;
 
 int displayOptions(char *menuOptions[], int menuOptionsSize, char *header);
 int isValidInteger(const char *str);
-int *getUserIntegerInputs(void);
-void printAllocatedArrayList();
+int *getUserIntegerInputs(int *size);
+void printAllocatedArrayList(void);
 AllocatedArraysNode* createNewAllocatedArrayNode(int *allocatedArray);
 
 void linearDataStructuresMenu(void);
@@ -106,7 +106,7 @@ int isValidInteger(const char *str) {
     
     return 1;
 }
-int *getUserIntegerInputs(void) {
+int *getUserIntegerInputs(int *size) {
     char inputStr[100], *inputStrCopy;
     const char delimiter[] = ","; 
     char *token1, *token2;
@@ -152,9 +152,10 @@ int *getUserIntegerInputs(void) {
     node->next = allocatedArraysHead;
     allocatedArraysHead = node;
 
+    *size = validInputCount;
     return allocatedArray;
 }
-void printAllocatedArrayList() {
+void printAllocatedArrayList(void) {
     // Function to print the linked list of Bignums
 
     AllocatedArraysNode *tempNode = allocatedArraysHead;
@@ -386,10 +387,11 @@ void linearSearchMenu(void) {
     printf("Target %d is not in the list!\n", target);
 }
 void binarySearchMenu(void) {
-    int *array = getUserIntegerInputs();
+    int arraySize = 0;
+    int *array = getUserIntegerInputs(&arraySize);
 
     printf("\n[");
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < arraySize; i++) {
         printf("%d,", array[i]);
     }
     printf("]");
