@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int displayOptions(char *menuOptions[], int menuOptionsSize);
+int displayOptions(char *menuOptions[], int menuOptionsSize, char *header);
 void linearDataStructures(void);
 void arrays(void);
 void linkedLists(void);
@@ -17,7 +17,7 @@ int main(void) {
     };
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
 
-    int selectedOption = displayOptions(menuOptions, menuOptionsSize);
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize, "Main Menu");
 
     switch (selectedOption) {
         case 1:
@@ -34,8 +34,10 @@ int main(void) {
     return 0;
 }
 
-int displayOptions(char *menuOptions[], int menuOptionsSize) {
+int displayOptions(char *menuOptions[], int menuOptionsSize, char *header) {
     int selectedOption = 0;
+
+    printf("\n%s", header);
 
     do {
         for (int i = 0; i < menuOptionsSize; i++) {
@@ -58,7 +60,7 @@ void linearDataStructures(void) {
     };
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
 
-    int selectedOption = displayOptions(menuOptions, menuOptionsSize);
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize, "Linear Data Structures");
 
     switch (selectedOption) {
         case 1:
@@ -83,7 +85,7 @@ void arrays(void) {
     };
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
 
-    int selectedOption = displayOptions(menuOptions, menuOptionsSize);
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize, "Arrays");
 
     printf("Selected: %d", selectedOption);
 }
@@ -100,7 +102,7 @@ void linkedLists(void) {
     };
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
 
-    int selectedOption = displayOptions(menuOptions, menuOptionsSize);
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize, "Linked Lists");
 
     printf("Selected: %d", selectedOption);
 }
