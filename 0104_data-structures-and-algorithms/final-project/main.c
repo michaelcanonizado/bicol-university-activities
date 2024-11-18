@@ -10,7 +10,8 @@ int main(void) {
         "Linear Data Structures", 
         "Non-Linear Data Structures", 
         "Strings", 
-        "?",
+        "Sorting",
+        "Searching",
         "Exit"
     };
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
@@ -21,7 +22,10 @@ int main(void) {
         case 1:
             linearDataStructures();
             break;
-    
+        case 6:
+            printf("\nClosing Program...");
+            printf("\nGood Bye!");
+            return 0;
         default:
             break;
     }
