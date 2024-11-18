@@ -2,15 +2,15 @@
 #include <stdlib.h>
 
 int displayOptions(char *menuOptions[], int menuOptionsSize, char *header);
-void linearDataStructures(void);
-void arrays(void);
-void linkedLists(void);
-void linkedListsTraverse(void);
-void linkedListsInsert(void);
-void linkedListsDelete(void);
-void linkedListsSearch(void);
-void linkedListsReverse(void);
-void linkedListsMerge(void);
+void linearDataStructuresMenu(void);
+void arraysMenu(void);
+void linkedListsMenu(void);
+void linkedListsTraverseMenu(void);
+void linkedListsInsertMenu(void);
+void linkedListsDeleteMenu(void);
+void linkedListsSearchMenu(void);
+void linkedListsReverseMenu(void);
+void linkedListsMergeMenu(void);
 
 int main(void) {
     char *menuOptions[] = {
@@ -27,7 +27,7 @@ int main(void) {
 
     switch (selectedOption) {
         case 1:
-            linearDataStructures();
+            linearDataStructuresMenu();
             break;
         case 6:
             printf("\nClosing Program...");
@@ -42,10 +42,9 @@ int main(void) {
 
 int displayOptions(char *menuOptions[], int menuOptionsSize, char *header) {
     int selectedOption = 0;
-
-    printf("\n%s", header);
-
+    
     do {
+        printf("\n%s", header);
         for (int i = 0; i < menuOptionsSize; i++) {
             printf("\n%d) %s", i+1, menuOptions[i]);
         }
@@ -56,7 +55,7 @@ int displayOptions(char *menuOptions[], int menuOptionsSize, char *header) {
     return selectedOption;
 }
 
-void linearDataStructures(void) {
+void linearDataStructuresMenu(void) {
     char *menuOptions[] = {
         "Arrays",
         "Linked Lists",
@@ -70,10 +69,10 @@ void linearDataStructures(void) {
 
     switch (selectedOption) {
         case 1:
-            arrays();
+            arraysMenu();
             break;
         case 2:
-            linkedLists();
+            linkedListsMenu();
         case 5:
             main();
         default:
@@ -81,7 +80,7 @@ void linearDataStructures(void) {
     }
 }
 
-void arrays(void) {
+void arraysMenu(void) {
     char *menuOptions[] = {
         "Traverse",
         "Insert",
@@ -97,13 +96,13 @@ void arrays(void) {
 
     switch(selectedOption) {
         case 7:
-            linearDataStructures();
+            linearDataStructuresMenu();
         default:
             break;
     }
 }
 
-void linkedLists(void) {
+void linkedListsMenu(void) {
     char *menuOptions[] = {
         "Traverse",
         "Insert",
@@ -119,30 +118,30 @@ void linkedLists(void) {
 
    switch (selectedOption) {
         case 1:
-            linkedListsTraverse();
+            linkedListsTraverseMenu();
             break;
         case 2:
-            linkedListsInsert();
+            linkedListsInsertMenu();
             break;
         case 3:
-            linkedListsDelete();
+            linkedListsDeleteMenu();
             break;
         case 4:
-            linkedListsSearch();
+            linkedListsSearchMenu();
             break;
         case 5:
-            linkedListsReverse();
+            linkedListsReverseMenu();
             break;
         case 6:
-            linkedListsMerge();
+            linkedListsMergeMenu();
             break;
         case 7:
-            linearDataStructures();
+            linearDataStructuresMenu();
         default:
             break;
     }
 }
-void linkedListsTraverse(void) {
+void linkedListsTraverseMenu(void) {
     char *menuOptions[] = {
         "Temp",
     };
@@ -152,7 +151,7 @@ void linkedListsTraverse(void) {
 
     printf("Selected: %d", selectedOption);
 }
-void linkedListsInsert(void) {
+void linkedListsInsertMenu(void) {
     char *menuOptions[] = {
         "Temp",
     };
@@ -162,7 +161,7 @@ void linkedListsInsert(void) {
 
     printf("Selected: %d", selectedOption);
 }
-void linkedListsDelete(void){
+void linkedListsDeleteMenu(void){
     char *menuOptions[] = {
         "Temp",
     };
@@ -172,7 +171,7 @@ void linkedListsDelete(void){
 
     printf("Selected: %d", selectedOption);
 }
-void linkedListsSearch(void) {
+void linkedListsSearchMenu(void) {
     char *menuOptions[] = {
         "Temp",
     };
@@ -182,7 +181,7 @@ void linkedListsSearch(void) {
 
     printf("Selected: %d", selectedOption);
 }
-void linkedListsReverse(void) {
+void linkedListsReverseMenu(void) {
     char *menuOptions[] = {
         "Temp",
     };
@@ -192,7 +191,7 @@ void linkedListsReverse(void) {
 
     printf("Selected: %d", selectedOption);
 }
-void linkedListsMerge(void) {
+void linkedListsMergeMenu(void) {
     char *menuOptions[] = {
         "Temp",
     };
