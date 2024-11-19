@@ -3,12 +3,21 @@
 #include <ctype.h>
 #include <stdlib.h>
 
+#ifdef _WIN32
+	#include <windows.h>
+#else
+    #include <sys/ioctl.h>
+	#include <unistd.h>
+    #include <termios.h>
+#endif
+
 typedef struct AllocatedArraysNode {
     int *value;
     struct AllocatedArraysNode *next;
 } AllocatedArraysNode;
 AllocatedArraysNode *allocatedArraysHead = NULL;
 
+void clearScreen();
 int displayOptions(char *menuOptions[], int menuOptionsSize, char *header);
 void printAllocatedArrayList(void);
 void freeAllAllocatedArrays(void);
@@ -32,6 +41,8 @@ void linearSearchMenu(void);
 void binarySearchMenu(void);
 
 int main(void) {
+    clearScreen();
+
     char *menuOptions[] = {
         "Linear Data Structures", 
         "Non-Linear Data Structures", 
@@ -46,12 +57,15 @@ int main(void) {
 
     switch (selectedOption) {
         case 1:
+            clearScreen();
             linearDataStructuresMenu();
             break;
         case 5:
+            clearScreen();
             searchingMenu();
             break;
         case 6:
+            clearScreen();
             printf("\nClosing Program...");
             printf("\nGood Bye!");
             printAllocatedArrayList();
@@ -66,6 +80,16 @@ int main(void) {
 }
 
 /* Utility Functions */
+void clearScreen() {
+    /* Function to clear the in-view area of the terminal */
+#ifdef _WIN32
+	system("cls");
+#else
+	printf("\033[2J");
+	printf("\033[H");
+#endif
+}
+
 int displayOptions(char *menuOptions[], int menuOptionsSize, char *header) {
     int selectedOption = 0;
     
@@ -219,11 +243,14 @@ void linearDataStructuresMenu(void) {
 
     switch (selectedOption) {
         case 1:
+            clearScreen();
             arraysMenu();
             break;
         case 2:
+            clearScreen();
             linkedListsMenu();
         case 5:
+            clearScreen();
             main();
         default:
             break;
@@ -241,10 +268,13 @@ void searchingMenu(void) {
 
     switch (selectedOption) {
         case 1:
+            clearScreen();
             linearSearchMenu();
         case 2:
+            clearScreen();
             binarySearchMenu();
         case 3:
+            clearScreen();
             main();
         default:
             break;
