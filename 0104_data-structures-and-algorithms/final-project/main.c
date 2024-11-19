@@ -20,6 +20,7 @@ AllocatedArraysNode *allocatedArraysHead = NULL;
 void clearScreen();
 
 int displayOptions(char *menuOptions[], int menuOptionsSize, char *path[], int pathLength);
+void displayHeader(void);
 void displayBreadcrumbs(char *path[], int pathLength);
 void displayConfirmExit(void);
 
@@ -110,10 +111,32 @@ int displayOptions(char *menuOptions[], int menuOptionsSize, char *path[], int p
 
     return selectedOption;
 }
-void displayBreadcrumbs(char *path[], int pathLength) {
-    for (int i = 0; i < 80; i++) {
+void displayHeader(void) {
+    int width = 80;
+    char header[] = "Data Structures and Algorithms Final Project";
+    int headerLength = strlen(header);
+    int headerPadding = (width - headerLength) / 2;
+
+    for (int i = 0; i < width; i++) {
         printf("-");
     }
+
+    printf("\n");
+    for (int i = 0; i < headerPadding; i++) {
+        printf(" ");
+    }
+    printf("%s", header);
+    for (int i = 0; i < headerPadding; i++) {
+        printf(" ");
+    }
+    printf("\n");
+
+    for (int i = 0; i < width; i++) {
+        printf("-");
+    }
+}
+void displayBreadcrumbs(char *path[], int pathLength) {
+    displayHeader();
 
     printf("\n");
     for (int i = 0; i < pathLength; i++) {
