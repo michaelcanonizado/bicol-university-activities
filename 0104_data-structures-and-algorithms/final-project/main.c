@@ -111,6 +111,10 @@ int displayOptions(char *menuOptions[], int menuOptionsSize, char *path[], int p
     return selectedOption;
 }
 void displayBreadcrumbs(char *path[], int pathLength) {
+    for (int i = 0; i < 80; i++) {
+        printf("-");
+    }
+
     printf("\n");
     for (int i = 0; i < pathLength; i++) {
         printf("%s", path[i]);
