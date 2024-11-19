@@ -10,11 +10,11 @@ typedef struct AllocatedArraysNode {
 AllocatedArraysNode *allocatedArraysHead = NULL;
 
 int displayOptions(char *menuOptions[], int menuOptionsSize, char *header);
+void printAllocatedArrayList(void);
+void freeAllAllocatedArrays(void);
+AllocatedArraysNode* createNewAllocatedArrayNode(int *allocatedArray);
 int isValidInteger(const char *str);
 int *getUserIntegerInputs(int *size);
-void printAllocatedArrayList(void);
-AllocatedArraysNode* createNewAllocatedArrayNode(int *allocatedArray);
-void freeAllAllocatedArrays(void);
 
 void linearDataStructuresMenu(void);
 void searchingMenu(void);
@@ -93,6 +93,45 @@ AllocatedArraysNode* createNewAllocatedArrayNode(int *allocatedArray) {
     node->next = NULL;
     return node;
 }
+void printAllocatedArrayList(void) {
+    AllocatedArraysNode *tempNode = allocatedArraysHead;
+
+    if (allocatedArraysHead == NULL) {
+        printf("\nNode list empty!\n");
+        return;
+    }
+
+    printf("\nHEAD -> ");
+    while(tempNode != NULL) {
+        printf("%p -> ", tempNode->value);
+        tempNode = tempNode->next;
+
+        if (tempNode == NULL) {
+            printf("NULL");
+        }
+    }
+}
+void freeAllAllocatedArrays(void) {
+    // Store head node in a temporary ndoe.
+    AllocatedArraysNode *tempHeadNode = allocatedArraysHead;
+    // Go through all nodes in linked list
+    while(tempHeadNode != NULL) {
+
+        if (allocatedArraysHead->value == NULL) {
+            printf("\nBignum in list is NULL");
+            printf("\n\tFunction: freeAllBignums()");
+        }
+
+        // Point temporary head node to next node
+        tempHeadNode = tempHeadNode->next;
+        free(allocatedArraysHead);
+
+        // Store new head to original head node
+        allocatedArraysHead = tempHeadNode;
+    }
+
+}
+
 int isValidInteger(const char *str) {
     if (*str == '\0') {
         return 0;
@@ -159,47 +198,6 @@ int *getUserIntegerInputs(int *size) {
     *size = validInputCount;
     return allocatedArray;
 }
-void printAllocatedArrayList(void) {
-    // Function to print the linked list of Bignums
-
-    AllocatedArraysNode *tempNode = allocatedArraysHead;
-
-    if (allocatedArraysHead == NULL) {
-        printf("\nNode list empty!\n");
-        return;
-    }
-
-    printf("\nHEAD -> ");
-    while(tempNode != NULL) {
-        printf("%p -> ", tempNode->value);
-        tempNode = tempNode->next;
-
-        if (tempNode == NULL) {
-            printf("NULL");
-        }
-    }
-}
-void freeAllAllocatedArrays(void) {
-    // Store head node in a temporary ndoe.
-    AllocatedArraysNode *tempHeadNode = allocatedArraysHead;
-    // Go through all nodes in linked list
-    while(tempHeadNode != NULL) {
-
-        if (allocatedArraysHead->value == NULL) {
-            printf("\nBignum in list is NULL");
-            printf("\n\tFunction: freeAllBignums()");
-        }
-
-        // Point temporary head node to next node
-        tempHeadNode = tempHeadNode->next;
-        free(allocatedArraysHead);
-
-        // Store new head to original head node
-        allocatedArraysHead = tempHeadNode;
-    }
-
-}
-
 
 
 /* 2nd Layer Menus */
