@@ -22,8 +22,10 @@ AllocatedArraysNode *allocatedArraysHead = NULL;
 typedef struct BreadcrumbsNode {
     char crumb[MAX_CRUMB_LENGTH];
     struct BreadcrumbsNode *next;
+    struct BreadcrumbsNode *previous;
 } BreadcrumbsNode;
 BreadcrumbsNode *breadcrumbsHead = NULL;
+BreadcrumbsNode *breadcrumbsTail = NULL;
 
 void clearScreen();
 
@@ -59,6 +61,8 @@ void binarySearchMenu(void);
 
 int main(void) {
     clearScreen();
+    breadCrumbPush("Main Menu");
+    breadCrumbPush("Strings");
 
     char *menuOptions[] = {
         "Linear Data Structures", 
@@ -82,6 +86,7 @@ int main(void) {
             sortingMenu();
             break;
         case 5:
+            breadCrumbPop();
             searchingMenu();
             break;
         case 6:
@@ -183,6 +188,8 @@ void displayBreadcrumbs(char *path[], int pathLength) {
         if (tempNode->next != NULL) {
             printf(" > ");
         }
+
+        tempNode = tempNode->next;
     }
 
     printf("\n");
