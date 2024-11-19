@@ -64,15 +64,12 @@ int main(void) {
 
     switch (selectedOption) {
         case 1:
-            clearScreen();
             linearDataStructuresMenu();
             break;
         case 5:
-            clearScreen();
             searchingMenu();
             break;
         case 6:
-            clearScreen();
             printf("\nClosing Program...");
             printf("\nGood Bye!");
             printAllocatedArrayList();
@@ -230,7 +227,7 @@ int isValidInteger(const char *str) {
 
     return 1;
 }
-int *getUserIntegerInputs(int *size) {
+int *getUserIntegerInputs(int *length) {
     char inputStr[100], *inputStrCopy;
     const char delimiter[] = ","; 
     char *token1, *token2;
@@ -275,13 +272,15 @@ int *getUserIntegerInputs(int *size) {
     node->next = allocatedArraysHead;
     allocatedArraysHead = node;
 
-    *size = validInputCount;
+    *length = validInputCount;
     return allocatedArray;
 }
 
 
 /* 2nd Layer Menus */
 void linearDataStructuresMenu(void) {
+    clearScreen();
+
     char *menuOptions[] = {
         "Arrays",
         "Linked Lists",
@@ -299,20 +298,19 @@ void linearDataStructuresMenu(void) {
 
     switch (selectedOption) {
         case 1:
-            clearScreen();
             arraysMenu();
             break;
         case 2:
-            clearScreen();
             linkedListsMenu();
         case 5:
-            clearScreen();
             main();
         default:
             break;
     }
 }
 void searchingMenu(void) {
+    clearScreen();
+
     char *menuOptions[] = {
         "Linear Search",
         "Binary Search",
@@ -328,13 +326,10 @@ void searchingMenu(void) {
 
     switch (selectedOption) {
         case 1:
-            clearScreen();
             linearSearchMenu();
         case 2:
-            clearScreen();
             binarySearchMenu();
         case 3:
-            clearScreen();
             main();
         default:
             break;
@@ -347,6 +342,8 @@ void searchingMenu(void) {
 
 /* 3rd Layer Menus */
 void arraysMenu(void) {
+    clearScreen();
+
     char *menuOptions[] = {
         "Traverse",
         "Insert",
@@ -373,6 +370,8 @@ void arraysMenu(void) {
 }
 
 void linkedListsMenu(void) {
+    clearScreen();
+
     char *menuOptions[] = {
         "Traverse",
         "Insert",
@@ -417,6 +416,8 @@ void linkedListsMenu(void) {
     }
 }
 void linkedListsTraverseMenu(void) {
+    clearScreen();
+
     char *menuOptions[] = {
         "Temp",
     };
@@ -433,6 +434,8 @@ void linkedListsTraverseMenu(void) {
     printf("Selected: %d", selectedOption);
 }
 void linkedListsInsertMenu(void) {
+    clearScreen();
+    
     char *menuOptions[] = {
         "Temp",
     };
@@ -449,6 +452,8 @@ void linkedListsInsertMenu(void) {
     printf("Selected: %d", selectedOption);
 }
 void linkedListsDeleteMenu(void){
+    clearScreen();
+    
     char *menuOptions[] = {
         "Temp",
     };
@@ -465,6 +470,8 @@ void linkedListsDeleteMenu(void){
     printf("Selected: %d", selectedOption);
 }
 void linkedListsSearchMenu(void) {
+    clearScreen();
+
     char *menuOptions[] = {
         "Temp",
     };
@@ -481,6 +488,8 @@ void linkedListsSearchMenu(void) {
     printf("Selected: %d", selectedOption);
 }
 void linkedListsReverseMenu(void) {
+    clearScreen();
+    
     char *menuOptions[] = {
         "Temp",
     };
@@ -497,6 +506,8 @@ void linkedListsReverseMenu(void) {
     printf("Selected: %d", selectedOption);
 }
 void linkedListsMergeMenu(void) {
+    clearScreen();
+    
     char *menuOptions[] = {
         "Temp",
     };
@@ -514,6 +525,8 @@ void linkedListsMergeMenu(void) {
 }
 
 void linearSearchMenu(void) {
+    clearScreen();
+    
     int numOfInputs = 0;
     int target;
 
@@ -547,6 +560,8 @@ void linearSearchMenu(void) {
     printf("Target %d is not in the list!\n", target);
 }
 void binarySearchMenu(void) {
+    clearScreen();
+    
     char *path[] = {   
         "Main Menu",
         "Searching",
@@ -554,11 +569,11 @@ void binarySearchMenu(void) {
     };
     displayBreadcrumbs(path, 3);
 
-    int arraySize = 0;
-    int *array = getUserIntegerInputs(&arraySize);
+    int arrayLength = 0;
+    int *array = getUserIntegerInputs(&arrayLength);
 
     printf("\n[");
-    for (int i = 0; i < arraySize; i++) {
+    for (int i = 0; i < arrayLength; i++) {
         printf("%d,", array[i]);
     }
     printf("]");
@@ -568,3 +583,4 @@ void binarySearchMenu(void) {
     displayConfirmExit();
     searchingMenu();
 }
+
