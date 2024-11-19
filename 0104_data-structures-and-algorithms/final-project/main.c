@@ -133,20 +133,24 @@ void freeAllAllocatedArrays(void) {
 }
 
 int isValidInteger(const char *str) {
+    /* If string empty, not valid */
     if (*str == '\0') {
         return 0;
     }
+    /* If there is negative sign, offset the string */
     if (*str == '-') {
         str++;
     }
 
+    /* Go through each character if all is an integer */
     while (*str) {
+        /* If a non integer is found, string is invalid */
         if (!isdigit(*str)) {
             return 0;
         }
         str++;
     }
-    
+
     return 1;
 }
 int *getUserIntegerInputs(int *size) {
