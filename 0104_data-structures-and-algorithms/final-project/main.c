@@ -21,6 +21,7 @@ void clearScreen();
 
 int displayOptions(char *menuOptions[], int menuOptionsSize, char *path[], int pathLength);
 void displayBreadcrumbs(char *path[], int pathLength);
+void displayConfirmExit(void);
 
 void printAllocatedArrayList(void);
 void freeAllAllocatedArrays(void);
@@ -117,6 +118,17 @@ void displayBreadcrumbs(char *path[], int pathLength) {
             printf(" > ");
         }
     }
+}
+void displayConfirmExit(void) {
+    char response;
+    do {
+        printf("\nEnter Y/y to exit: ");
+        scanf(" %c", &response);
+        response = toupper(response);
+        if (response != 'Y') {
+            while (getchar() != '\n');
+        }
+    } while(response != 'Y');
 }
 
 AllocatedArraysNode* createNewAllocatedArrayNode(int *allocatedArray) {
@@ -227,7 +239,6 @@ int *getUserIntegerInputs(int *size) {
 
         /* If valid, parse to an integer and load
         to the array */
-        printf("\n%s", token1);
         allocatedArray[allocatedArrayIndex++] = atoi(token1);
         token1 = strtok(NULL, delimiter);
     }
@@ -526,4 +537,6 @@ void binarySearchMenu(void) {
     printf("]");
 
     printAllocatedArrayList();
+
+    displayConfirmExit();
 }
