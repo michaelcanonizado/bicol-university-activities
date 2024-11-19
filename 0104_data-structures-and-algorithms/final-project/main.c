@@ -342,6 +342,15 @@ void searchingMenu(void) {
 void sortingMenu(void) {
     clearScreen();
 
+    char *path[] = {
+        "Main Menu",
+        "Sorting"
+    };
+    displayBreadcrumbs(path, 2);
+
+    int arrayLength = 0;
+    int *array = getUserIntegerInputs("Please enter unsorted integers separated by commas: ", &arrayLength);
+
     char *menuOptions[] = {
         "Bubble Sort",
         "Counting Sort",
@@ -356,10 +365,6 @@ void sortingMenu(void) {
     };
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
 
-    char *path[] = {
-        "Main Menu",
-        "Sorting"
-    };
     int selectedOption = displayOptions(menuOptions, menuOptionsSize, path, 2);
 
     switch (selectedOption) {
