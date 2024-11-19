@@ -17,6 +17,12 @@ typedef struct AllocatedArraysNode {
 } AllocatedArraysNode;
 AllocatedArraysNode *allocatedArraysHead = NULL;
 
+typedef struct BreadcrumbsNode {
+    char *crumb;
+    struct BreadcrumbsNode *next;
+} BreadcrumbsNode;
+BreadcrumbsNode *breadcrumbsHead = NULL;
+
 void clearScreen();
 
 int displayOptions(char *menuOptions[], int menuOptionsSize);
