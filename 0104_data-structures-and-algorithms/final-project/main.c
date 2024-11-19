@@ -171,6 +171,20 @@ void breadCrumbPop(void) {
 void displayBreadcrumbs(char *path[], int pathLength) {
     displayHeader();
 
+    if (breadcrumbsHead == NULL) {
+        printf("");
+    }
+
+    printf("\n");
+    BreadcrumbsNode *tempNode = breadcrumbsHead;
+    while (tempNode != NULL) {
+        printf("%s", tempNode->crumb);
+
+        if (tempNode->next != NULL) {
+            printf(" > ");
+        }
+    }
+
     printf("\n");
     for (int i = 0; i < pathLength; i++) {
         printf("%s", path[i]);
