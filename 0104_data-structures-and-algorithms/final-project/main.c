@@ -29,7 +29,7 @@ void freeAllAllocatedArrays(void);
 AllocatedArraysNode* createNewAllocatedArrayNode(int *allocatedArray);
 
 int isValidInteger(const char *str);
-int *getUserIntegerInputs(int *size);
+int *getUserIntegerInputs(const char *prompt, int *arrayLength);
 
 void linearDataStructuresMenu(void);
 void sortingMenu(void);
@@ -231,13 +231,13 @@ int isValidInteger(const char *str) {
 
     return 1;
 }
-int *getUserIntegerInputs(int *length) {
+int *getUserIntegerInputs(const char *prompt, int *arrayLength) {
     char inputStr[100], *inputStrCopy;
     const char delimiter[] = ","; 
     char *token1, *token2;
     int validInputCount = 0;
 
-    printf("\nPlease enter your integers separated by commas: ");
+    printf("\n%s", prompt);
     scanf("%s",inputStr);
 
     /* Count number of valid inputs, value will be
@@ -276,7 +276,7 @@ int *getUserIntegerInputs(int *length) {
     node->next = allocatedArraysHead;
     allocatedArraysHead = node;
 
-    *length = validInputCount;
+    *arrayLength = validInputCount;
     return allocatedArray;
 }
 
@@ -603,7 +603,7 @@ void binarySearchMenu(void) {
     displayBreadcrumbs(path, 3);
 
     int arrayLength = 0;
-    int *array = getUserIntegerInputs(&arrayLength);
+    int *array = getUserIntegerInputs("Please enter your integers separated by commas: ", &arrayLength);
 
     printf("\n[");
     for (int i = 0; i < arrayLength; i++) {
@@ -616,4 +616,3 @@ void binarySearchMenu(void) {
     displayConfirmExit();
     searchingMenu();
 }
-
