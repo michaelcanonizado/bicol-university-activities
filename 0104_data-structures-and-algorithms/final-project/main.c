@@ -11,6 +11,8 @@
     #include <termios.h>
 #endif
 
+#define MAX_CRUMB_LENGTH 50
+
 typedef struct AllocatedArraysNode {
     int *value;
     struct AllocatedArraysNode *next;
@@ -18,7 +20,7 @@ typedef struct AllocatedArraysNode {
 AllocatedArraysNode *allocatedArraysHead = NULL;
 
 typedef struct BreadcrumbsNode {
-    char *crumb;
+    char crumb[MAX_CRUMB_LENGTH];
     struct BreadcrumbsNode *next;
 } BreadcrumbsNode;
 BreadcrumbsNode *breadcrumbsHead = NULL;
@@ -27,6 +29,7 @@ void clearScreen();
 
 int displayOptions(char *menuOptions[], int menuOptionsSize);
 void displayHeader(void);
+void breadCrumbPush(char *text);
 void displayBreadcrumbs(char *path[], int pathLength);
 void displayConfirmExit(void);
 
@@ -142,6 +145,18 @@ void displayHeader(void) {
         printf("-");
     }
 }
+void breadCrumbPush(char text[MAX_CRUMB_LENGTH]) {
+    BreadcrumbsNode *node = (BreadcrumbsNode*)malloc(sizeof(BreadcrumbsNode));
+
+    if (node == NULL) {
+        printf("\n\nAllocated Node for breadcrumb is NULL!");
+        exit(-1);
+    }
+
+    strcpy(node->crumb, text);
+    node->next = breadcrumbsHead;
+    breadcrumbsHead = node;
+}
 void displayBreadcrumbs(char *path[], int pathLength) {
     displayHeader();
 
@@ -166,7 +181,7 @@ void displayConfirmExit(void) {
 }
 
 AllocatedArraysNode* createNewAllocatedArrayNode(int *allocatedArray) {
-    AllocatedArraysNode *node = (AllocatedArraysNode*)malloc(sizeof(allocatedArray));
+    AllocatedArraysNode *node = (AllocatedArraysNode*)malloc(sizeof(AllocatedArraysNode));
 
     if (node == NULL) {
         printf("\n\nAllocated Node for array tracker is NULL!");
