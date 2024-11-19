@@ -30,6 +30,7 @@ void clearScreen();
 int displayOptions(char *menuOptions[], int menuOptionsSize);
 void displayHeader(void);
 void breadCrumbPush(char *text);
+void breadCrumbPop(void);
 void displayBreadcrumbs(char *path[], int pathLength);
 void displayConfirmExit(void);
 
@@ -156,6 +157,16 @@ void breadCrumbPush(char text[MAX_CRUMB_LENGTH]) {
     strcpy(node->crumb, text);
     node->next = breadcrumbsHead;
     breadcrumbsHead = node;
+}
+void breadCrumbPop(void) {
+    if (breadcrumbsHead == NULL) {
+        printf("Breadcrumbs stack empty!");
+        return;
+    }
+
+    BreadcrumbsNode *tempNode = breadcrumbsHead;
+    breadcrumbsHead = breadcrumbsHead->next;
+    free(tempNode);
 }
 void displayBreadcrumbs(char *path[], int pathLength) {
     displayHeader();
