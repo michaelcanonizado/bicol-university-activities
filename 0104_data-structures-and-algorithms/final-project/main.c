@@ -566,4 +566,5 @@ void binarySearchMenu(void) {
     printAllocatedArrayList();
 
     displayConfirmExit();
+    searchingMenu();
 }
