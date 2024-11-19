@@ -19,7 +19,7 @@ AllocatedArraysNode *allocatedArraysHead = NULL;
 
 void clearScreen();
 
-int displayOptions(char *menuOptions[], int menuOptionsSize, char *path[], int pathLength);
+int displayOptions(char *menuOptions[], int menuOptionsSize);
 void displayHeader(void);
 void displayBreadcrumbs(char *path[], int pathLength);
 void displayConfirmExit(void);
@@ -61,7 +61,8 @@ int main(void) {
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
 
     char *path[] = {"Main Menu"};
-    int selectedOption = displayOptions(menuOptions, menuOptionsSize, path, 1);
+    displayBreadcrumbs(path, 1);
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize);
 
     switch (selectedOption) {
         case 1:
@@ -98,11 +99,10 @@ void clearScreen() {
 #endif
 }
 
-int displayOptions(char *menuOptions[], int menuOptionsSize, char *path[], int pathLength) {
+int displayOptions(char *menuOptions[], int menuOptionsSize) {
     int selectedOption = 0;
     
     do {
-        displayBreadcrumbs(path, pathLength);
         for (int i = 0; i < menuOptionsSize; i++) {
             printf("\n%d) %s", i+1, menuOptions[i]);
         }
@@ -298,7 +298,8 @@ void linearDataStructuresMenu(void) {
         "Main Menu",
         "Linear Data Structures"
     };
-    int selectedOption = displayOptions(menuOptions, menuOptionsSize, path, 2);
+    displayBreadcrumbs(path, 2);
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize);
 
     switch (selectedOption) {
         case 1:
@@ -326,7 +327,8 @@ void searchingMenu(void) {
         "Main Menu",
         "Searching"
     };
-    int selectedOption = displayOptions(menuOptions, menuOptionsSize, path, 2);
+    displayBreadcrumbs(path, 2);
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize);
 
     switch (selectedOption) {
         case 1:
@@ -365,7 +367,7 @@ void sortingMenu(void) {
     };
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
 
-    int selectedOption = displayOptions(menuOptions, menuOptionsSize, path, 2);
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize);
 
     switch (selectedOption) {
         case 10:
@@ -397,7 +399,8 @@ void arraysMenu(void) {
         "Main Menu",
         "Arrays"
     };
-    int selectedOption = displayOptions(menuOptions, menuOptionsSize, path, 2);
+    displayBreadcrumbs(path, 2);
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize);
 
     switch(selectedOption) {
         case 7:
@@ -426,7 +429,8 @@ void linkedListsMenu(void) {
         "Linear Data Structures",
         "Linked Lists"
     };
-    int selectedOption = displayOptions(menuOptions, menuOptionsSize, path, 3);
+    displayBreadcrumbs(path, 3);
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize);
 
    switch (selectedOption) {
         case 1:
@@ -467,7 +471,8 @@ void linkedListsTraverseMenu(void) {
         "Linked Lists",
         "Traverse"
     };
-    int selectedOption = displayOptions(menuOptions, menuOptionsSize, path, 4);
+    displayBreadcrumbs(path, 4);
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize);
 
     printf("Selected: %d", selectedOption);
 }
@@ -485,7 +490,8 @@ void linkedListsInsertMenu(void) {
         "Linked Lists",
         "Insert"
     };
-    int selectedOption = displayOptions(menuOptions, menuOptionsSize, path, 4);
+    displayBreadcrumbs(path, 4);
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize);
 
     printf("Selected: %d", selectedOption);
 }
@@ -503,7 +509,8 @@ void linkedListsDeleteMenu(void){
         "Linked Lists",
         "Delete"
     };
-    int selectedOption = displayOptions(menuOptions, menuOptionsSize, path, 4);
+    displayBreadcrumbs(path, 4);
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize);
 
     printf("Selected: %d", selectedOption);
 }
@@ -521,7 +528,8 @@ void linkedListsSearchMenu(void) {
         "Linked Lists",
         "Search"
     };
-    int selectedOption = displayOptions(menuOptions, menuOptionsSize, path ,4);
+    displayBreadcrumbs(path, 4);
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize);
 
     printf("Selected: %d", selectedOption);
 }
@@ -539,7 +547,8 @@ void linkedListsReverseMenu(void) {
         "Linked Lists",
         "Reverse"
     };
-    int selectedOption = displayOptions(menuOptions, menuOptionsSize, path, 4);
+    displayBreadcrumbs(path, 4);
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize);
 
     printf("Selected: %d", selectedOption);
 }
@@ -557,7 +566,8 @@ void linkedListsMergeMenu(void) {
         "Linked Lists",
         "Merge"
     };
-    int selectedOption = displayOptions(menuOptions, menuOptionsSize, path, 4);
+    displayBreadcrumbs(path, 4);
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize);
 
     printf("Selected: %d", selectedOption);
 }
