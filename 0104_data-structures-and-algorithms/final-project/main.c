@@ -32,6 +32,7 @@ int isValidInteger(const char *str);
 int *getUserIntegerInputs(int *size);
 
 void linearDataStructuresMenu(void);
+void sortingMenu(void);
 void searchingMenu(void);
 
 void arraysMenu(void);
@@ -65,6 +66,9 @@ int main(void) {
     switch (selectedOption) {
         case 1:
             linearDataStructuresMenu();
+            break;
+        case 4:
+            sortingMenu();
             break;
         case 5:
             searchingMenu();
@@ -335,7 +339,36 @@ void searchingMenu(void) {
             break;
     }
 }
+void sortingMenu(void) {
+    clearScreen();
 
+    char *menuOptions[] = {
+        "Bubble Sort",
+        "Counting Sort",
+        "Heap Sort",
+        "Insertion Sort",
+        "Merge Sort",
+        "Quicksort",
+        "Radix Sort",
+        "Random Sort",
+        "Selection Sort",
+        "Exit"
+    };
+    int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
+
+    char *path[] = {
+        "Main Menu",
+        "Sorting"
+    };
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize, path, 2);
+
+    switch (selectedOption) {
+        case 10:
+            main();
+        default:
+            break;
+    }
+}
 
 
 
