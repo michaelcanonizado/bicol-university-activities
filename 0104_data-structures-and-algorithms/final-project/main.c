@@ -125,6 +125,8 @@ int displayOptions(char *menuOptions[], int menuOptionsSize) {
     return selectedOption;
 }
 void breadCrumbPush(char text[MAX_CRUMB_LENGTH]) {
+    /* Pushes a crumb into the breadcrumb stack */
+
     BreadcrumbsNode *node = (BreadcrumbsNode*)malloc(sizeof(BreadcrumbsNode));
 
     if (node == NULL) {
