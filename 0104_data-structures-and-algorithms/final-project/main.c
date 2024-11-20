@@ -130,12 +130,14 @@ void showCursor() {
 }
 void clearScreen() {
     /* Function to clear the in-view area of the terminal */
+    hideCursor();
     #ifdef _WIN32
 	    system("cls");
     #else
 	    printf("\033[2J");
 	    printf("\033[H");
     #endif
+    showCursor();
 }
 
 int displayOptions(char *menuOptions[], int menuOptionsSize) {
