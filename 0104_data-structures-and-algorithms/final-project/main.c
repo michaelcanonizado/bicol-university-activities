@@ -413,6 +413,20 @@ void sortingMenu(void) {
     int arrayLength = 0;
     int *array = getUserIntegerInputs("Please enter unsorted integers separated by commas: ", &arrayLength);
 
+    printf("\n");
+    for (int i = 0; i < MAX_PROGRAM_WIDTH; i++) {
+        printf("-");
+    }
+    printf("\n[");
+    for(int i = 0; i < arrayLength; i++) {
+        printf("%d,", array[i]);
+    }
+    printf("]");
+    printf("\n");
+    for (int i = 0; i < MAX_PROGRAM_WIDTH; i++) {
+        printf("-");
+    }
+
     char *menuOptions[] = {
         "Bubble Sort",
         "Counting Sort",
