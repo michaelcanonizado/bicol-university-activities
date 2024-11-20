@@ -12,6 +12,7 @@
 #endif
 
 #define MAX_CRUMB_LENGTH 50
+#define MAX_PROGRAM_WIDTH 80
 
 typedef struct AllocatedArraysNode {
     int *value;
@@ -178,13 +179,12 @@ void displayBreadcrumbs(BreadcrumbsNode *head) {
     }
 }
 void displayHeader(void) {
-    int width = 80;
     char header[] = "Data Structures and Algorithms Final Project";
     int headerLength = strlen(header);
-    int headerPadding = (width - headerLength) / 2;
+    int headerPadding = (MAX_PROGRAM_WIDTH - headerLength) / 2;
 
     /* Program Header */
-    for (int i = 0; i < width; i++) {
+    for (int i = 0; i < MAX_PROGRAM_WIDTH; i++) {
         printf("-");
     }
 
@@ -198,7 +198,7 @@ void displayHeader(void) {
     }
     printf("\n");
 
-    for (int i = 0; i < width; i++) {
+    for (int i = 0; i < MAX_PROGRAM_WIDTH; i++) {
         printf("-");
     }
 
