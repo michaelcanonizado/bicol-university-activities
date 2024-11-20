@@ -158,8 +158,18 @@ void displayBreadcrumbs(BreadcrumbsNode *head) {
         printf("\n");
         return;
     }
+    /* Recrusive function to print singly linked
+    list starting from the end.
+    
+    E.g:
+
+    Stack/Linked List: HEAD -> "Binary Search" -> "Searching" -> "Main Menu" -> NULL
+    
+    Ouput: "Main Menu > Searching > Binary Search"
+     */
     displayBreadcrumbs(head->next);
     printf("%s",head->crumb);
+    /* If current node is the top, dont print ">" */
     if (head != breadcrumbsHead) {
         printf(" > ");
     }
