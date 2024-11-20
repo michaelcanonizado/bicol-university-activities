@@ -468,6 +468,7 @@ void sortingMenu(void) {
         "Radix Sort",
         "Random Sort",
         "Selection Sort",
+        "Change Array",
         "Exit"
     };
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
@@ -476,6 +477,9 @@ void sortingMenu(void) {
 
     switch (selectedOption) {
         case 10:
+            sortingMenu();
+            break;
+        case 11:
             breadCrumbPop();
             main();
             break;
