@@ -19,7 +19,7 @@ typedef struct AllocatedArraysNode {
 } AllocatedArraysNode;
 AllocatedArraysNode *allocatedArraysHead = NULL;
 
-typedef struct BreadcrumbsNode {
+typedef struct BreadcrumbsN     ode {
     char crumb[MAX_CRUMB_LENGTH];
     struct BreadcrumbsNode *next;
 } BreadcrumbsNode;
@@ -170,6 +170,7 @@ void displayHeader(void) {
     int headerLength = strlen(header);
     int headerPadding = (width - headerLength) / 2;
 
+    /* Program Header */
     for (int i = 0; i < width; i++) {
         printf("-");
     }
@@ -188,6 +189,7 @@ void displayHeader(void) {
         printf("-");
     }
 
+    /* Breadcrumbs */
     displayBreadcrumbs(breadcrumbsHead);
 }
 void displayConfirmExit(void) {
