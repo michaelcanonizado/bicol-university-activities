@@ -27,6 +27,7 @@ typedef struct BreadcrumbsNode {
 BreadcrumbsNode *breadcrumbsHead = NULL;
 
 void hideCursor();
+void showCursor();
 void clearScreen();
 
 int displayOptions(char *menuOptions[], int menuOptionsSize);
@@ -112,6 +113,18 @@ void hideCursor() {
    SetConsoleCursorInfo(consoleHandle, &info);
 #else
     printf("\e[?25l");
+#endif
+}
+void showCursor() {
+    /* Function to show the cursor */
+#ifdef _WIN32
+   HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+   CONSOLE_CURSOR_INFO info;
+   info.dwSize = 100;
+   info.bVisible = TRUE;
+   SetConsoleCursorInfo(consoleHandle, &info);
+#else
+    printf("\e[?25h");
 #endif
 }
 void clearScreen() {
