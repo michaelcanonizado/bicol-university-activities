@@ -137,10 +137,13 @@ void breadCrumbPush(char text[MAX_CRUMB_LENGTH]) {
     breadcrumbsHead = node;
 }
 void breadCrumbPop(void) {
+    /* Breadcrumb stack will be popped twice as
+    a crumb is pushed into the stack after
+    in each menu() */
+
     if (breadcrumbsHead == NULL) {
         return;
     }
-
     BreadcrumbsNode *tempNode = breadcrumbsHead;
     breadcrumbsHead = breadcrumbsHead->next;
     free(tempNode);
@@ -148,7 +151,6 @@ void breadCrumbPop(void) {
     if (breadcrumbsHead == NULL) {
         return;
     }
-
     tempNode = breadcrumbsHead;
     breadcrumbsHead = breadcrumbsHead->next;
     free(tempNode);
