@@ -22,18 +22,16 @@ AllocatedArraysNode *allocatedArraysHead = NULL;
 typedef struct BreadcrumbsNode {
     char crumb[MAX_CRUMB_LENGTH];
     struct BreadcrumbsNode *next;
-    struct BreadcrumbsNode *previous;
 } BreadcrumbsNode;
 BreadcrumbsNode *breadcrumbsHead = NULL;
-BreadcrumbsNode *breadcrumbsTail = NULL;
 
 void clearScreen();
 
 int displayOptions(char *menuOptions[], int menuOptionsSize);
-void displayHeader(void);
 void breadCrumbPush(char *text);
 void breadCrumbPop(void);
-void displayBreadcrumbs(char *path[], int pathLength);
+void displayBreadcrumbs(BreadcrumbsNode *head);
+void displayHeader(void);
 void displayConfirmExit(void);
 
 void printAllocatedArrayList(void);
@@ -61,8 +59,9 @@ void binarySearchMenu(void);
 
 int main(void) {
     clearScreen();
+    
     breadCrumbPush("Main Menu");
-    breadCrumbPush("Strings");
+    displayHeader();
 
     char *menuOptions[] = {
         "Linear Data Structures", 
@@ -74,8 +73,6 @@ int main(void) {
     };
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
 
-    char *path[] = {"Main Menu"};
-    displayBreadcrumbs(path, 1);
     int selectedOption = displayOptions(menuOptions, menuOptionsSize);
 
     switch (selectedOption) {
@@ -127,6 +124,46 @@ int displayOptions(char *menuOptions[], int menuOptionsSize) {
 
     return selectedOption;
 }
+void breadCrumbPush(char text[MAX_CRUMB_LENGTH]) {
+    BreadcrumbsNode *node = (BreadcrumbsNode*)malloc(sizeof(BreadcrumbsNode));
+
+    if (node == NULL) {
+        printf("\n\nAllocated Node for breadcrumb is NULL!");
+        exit(-1);
+    }
+
+    strcpy(node->crumb, text);
+    node->next = breadcrumbsHead;
+    breadcrumbsHead = node;
+}
+void breadCrumbPop(void) {
+    if (breadcrumbsHead == NULL) {
+        return;
+    }
+
+    BreadcrumbsNode *tempNode = breadcrumbsHead;
+    breadcrumbsHead = breadcrumbsHead->next;
+    free(tempNode);
+
+    if (breadcrumbsHead == NULL) {
+        return;
+    }
+
+    tempNode = breadcrumbsHead;
+    breadcrumbsHead = breadcrumbsHead->next;
+    free(tempNode);
+}
+void displayBreadcrumbs(BreadcrumbsNode *head) {
+    if (head == NULL) {
+        printf("\n");
+        return;
+    }
+    displayBreadcrumbs(head->next);
+    printf("%s",head->crumb);
+    if (head != breadcrumbsHead) {
+        printf(" > ");
+    }
+}
 void displayHeader(void) {
     int width = 80;
     char header[] = "Data Structures and Algorithms Final Project";
@@ -150,55 +187,8 @@ void displayHeader(void) {
     for (int i = 0; i < width; i++) {
         printf("-");
     }
-}
-void breadCrumbPush(char text[MAX_CRUMB_LENGTH]) {
-    BreadcrumbsNode *node = (BreadcrumbsNode*)malloc(sizeof(BreadcrumbsNode));
 
-    if (node == NULL) {
-        printf("\n\nAllocated Node for breadcrumb is NULL!");
-        exit(-1);
-    }
-
-    strcpy(node->crumb, text);
-    node->next = breadcrumbsHead;
-    breadcrumbsHead = node;
-}
-void breadCrumbPop(void) {
-    if (breadcrumbsHead == NULL) {
-        printf("Breadcrumbs stack empty!");
-        return;
-    }
-
-    BreadcrumbsNode *tempNode = breadcrumbsHead;
-    breadcrumbsHead = breadcrumbsHead->next;
-    free(tempNode);
-}
-void displayBreadcrumbs(char *path[], int pathLength) {
-    displayHeader();
-
-    if (breadcrumbsHead == NULL) {
-        printf("");
-    }
-
-    printf("\n");
-    BreadcrumbsNode *tempNode = breadcrumbsHead;
-    while (tempNode != NULL) {
-        printf("%s", tempNode->crumb);
-
-        if (tempNode->next != NULL) {
-            printf(" > ");
-        }
-
-        tempNode = tempNode->next;
-    }
-
-    printf("\n");
-    for (int i = 0; i < pathLength; i++) {
-        printf("%s", path[i]);
-        if (i < pathLength - 1) {
-            printf(" > ");
-        }
-    }
+    displayBreadcrumbs(breadcrumbsHead);
 }
 void displayConfirmExit(void) {
     char response;
@@ -338,6 +328,9 @@ int *getUserIntegerInputs(const char *prompt, int *arrayLength) {
 void linearDataStructuresMenu(void) {
     clearScreen();
 
+    breadCrumbPush("Linear Data Structures");
+    displayHeader();
+
     char *menuOptions[] = {
         "Arrays",
         "Linked Lists",
@@ -347,11 +340,7 @@ void linearDataStructuresMenu(void) {
     };
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
 
-    char *path[] = {
-        "Main Menu",
-        "Linear Data Structures"
-    };
-    displayBreadcrumbs(path, 2);
+
     int selectedOption = displayOptions(menuOptions, menuOptionsSize);
 
     switch (selectedOption) {
@@ -361,6 +350,7 @@ void linearDataStructuresMenu(void) {
         case 2:
             linkedListsMenu();
         case 5:
+            breadCrumbPop();
             main();
         default:
             break;
@@ -369,6 +359,9 @@ void linearDataStructuresMenu(void) {
 void searchingMenu(void) {
     clearScreen();
 
+    breadCrumbPush("Searching");
+    displayHeader();
+
     char *menuOptions[] = {
         "Linear Search",
         "Binary Search",
@@ -376,11 +369,6 @@ void searchingMenu(void) {
     };
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
 
-    char *path[] = {
-        "Main Menu",
-        "Searching"
-    };
-    displayBreadcrumbs(path, 2);
     int selectedOption = displayOptions(menuOptions, menuOptionsSize);
 
     switch (selectedOption) {
@@ -389,6 +377,7 @@ void searchingMenu(void) {
         case 2:
             binarySearchMenu();
         case 3:
+            breadCrumbPop();
             main();
         default:
             break;
@@ -397,11 +386,8 @@ void searchingMenu(void) {
 void sortingMenu(void) {
     clearScreen();
 
-    char *path[] = {
-        "Main Menu",
-        "Sorting"
-    };
-    displayBreadcrumbs(path, 2);
+    breadCrumbPush("Sorting");
+    displayHeader();
 
     int arrayLength = 0;
     int *array = getUserIntegerInputs("Please enter unsorted integers separated by commas: ", &arrayLength);
@@ -424,6 +410,7 @@ void sortingMenu(void) {
 
     switch (selectedOption) {
         case 10:
+            breadCrumbPop();
             main();
         default:
             break;
@@ -437,6 +424,9 @@ void sortingMenu(void) {
 void arraysMenu(void) {
     clearScreen();
 
+    breadCrumbPush("Arrays");
+    displayHeader();
+
     char *menuOptions[] = {
         "Traverse",
         "Insert",
@@ -447,16 +437,12 @@ void arraysMenu(void) {
         "Exit"
     };
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
-
-    char *path[] = {
-        "Main Menu",
-        "Arrays"
-    };
-    displayBreadcrumbs(path, 2);
+    
     int selectedOption = displayOptions(menuOptions, menuOptionsSize);
 
     switch(selectedOption) {
         case 7:
+            breadCrumbPop();
             linearDataStructuresMenu();
         default:
             break;
@@ -465,6 +451,9 @@ void arraysMenu(void) {
 
 void linkedListsMenu(void) {
     clearScreen();
+
+    breadCrumbPush("Linked List");
+    displayHeader();
 
     char *menuOptions[] = {
         "Traverse",
@@ -477,12 +466,6 @@ void linkedListsMenu(void) {
     };
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
 
-    char *path[] = {   
-        "Main Menu",
-        "Linear Data Structures",
-        "Linked Lists"
-    };
-    displayBreadcrumbs(path, 3);
     int selectedOption = displayOptions(menuOptions, menuOptionsSize);
 
    switch (selectedOption) {
@@ -505,6 +488,7 @@ void linkedListsMenu(void) {
             linkedListsMergeMenu();
             break;
         case 7:
+            breadCrumbPop();
             linearDataStructuresMenu();
         default:
             break;
@@ -513,56 +497,45 @@ void linkedListsMenu(void) {
 void linkedListsTraverseMenu(void) {
     clearScreen();
 
+    breadCrumbPush("Traverse");
+    displayHeader();
+
     char *menuOptions[] = {
         "Temp",
     };
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
 
-    char *path[] = {   
-        "Main Menu",
-        "Linear Data Structures",
-        "Linked Lists",
-        "Traverse"
-    };
-    displayBreadcrumbs(path, 4);
+
     int selectedOption = displayOptions(menuOptions, menuOptionsSize);
 
     printf("Selected: %d", selectedOption);
 }
 void linkedListsInsertMenu(void) {
     clearScreen();
-    
+  
+    breadCrumbPush("Insert");
+    displayHeader();
+
     char *menuOptions[] = {
         "Temp",
     };
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
 
-    char *path[] = {   
-        "Main Menu",
-        "Linear Data Structures",
-        "Linked Lists",
-        "Insert"
-    };
-    displayBreadcrumbs(path, 4);
     int selectedOption = displayOptions(menuOptions, menuOptionsSize);
 
     printf("Selected: %d", selectedOption);
 }
 void linkedListsDeleteMenu(void){
     clearScreen();
-    
+   
+    breadCrumbPush("Delete");
+    displayHeader();
+
     char *menuOptions[] = {
         "Temp",
     };
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
 
-    char *path[] = {   
-        "Main Menu",
-        "Linear Data Structures",
-        "Linked Lists",
-        "Delete"
-    };
-    displayBreadcrumbs(path, 4);
     int selectedOption = displayOptions(menuOptions, menuOptionsSize);
 
     printf("Selected: %d", selectedOption);
@@ -570,37 +543,29 @@ void linkedListsDeleteMenu(void){
 void linkedListsSearchMenu(void) {
     clearScreen();
 
+    breadCrumbPush("Search");
+    displayHeader();
+
     char *menuOptions[] = {
         "Temp",
     };
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
 
-    char *path[] = {   
-        "Main Menu",
-        "Linear Data Structures",
-        "Linked Lists",
-        "Search"
-    };
-    displayBreadcrumbs(path, 4);
     int selectedOption = displayOptions(menuOptions, menuOptionsSize);
 
     printf("Selected: %d", selectedOption);
 }
 void linkedListsReverseMenu(void) {
     clearScreen();
-    
+ 
+    breadCrumbPush("Reverse");
+    displayHeader();
+
     char *menuOptions[] = {
         "Temp",
     };
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
 
-    char *path[] = {   
-        "Main Menu",
-        "Linear Data Structures",
-        "Linked Lists",
-        "Reverse"
-    };
-    displayBreadcrumbs(path, 4);
     int selectedOption = displayOptions(menuOptions, menuOptionsSize);
 
     printf("Selected: %d", selectedOption);
@@ -608,18 +573,15 @@ void linkedListsReverseMenu(void) {
 void linkedListsMergeMenu(void) {
     clearScreen();
     
+    breadCrumbPush("Merge");
+    displayHeader();
+
     char *menuOptions[] = {
         "Temp",
     };
     int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
 
-    char *path[] = {   
-        "Main Menu",
-        "Linear Data Structures",
-        "Linked Lists",
-        "Merge"
-    };
-    displayBreadcrumbs(path, 4);
+
     int selectedOption = displayOptions(menuOptions, menuOptionsSize);
 
     printf("Selected: %d", selectedOption);
@@ -663,12 +625,8 @@ void linearSearchMenu(void) {
 void binarySearchMenu(void) {
     clearScreen();
     
-    char *path[] = {   
-        "Main Menu",
-        "Searching",
-        "Binary Search"
-    };
-    displayBreadcrumbs(path, 3);
+    breadCrumbPush("Binary Search");
+    displayHeader();
 
     int arrayLength = 0;
     int *array = getUserIntegerInputs("Please enter your integers separated by commas: ", &arrayLength);
@@ -682,5 +640,6 @@ void binarySearchMenu(void) {
     printAllocatedArrayList();
 
     displayConfirmExit();
+    breadCrumbPop();
     searchingMenu();
 }
