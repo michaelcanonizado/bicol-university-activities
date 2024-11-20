@@ -19,7 +19,7 @@ typedef struct AllocatedArraysNode {
 } AllocatedArraysNode;
 AllocatedArraysNode *allocatedArraysHead = NULL;
 
-typedef struct BreadcrumbsN     ode {
+typedef struct BreadcrumbsNode {
     char crumb[MAX_CRUMB_LENGTH];
     struct BreadcrumbsNode *next;
 } BreadcrumbsNode;
@@ -83,7 +83,6 @@ int main(void) {
             sortingMenu();
             break;
         case 5:
-            breadCrumbPop();
             searchingMenu();
             break;
         case 6:
@@ -255,12 +254,13 @@ void freeAllAllocatedArrays(void) {
     while(tempHeadNode != NULL) {
 
         if (allocatedArraysHead->value == NULL) {
-            printf("\nBignum in list is NULL");
-            printf("\n\tFunction: freeAllBignums()");
+            printf("\nAllocated array in node is NULL!");
+            printf("\n\tFunction: freeAllAllocatedArarys()");
         }
 
         // Point temporary head node to next node
         tempHeadNode = tempHeadNode->next;
+        free(allocatedArraysHead->value);
         free(allocatedArraysHead);
 
         // Store new head to original head node
@@ -365,9 +365,11 @@ void linearDataStructuresMenu(void) {
             break;
         case 2:
             linkedListsMenu();
+            break;
         case 5:
             breadCrumbPop();
             main();
+            break;
         default:
             break;
     }
@@ -390,11 +392,14 @@ void searchingMenu(void) {
     switch (selectedOption) {
         case 1:
             linearSearchMenu();
+            break;
         case 2:
             binarySearchMenu();
+            break;
         case 3:
             breadCrumbPop();
             main();
+            break;
         default:
             break;
     }
@@ -428,6 +433,7 @@ void sortingMenu(void) {
         case 10:
             breadCrumbPop();
             main();
+            break;
         default:
             break;
     }
@@ -460,6 +466,7 @@ void arraysMenu(void) {
         case 7:
             breadCrumbPop();
             linearDataStructuresMenu();
+            break;
         default:
             break;
     }
@@ -504,8 +511,8 @@ void linkedListsMenu(void) {
             linkedListsMergeMenu();
             break;
         case 7:
-            breadCrumbPop();
             linearDataStructuresMenu();
+            break;
         default:
             break;
     }
