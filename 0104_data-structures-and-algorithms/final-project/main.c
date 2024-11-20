@@ -141,9 +141,10 @@ void clearScreen() {
 int displayOptions(char *menuOptions[], int menuOptionsSize) {
     int selectedOption = 0;
     
+    printf("\nOptions: ");
     do {
         for (int i = 0; i < menuOptionsSize; i++) {
-            printf("\n%d) %s", i+1, menuOptions[i]);
+            printf("\n   %3d) %s", i+1, menuOptions[i]);
         }
         printf("\nPlease choose an option: ");
         scanf("%d", &selectedOption);
