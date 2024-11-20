@@ -34,6 +34,7 @@ int displayOptions(char *menuOptions[], int menuOptionsSize);
 void breadCrumbPush(char *text);
 void breadCrumbPop(void);
 void displayBreadcrumbs(BreadcrumbsNode *head);
+void displayHorizontalLine(void);
 void displayHeader(void);
 void displayConfirmExit(void);
 
@@ -204,16 +205,21 @@ void displayBreadcrumbs(BreadcrumbsNode *head) {
         printf(" > ");
     }
 }
+void displayHorizontalLine(void) {
+    printf("\n");
+    for (int i = 0; i < MAX_PROGRAM_WIDTH; i++) {
+        printf("-");
+    }
+}
 void displayHeader(void) {
     char header[] = "Data Structures and Algorithms Final Project";
     int headerLength = strlen(header);
     int headerPadding = (MAX_PROGRAM_WIDTH - headerLength) / 2;
 
     /* Program Header */
-    for (int i = 0; i < MAX_PROGRAM_WIDTH; i++) {
-        printf("-");
-    }
+    displayHorizontalLine();
 
+    printf("\n");
     printf("\n");
     for (int i = 0; i < headerPadding; i++) {
         printf(" ");
@@ -224,12 +230,11 @@ void displayHeader(void) {
     }
     printf("\n");
 
-    for (int i = 0; i < MAX_PROGRAM_WIDTH; i++) {
-        printf("-");
-    }
+    displayHorizontalLine();
 
     /* Breadcrumbs */
     displayBreadcrumbs(breadcrumbsHead);
+    displayHorizontalLine();
 }
 void displayConfirmExit(void) {
     char response;
@@ -439,19 +444,15 @@ void sortingMenu(void) {
     int arrayLength = 0;
     int *array = getUserIntegerInputs("Please enter unsorted integers separated by commas: ", &arrayLength);
 
-    printf("\n");
-    for (int i = 0; i < MAX_PROGRAM_WIDTH; i++) {
-        printf("-");
-    }
+    clearScreen();
+    displayHeader();
+
     printf("\n[");
     for(int i = 0; i < arrayLength; i++) {
         printf("%d,", array[i]);
     }
     printf("]");
-    printf("\n");
-    for (int i = 0; i < MAX_PROGRAM_WIDTH; i++) {
-        printf("-");
-    }
+    displayHorizontalLine();
 
     char *menuOptions[] = {
         "Bubble Sort",
@@ -687,12 +688,14 @@ void linearSearchMenu(void) {
 }
 void binarySearchMenu(void) {
     clearScreen();
-    
     breadCrumbPush("Binary Search");
     displayHeader();
 
     int arrayLength = 0;
     int *array = getUserIntegerInputs("Please enter your integers separated by commas: ", &arrayLength);
+
+    clearScreen();
+    displayHeader();
 
     printf("\n[");
     for (int i = 0; i < arrayLength; i++) {
