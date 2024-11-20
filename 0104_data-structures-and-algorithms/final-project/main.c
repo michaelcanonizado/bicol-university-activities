@@ -447,9 +447,12 @@ void sortingMenu(void) {
     clearScreen();
     displayHeader();
 
-    printf("\n[");
+    printf("\nUnsorted Array: [");
     for(int i = 0; i < arrayLength; i++) {
-        printf("%d,", array[i]);
+        printf("%d", array[i]);
+        if (i < arrayLength - 1) {
+            printf(",");
+        }
     }
     printf("]");
     displayHorizontalLine();
