@@ -45,6 +45,7 @@ AllocatedArraysNode* createNewAllocatedArrayNode(int *allocatedArray);
 int isValidInteger(const char *str);
 int *getUserIntegerInputs(const char *prompt, int *arrayLength);
 
+void mainMenu(void);
 void linearDataStructuresMenu(void);
 void sortingMenu(void);
 void searchingMenu(void);
@@ -62,47 +63,8 @@ void linearSearchMenu(void);
 void binarySearchMenu(void);
 
 int main(void) {
-    clearScreen();
-    
     breadCrumbPush("Main Menu");
-    displayHeader();
-
-    char *menuOptions[] = {
-        "Linear Data Structures", 
-        "Non-Linear Data Structures", 
-        "Strings", 
-        "Sorting",
-        "Searching",
-        "Exit"
-    };
-    int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
-
-    int selectedOption = displayOptions(menuOptions, menuOptionsSize);
-
-    switch (selectedOption) {
-        case 1:
-            breadCrumbPush("Linear Data Structures");
-            linearDataStructuresMenu();
-            break;
-        case 4:
-            breadCrumbPush("Sorting");
-            sortingMenu();
-            break;
-        case 5:
-            breadCrumbPush("Searching");
-            searchingMenu();
-            break;
-        case 6:
-            printf("\nClosing Program...");
-            printf("\nGood Bye!");
-            printAllocatedArrayList();
-            freeAllAllocatedArrays();
-            printAllocatedArrayList();
-            return 0;
-        default:
-            break;
-    }
-
+    mainMenu();
     return 0;
 }
 
@@ -369,6 +331,47 @@ int *getUserIntegerInputs(const char *prompt, int *arrayLength) {
     return allocatedArray;
 }
 
+/* 1st layer Menu */
+void mainMenu(void) {
+    clearScreen();
+    displayHeader();
+
+    char *menuOptions[] = {
+        "Linear Data Structures", 
+        "Non-Linear Data Structures", 
+        "Strings", 
+        "Sorting",
+        "Searching",
+        "Exit"
+    };
+    int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
+
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize);
+
+    switch (selectedOption) {
+        case 1:
+            breadCrumbPush("Linear Data Structures");
+            linearDataStructuresMenu();
+            break;
+        case 4:
+            breadCrumbPush("Sorting");
+            sortingMenu();
+            break;
+        case 5:
+            breadCrumbPush("Searching");
+            searchingMenu();
+            break;
+        case 6:
+            printf("\nClosing Program...");
+            printf("\nGood Bye!");
+            printAllocatedArrayList();
+            freeAllAllocatedArrays();
+            printAllocatedArrayList();
+            return;
+        default:
+            break;
+    }
+}
 
 /* 2nd Layer Menus */
 void linearDataStructuresMenu(void) {
@@ -398,7 +401,7 @@ void linearDataStructuresMenu(void) {
             break;
         case 5:
             breadCrumbPop();
-            main();
+            mainMenu();
             break;
         default:
             break;
@@ -428,7 +431,7 @@ void searchingMenu(void) {
             break;
         case 3:
             breadCrumbPop();
-            main();
+            mainMenu();
             break;
         default:
             break;
@@ -477,7 +480,7 @@ void sortingMenu(void) {
             break;
         case 11:
             breadCrumbPop();
-            main();
+            mainMenu();
             break;
         default:
             break;
