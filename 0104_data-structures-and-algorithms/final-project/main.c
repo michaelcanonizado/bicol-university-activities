@@ -81,12 +81,15 @@ int main(void) {
 
     switch (selectedOption) {
         case 1:
+            breadCrumbPush("Linear Data Structures");
             linearDataStructuresMenu();
             break;
         case 4:
+            breadCrumbPush("Sorting");
             sortingMenu();
             break;
         case 5:
+            breadCrumbPush("Searching");
             searchingMenu();
             break;
         case 6:
@@ -177,13 +180,6 @@ void breadCrumbPop(void) {
         return;
     }
     BreadcrumbsNode *tempNode = breadcrumbsHead;
-    breadcrumbsHead = breadcrumbsHead->next;
-    free(tempNode);
-
-    if (breadcrumbsHead == NULL) {
-        return;
-    }
-    tempNode = breadcrumbsHead;
     breadcrumbsHead = breadcrumbsHead->next;
     free(tempNode);
 }
@@ -377,8 +373,6 @@ int *getUserIntegerInputs(const char *prompt, int *arrayLength) {
 /* 2nd Layer Menus */
 void linearDataStructuresMenu(void) {
     clearScreen();
-
-    breadCrumbPush("Linear Data Structures");
     displayHeader();
 
     char *menuOptions[] = {
@@ -395,9 +389,11 @@ void linearDataStructuresMenu(void) {
 
     switch (selectedOption) {
         case 1:
+            breadCrumbPush("Arrays");
             arraysMenu();
             break;
         case 2:
+            breadCrumbPush("Linked List");
             linkedListsMenu();
             break;
         case 5:
@@ -410,8 +406,6 @@ void linearDataStructuresMenu(void) {
 }
 void searchingMenu(void) {
     clearScreen();
-
-    breadCrumbPush("Searching");
     displayHeader();
 
     char *menuOptions[] = {
@@ -425,9 +419,11 @@ void searchingMenu(void) {
 
     switch (selectedOption) {
         case 1:
+            breadCrumbPush("Linear Search");
             linearSearchMenu();
             break;
         case 2:
+            breadCrumbPush("Binary Search");
             binarySearchMenu();
             break;
         case 3:
@@ -440,8 +436,6 @@ void searchingMenu(void) {
 }
 void sortingMenu(void) {
     clearScreen();
-
-    breadCrumbPush("Sorting");
     displayHeader();
 
     int arrayLength = 0;
@@ -496,8 +490,6 @@ void sortingMenu(void) {
 /* 3rd Layer Menus */
 void arraysMenu(void) {
     clearScreen();
-
-    breadCrumbPush("Arrays");
     displayHeader();
 
     char *menuOptions[] = {
@@ -525,8 +517,6 @@ void arraysMenu(void) {
 
 void linkedListsMenu(void) {
     clearScreen();
-
-    breadCrumbPush("Linked List");
     displayHeader();
 
     char *menuOptions[] = {
@@ -544,21 +534,27 @@ void linkedListsMenu(void) {
 
    switch (selectedOption) {
         case 1:
+            breadCrumbPush("Traverse");
             linkedListsTraverseMenu();
             break;
         case 2:
+            breadCrumbPush("Insert");
             linkedListsInsertMenu();
             break;
         case 3:
+            breadCrumbPush("Delete");
             linkedListsDeleteMenu();
             break;
         case 4:
+            breadCrumbPush("Search");
             linkedListsSearchMenu();
             break;
         case 5:
+            breadCrumbPush("Reverse");
             linkedListsReverseMenu();
             break;
         case 6:
+            breadCrumbPush("Merge");
             linkedListsMergeMenu();
             break;
         case 7:
@@ -570,8 +566,6 @@ void linkedListsMenu(void) {
 }
 void linkedListsTraverseMenu(void) {
     clearScreen();
-
-    breadCrumbPush("Traverse");
     displayHeader();
 
     char *menuOptions[] = {
@@ -586,8 +580,6 @@ void linkedListsTraverseMenu(void) {
 }
 void linkedListsInsertMenu(void) {
     clearScreen();
-  
-    breadCrumbPush("Insert");
     displayHeader();
 
     char *menuOptions[] = {
@@ -601,8 +593,6 @@ void linkedListsInsertMenu(void) {
 }
 void linkedListsDeleteMenu(void){
     clearScreen();
-   
-    breadCrumbPush("Delete");
     displayHeader();
 
     char *menuOptions[] = {
@@ -616,8 +606,6 @@ void linkedListsDeleteMenu(void){
 }
 void linkedListsSearchMenu(void) {
     clearScreen();
-
-    breadCrumbPush("Search");
     displayHeader();
 
     char *menuOptions[] = {
@@ -631,8 +619,6 @@ void linkedListsSearchMenu(void) {
 }
 void linkedListsReverseMenu(void) {
     clearScreen();
- 
-    breadCrumbPush("Reverse");
     displayHeader();
 
     char *menuOptions[] = {
@@ -646,8 +632,6 @@ void linkedListsReverseMenu(void) {
 }
 void linkedListsMergeMenu(void) {
     clearScreen();
-    
-    breadCrumbPush("Merge");
     displayHeader();
 
     char *menuOptions[] = {
@@ -698,7 +682,6 @@ void linearSearchMenu(void) {
 }
 void binarySearchMenu(void) {
     clearScreen();
-    breadCrumbPush("Binary Search");
     displayHeader();
 
     int arrayLength = 0;
