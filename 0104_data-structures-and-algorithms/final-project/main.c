@@ -62,6 +62,7 @@ void linkedListsMergeMenu(void);
 void linearSearchMenu(void);
 void binarySearchMenu(void);
 void arrays1DimensionMenu(void);
+void arrays2DimensionMenu(void);
 
 int main(void) {
     breadCrumbPush("Main Menu");
@@ -510,6 +511,10 @@ void arraysMenu(void) {
             breadCrumbPush("1 Dimensional Array");
             arrays1DimensionMenu();
             break;
+        case 2:
+            breadCrumbPush("2 Dimensional Array");
+            arrays2DimensionMenu();
+            break;
         default:
             break;
     }
@@ -722,7 +727,33 @@ void arrays1DimensionMenu(void) {
     switch(selectedOption) {
         case 7:
             breadCrumbPop();
-            linearDataStructuresMenu();
+            arraysMenu();
+            break;
+        default:
+            break;
+    }
+}
+void arrays2DimensionMenu(void) {
+    clearScreen();
+    displayHeader();
+
+    char *menuOptions[] = {
+        "Traverse",
+        "Insert",
+        "Delete",
+        "Search",
+        "Sort",
+        "Merge 2 arrays",
+        "Exit"
+    };
+    int menuOptionsSize = sizeof(menuOptions)/sizeof(menuOptions[0]);
+    
+    int selectedOption = displayOptions(menuOptions, menuOptionsSize);
+
+    switch(selectedOption) {
+        case 7:
+            breadCrumbPop();
+            arraysMenu();
             break;
         default:
             break;
