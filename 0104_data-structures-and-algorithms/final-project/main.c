@@ -515,6 +515,9 @@ void arraysMenu(void) {
             breadCrumbPush("2 Dimensional Array");
             arrays2DimensionMenu();
             break;
+        case 3:
+            breadCrumbPop();
+            linearDataStructuresMenu();
         default:
             break;
     }
