@@ -37,4 +37,14 @@ public class Bingo {
         }
         return card;
     }
+
+    public void displayCard() {
+        System.out.println(" B  I  N  G  O ");
+        for (int row = 0; row < SIZE; row++) {
+            for (int col = 0; col < SIZE; col++) {
+                System.out.printf("%2d ",card[row][col]);
+            }
+            System.out.println();
+        }
+    }
 }

@@ -2,6 +2,7 @@ package org.PayrollForm;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        Bingo playerCard = new Bingo();
+        playerCard.displayCard();
     }
 }
