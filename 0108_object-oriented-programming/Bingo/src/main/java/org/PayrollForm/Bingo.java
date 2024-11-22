@@ -58,6 +58,7 @@ public class Bingo {
         final String BINGO_HEADER = "BINGO";
         final Font headerFont = new Font("Arial", Font.BOLD, 32);
         final Font numGridFont = new Font("Arial", Font.PLAIN, 24);
+        final Font controlsFont = new Font("Arial", Font.PLAIN, 24);
         final int GUI_WIDTH = 500;
         final int PANEL_HEADER_HEIGHT = 100;
         final int PANEL_NUM_GRID_HEIGHT = GUI_WIDTH;
@@ -107,15 +108,50 @@ public class Bingo {
             }
         }
 
-        JPanel controls = new JPanel();
+        JPanel controls = new JPanel(new GridLayout(0,2));
         controls.setBackground(Color.green);
         controls.setMaximumSize(new Dimension(GUI_WIDTH, PANEL_CONTROLS_HEIGHT));
+        JButton newCardBtn = new JButton("Get new card");
+        JButton rollNumberBtn = new JButton("Roll number");
 
-        System.out.println(GUI_WIDTH);
-        System.out.println(GUI_HEIGHT);
-        System.out.println(PANEL_HEADER_HEIGHT);
-        System.out.println(PANEL_NUM_GRID_HEIGHT);
-        System.out.println(PANEL_CONTROLS_HEIGHT);
+        newCardBtn.setFont(controlsFont);
+        newCardBtn.setBackground(Color.white);
+        newCardBtn.setForeground(Color.black);
+        newCardBtn.setBorder(BorderFactory.createEmptyBorder());
+        newCardBtn.setBorderPainted(false);
+        newCardBtn.setFocusPainted(false);
+        newCardBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        newCardBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent event) {
+                newCardBtn.setBackground(Color.black);
+                newCardBtn.setForeground(Color.white);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                newCardBtn.setBackground(Color.white);
+                newCardBtn.setForeground(Color.black);
+            }
+        });
+
+        rollNumberBtn.setFont(controlsFont);
+        rollNumberBtn.setBackground(Color.white);
+        rollNumberBtn.setForeground(Color.black);
+        rollNumberBtn.setBorder(BorderFactory.createEmptyBorder());
+        rollNumberBtn.setBorderPainted(false);
+        rollNumberBtn.setFocusPainted(false);
+        rollNumberBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        rollNumberBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent event) {
+                rollNumberBtn.setBackground(Color.black);
+                rollNumberBtn.setForeground(Color.white);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                rollNumberBtn.setBackground(Color.white);
+                rollNumberBtn.setForeground(Color.black);
+            }
+        });
+
+        controls.add(rollNumberBtn);
+        controls.add(newCardBtn);
 
         frame.add(header);
         frame.add(numGrid);
