@@ -1,6 +1,7 @@
 package org.PayrollForm;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.util.HashSet;
 import java.util.Random;
@@ -9,11 +10,7 @@ public class Bingo {
     private final int BINGO_SIZE = 5;
     private final int MAX_NUMBER = 75;
     private final Random RANDOM = new Random();
-    private final int GUI_WIDTH = 500;
-    private final int PANEL_HEADER_HEIGHT = 100;
-    private final int PANEL_NUM_GRID_HEIGHT = GUI_WIDTH;
-    private final int PANEL_CONTROLS_HEIGHT = 100;
-    private final int GUI_HEIGHT = PANEL_HEADER_HEIGHT + PANEL_NUM_GRID_HEIGHT + PANEL_CONTROLS_HEIGHT;
+
     private int[][] card;
 
     public Bingo() {
@@ -57,39 +54,61 @@ public class Bingo {
     }
 
     private void initializeGUI() {
+        final String GUI_TITLE = "Canonizado's Bingo Game!";
+        final String BINGO_HEADER = "BINGO";
+        final Font headerFont = new Font("Arial", Font.BOLD, 32);
+        final Font numGridFont = new Font("Arial", Font.PLAIN, 24);
+        final int GUI_WIDTH = 500;
+        final int PANEL_HEADER_HEIGHT = 100;
+        final int PANEL_NUM_GRID_HEIGHT = GUI_WIDTH;
+        final int PANEL_CONTROLS_HEIGHT = 100;
+        final int GUI_HEIGHT = PANEL_HEADER_HEIGHT + PANEL_NUM_GRID_HEIGHT + PANEL_CONTROLS_HEIGHT;
+
         JFrame frame = new JFrame();
-        frame.setTitle("Canonizado's Bingo Game!");
+        frame.setTitle(GUI_TITLE);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
+        frame.setBackground(Color.black);
         frame.setSize(GUI_WIDTH, GUI_HEIGHT);
 
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
-        JPanel header = new JPanel();
-        header.setBackground(Color.blue);
-        header.setPreferredSize(new Dimension(GUI_WIDTH, PANEL_HEADER_HEIGHT));
+        JPanel header = new JPanel(new GridLayout(0, BINGO_HEADER.length()));
+        header.setBackground(Color.black);
         header.setMaximumSize(new Dimension(GUI_WIDTH, PANEL_HEADER_HEIGHT));
+        for (char headerChar : BINGO_HEADER.toCharArray()) {
+            JLabel label = new JLabel();
+            label.setText(Character.toString(headerChar).toUpperCase());
+            label.setFont(headerFont);
+            label.setForeground(Color.white);
+            label.setVerticalAlignment(SwingConstants.CENTER);
+            label.setHorizontalAlignment(SwingConstants.CENTER);
+            header.add(label);
+        }
 
-        JPanel numGrid = new JPanel(new GridLayout(BINGO_SIZE, BINGO_SIZE, 0, 0));
-        numGrid.setBackground(Color.red);
-        numGrid.setPreferredSize(new Dimension(GUI_WIDTH, PANEL_NUM_GRID_HEIGHT));
+        JPanel numGrid = new JPanel(new GridLayout(BINGO_SIZE, BINGO_SIZE, 0 ,0));
+        numGrid.setBorder(new LineBorder(Color.black, 2));
         numGrid.setMaximumSize(new Dimension(GUI_WIDTH, PANEL_NUM_GRID_HEIGHT));
         for (int row = 0; row < BINGO_SIZE; row++) {
             for (int col = 0; col < BINGO_SIZE; col++) {
-                JButton button = new JButton();
+                JLabel label = new JLabel();
                 if (card[row][col] == 0) {
-                    button.setText("FREE");
+                    label.setText("FREE");
                 } else {
-                    button.setText(String.valueOf(card[row][col]));
+                    label.setText(String.valueOf(card[row][col]));
                 }
-                button.setEnabled(false);
-                numGrid.add(button);
+                label.setFont(numGridFont);
+                label.setBackground(Color.white);
+                label.setForeground(Color.black);
+                label.setVerticalAlignment(SwingConstants.CENTER);
+                label.setHorizontalAlignment(SwingConstants.CENTER);
+                label.setBorder(new LineBorder(Color.black, 2));
+                numGrid.add(label);
             }
         }
 
         JPanel controls = new JPanel();
         controls.setBackground(Color.green);
-        controls.setPreferredSize(new Dimension(GUI_WIDTH, PANEL_CONTROLS_HEIGHT));
         controls.setMaximumSize(new Dimension(GUI_WIDTH, PANEL_CONTROLS_HEIGHT));
 
         System.out.println(GUI_WIDTH);
