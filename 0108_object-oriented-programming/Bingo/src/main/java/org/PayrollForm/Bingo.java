@@ -58,12 +58,18 @@ public class Bingo {
         final String BINGO_HEADER = "BINGO";
         final Font headerFont = new Font("Arial", Font.BOLD, 32);
         final Font numGridFont = new Font("Arial", Font.PLAIN, 24);
+        final Font rolledFont = new Font("Arial", Font.PLAIN, 24);
         final Font controlsFont = new Font("Arial", Font.PLAIN, 24);
         final int GUI_WIDTH = 500;
         final int PANEL_HEADER_HEIGHT = 100;
         final int PANEL_NUM_GRID_HEIGHT = GUI_WIDTH;
+        final int PANEL_ROLLED_HEIGHT = 50;
         final int PANEL_CONTROLS_HEIGHT = 100;
-        final int GUI_HEIGHT = PANEL_HEADER_HEIGHT + PANEL_NUM_GRID_HEIGHT + PANEL_CONTROLS_HEIGHT;
+        final int GUI_HEIGHT =
+                PANEL_HEADER_HEIGHT +
+                PANEL_NUM_GRID_HEIGHT +
+                PANEL_ROLLED_HEIGHT +
+                PANEL_CONTROLS_HEIGHT;
 
         JFrame frame = new JFrame();
         frame.setTitle(GUI_TITLE);
@@ -107,6 +113,22 @@ public class Bingo {
                 numGrid.add(label);
             }
         }
+
+        JPanel rolled = new JPanel(new GridLayout(0,2, 10, 0));
+        rolled.setBackground(Color.white);
+        rolled.setMaximumSize(new Dimension(GUI_WIDTH, PANEL_ROLLED_HEIGHT));
+        JLabel rolledHeader = new JLabel();
+        JLabel rolledResult = new JLabel();
+        rolledHeader.setText("Rolled:");
+        rolledResult.setText("0");
+        rolledHeader.setFont(rolledFont);
+        rolledResult.setFont(rolledFont);
+        rolledHeader.setHorizontalAlignment(SwingConstants.RIGHT);
+        rolledResult.setHorizontalAlignment(SwingConstants.LEFT);
+        rolledHeader.setVerticalAlignment(SwingConstants.CENTER);
+        rolledResult.setVerticalAlignment(SwingConstants.CENTER);
+        rolled.add(rolledHeader);
+        rolled.add(rolledResult);
 
         JPanel controls = new JPanel(new GridLayout(0,2));
         controls.setBackground(Color.green);
@@ -155,6 +177,7 @@ public class Bingo {
 
         frame.add(header);
         frame.add(numGrid);
+        frame.add(rolled);
         frame.add(controls);
         frame.setVisible(true);
     }
