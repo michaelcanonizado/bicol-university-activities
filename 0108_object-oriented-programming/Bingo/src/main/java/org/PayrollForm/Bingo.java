@@ -10,7 +10,7 @@ public class Bingo {
     private final int BINGO_SIZE = 5;
     private final int MAX_NUMBER = 75;
     private final Random RANDOM = new Random();
-
+    private JLabel resultLabel;
     private int[][] card;
 
     public Bingo() {
@@ -120,13 +120,14 @@ public class Bingo {
         JLabel rolledHeader = new JLabel();
         JLabel rolledResult = new JLabel();
         rolledHeader.setText("Rolled:");
-        rolledResult.setText("0");
+        rolledResult.setText("");
         rolledHeader.setFont(rolledFont);
         rolledResult.setFont(rolledFont);
         rolledHeader.setHorizontalAlignment(SwingConstants.RIGHT);
         rolledResult.setHorizontalAlignment(SwingConstants.LEFT);
         rolledHeader.setVerticalAlignment(SwingConstants.CENTER);
         rolledResult.setVerticalAlignment(SwingConstants.CENTER);
+        resultLabel = rolledResult;
         rolled.add(rolledHeader);
         rolled.add(rolledResult);
 
