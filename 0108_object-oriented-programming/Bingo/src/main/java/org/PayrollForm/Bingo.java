@@ -139,8 +139,7 @@ public class Bingo {
         newCardBtn.setFont(controlsFont);
         newCardBtn.setBackground(Color.white);
         newCardBtn.setForeground(Color.black);
-        newCardBtn.setBorder(BorderFactory.createEmptyBorder());
-        newCardBtn.setBorderPainted(false);
+        newCardBtn.setBorder(BorderFactory.createMatteBorder(2, 1, 2, 0, Color.BLACK));
         newCardBtn.setFocusPainted(false);
         newCardBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         newCardBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -157,8 +156,7 @@ public class Bingo {
         rollNumberBtn.setFont(controlsFont);
         rollNumberBtn.setBackground(Color.white);
         rollNumberBtn.setForeground(Color.black);
-        rollNumberBtn.setBorder(BorderFactory.createEmptyBorder());
-        rollNumberBtn.setBorderPainted(false);
+        rollNumberBtn.setBorder(BorderFactory.createMatteBorder(2, 0, 2, 1, Color.BLACK));
         rollNumberBtn.setFocusPainted(false);
         rollNumberBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         rollNumberBtn.addMouseListener(new java.awt.event.MouseAdapter() {
