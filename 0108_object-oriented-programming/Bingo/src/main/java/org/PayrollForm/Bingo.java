@@ -11,11 +11,20 @@ import java.util.Set;
 public class Bingo {
     private final int BINGO_SIZE = 5;
     private final int MAX_NUMBER = 75;
+    private int numberOfRolls = 0;
     private final Random RANDOM = new Random();
     private final int[][] cardNumbers;
     private final JLabel[][] cardNumberLabels = new JLabel[BINGO_SIZE][BINGO_SIZE];
     private JLabel resultLabel;
+    private JPanel rolledPanel;
+    private JButton rollNumberBtn;
     private Set<Integer> rolledNumbers = new HashSet<>();
+    private final String GUI_TITLE = "Canonizado's Bingo Game!";
+    private final String BINGO_HEADER = "BINGO";
+    private final Font headerFont = new Font("Arial", Font.BOLD, 32);
+    private final Font numGridFont = new Font("Arial", Font.PLAIN, 24);
+    private final Font rolledFont = new Font("Arial", Font.PLAIN, 24);
+    private final Font controlsFont = new Font("Arial", Font.PLAIN, 24);
 
     public Bingo() {
         this.cardNumbers = generateCard();
@@ -81,12 +90,30 @@ public class Bingo {
         });
         shuffleTimer.start();
 
-        Timer stopTimer = new Timer(1000, e -> {
+        Timer stopTimer = new Timer(100, e -> {
             shuffleTimer.stop();
             rolledNumbers.add(randomNumber[0]);
             resultLabel.setText(getNumberCode(randomNumber[0]));
-            System.out.println("Rolled: " + getNumberCode(randomNumber[0]));
             markNumber(randomNumber[0]);
+            numberOfRolls++;
+            boolean isWinner = isWinningCard();
+            if (isWinner) {
+                rollNumberBtn.setEnabled(false);
+                rolledPanel.removeAll();
+                rolledPanel.setLayout(new BorderLayout());
+                JLabel winnerLabel = new JLabel("You have won! Number of rolls: " + numberOfRolls, SwingConstants.CENTER);
+                winnerLabel.setFont(rolledFont);
+                winnerLabel.setHorizontalAlignment(SwingConstants.CENTER);
+                winnerLabel.setVerticalAlignment(SwingConstants.CENTER);
+
+                rolledPanel.add(winnerLabel, BorderLayout.CENTER);
+                rolledPanel.revalidate();
+                rolledPanel.repaint();
+            }
+
+            System.out.println("Rolled: " + getNumberCode(randomNumber[0]));
+            System.out.println("Is Winner: " + isWinner);
+
         });
 
         stopTimer.setRepeats(false);
@@ -106,13 +133,44 @@ public class Bingo {
         }
     }
 
+    private boolean checkWinningLine(int[] line) {
+        for (int i = 0; i < line.length; i++) {
+            if (line[i] != -1) {
+                return false;
+            }
+        }
+        return true;
+    }
+    private boolean isWinningCard() {
+        // Check rows
+        for (int row = 0; row < BINGO_SIZE; row++) {
+            if (checkWinningLine(cardNumbers[row])) {
+                return true;
+            }
+        }
+
+        // Check columns
+        for (int col = 0; col < BINGO_SIZE; col++) {
+            int[] column = new int[BINGO_SIZE];
+            for (int row = 0; row < BINGO_SIZE; row++) {
+                column[row] = cardNumbers[row][col];
+            }
+            if (checkWinningLine(column)) {
+                return true;
+            }
+        }
+
+        // Check diagonals
+        int[] diagonal1 = new int[BINGO_SIZE];
+        int[] diagonal2 = new int[BINGO_SIZE];
+        for (int i = 0; i < BINGO_SIZE; i++) {
+            diagonal1[i] = cardNumbers[i][i];
+            diagonal2[i] = cardNumbers[i][BINGO_SIZE - i - 1];
+        }
+        return checkWinningLine(diagonal1) || checkWinningLine(diagonal2);
+    }
+
     private void initializeGUI() {
-        final String GUI_TITLE = "Canonizado's Bingo Game!";
-        final String BINGO_HEADER = "BINGO";
-        final Font headerFont = new Font("Arial", Font.BOLD, 32);
-        final Font numGridFont = new Font("Arial", Font.PLAIN, 24);
-        final Font rolledFont = new Font("Arial", Font.PLAIN, 24);
-        final Font controlsFont = new Font("Arial", Font.PLAIN, 24);
         final int GUI_WIDTH = 500;
         final int PANEL_HEADER_HEIGHT = 100;
         final int PANEL_NUM_GRID_HEIGHT = GUI_WIDTH;
@@ -185,12 +243,13 @@ public class Bingo {
         resultLabel = rolledResult;
         rolled.add(rolledHeader);
         rolled.add(rolledResult);
+        rolledPanel = rolled;
 
         JPanel controls = new JPanel(new GridLayout(0,2));
         controls.setBackground(Color.green);
         controls.setMaximumSize(new Dimension(GUI_WIDTH, PANEL_CONTROLS_HEIGHT));
         JButton newCardBtn = new JButton("Get new card");
-        JButton rollNumberBtn = new JButton("Roll number");
+        JButton rollBtn = new JButton("Roll number");
 
         newCardBtn.setFont(controlsFont);
         newCardBtn.setBackground(Color.white);
@@ -209,13 +268,13 @@ public class Bingo {
             }
         });
 
-        rollNumberBtn.setFont(controlsFont);
-        rollNumberBtn.setBackground(Color.white);
-        rollNumberBtn.setForeground(Color.black);
-        rollNumberBtn.setBorder(BorderFactory.createMatteBorder(2, 0, 2, 1, Color.BLACK));
-        rollNumberBtn.setFocusPainted(false);
-        rollNumberBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        rollNumberBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+        rollBtn.setFont(controlsFont);
+        rollBtn.setBackground(Color.white);
+        rollBtn.setForeground(Color.black);
+        rollBtn.setBorder(BorderFactory.createMatteBorder(2, 0, 2, 1, Color.BLACK));
+        rollBtn.setFocusPainted(false);
+        rollBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        rollBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent event) {
                 rollNumberBtn.setBackground(Color.black);
                 rollNumberBtn.setForeground(Color.white);
@@ -231,7 +290,8 @@ public class Bingo {
             }
         });
 
-        controls.add(rollNumberBtn);
+        rollNumberBtn = rollBtn;
+        controls.add(rollBtn);
         controls.add(newCardBtn);
 
         frame.add(header);
