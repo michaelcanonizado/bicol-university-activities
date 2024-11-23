@@ -276,17 +276,21 @@ public class Bingo {
         rollBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         rollBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent event) {
-                rollNumberBtn.setBackground(Color.black);
-                rollNumberBtn.setForeground(Color.white);
+                if (rollBtn.isEnabled()) {
+                    rollNumberBtn.setBackground(Color.black);
+                    rollNumberBtn.setForeground(Color.white);
+                }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                rollNumberBtn.setBackground(Color.white);
-                rollNumberBtn.setForeground(Color.black);
+                    rollNumberBtn.setBackground(Color.white);
+                    rollNumberBtn.setForeground(Color.black);
             }
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                rollNumber();
+                if (rollBtn.isEnabled()) {
+                    rollNumber();
+                }
             }
         });
 
