@@ -109,10 +109,6 @@ public class Bingo {
                 rolledPanel.revalidate();
                 rolledPanel.repaint();
             }
-
-            System.out.println("Rolled: " + getNumberCode(randomNumber[0]));
-            System.out.println("Is Winner: " + isWinner);
-
         });
 
         stopTimer.setRepeats(false);
@@ -125,8 +121,6 @@ public class Bingo {
                 if (cardNumbers[row][col] == number) {
                     cardNumbers[row][col] = -1;
                     cardNumberLabels[row][col].setBackground(Color.red);
-                    System.out.println("Label: " +cardNumberLabels[row][col].getText()
-                    + " Row: " + row + " Col: " + col + " | " + cardNumbers[row][col]);
                 }
             }
         }
