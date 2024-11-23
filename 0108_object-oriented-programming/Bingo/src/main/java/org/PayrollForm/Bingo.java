@@ -13,8 +13,10 @@ public class Bingo {
     private final int MAX_NUMBER = 75;
     private int numberOfRolls = 0;
     private final Random RANDOM = new Random();
-    private final int[][] cardNumbers;
+    private final int[][] cardNumbers = new int[BINGO_SIZE][BINGO_SIZE];
     private final JLabel[][] cardNumberLabels = new JLabel[BINGO_SIZE][BINGO_SIZE];
+
+    private JFrame mainGUIFrame;
     private JLabel resultLabel;
     private JPanel rolledPanel;
     private JButton rollNumberBtn;
@@ -27,13 +29,11 @@ public class Bingo {
     private final Font controlsFont = new Font("Arial", Font.PLAIN, 24);
 
     public Bingo() {
-        this.cardNumbers = generateCard();
+        generateCard(this.cardNumbers);
         initializeGUI();
     }
 
-    private int[][] generateCard() {
-        int[][] card = new int[BINGO_SIZE][BINGO_SIZE];
-
+    private void generateCard(int[][] card) {
         for (int row = 0; row < BINGO_SIZE; row++) {
             int min = (row * 15) + 1;
             int max = min + 14;
@@ -53,7 +53,6 @@ public class Bingo {
             }
 
         }
-        return card;
     }
 
     public void displayCard() {
@@ -90,7 +89,7 @@ public class Bingo {
         });
         shuffleTimer.start();
 
-        Timer stopTimer = new Timer(100, e -> {
+        Timer stopTimer = new Timer(500, e -> {
             shuffleTimer.stop();
             rolledNumbers.add(randomNumber[0]);
             resultLabel.setText(getNumberCode(randomNumber[0]));
@@ -135,7 +134,7 @@ public class Bingo {
 
     private boolean checkWinningLine(int[] line) {
         for (int i = 0; i < line.length; i++) {
-            if (line[i] != -1) {
+            if (line[i] != -1 && line[i] != 0) {
                 return false;
             }
         }
@@ -168,6 +167,16 @@ public class Bingo {
             diagonal2[i] = cardNumbers[i][BINGO_SIZE - i - 1];
         }
         return checkWinningLine(diagonal1) || checkWinningLine(diagonal2);
+    }
+
+    private void resetCard() {
+        generateCard(this.cardNumbers);
+        mainGUIFrame.removeAll();
+        mainGUIFrame.revalidate();
+        mainGUIFrame.repaint();
+        mainGUIFrame.setVisible(false);
+
+        initializeGUI();
     }
 
     private void initializeGUI() {
@@ -266,6 +275,9 @@ public class Bingo {
                 newCardBtn.setBackground(Color.white);
                 newCardBtn.setForeground(Color.black);
             }
+            public void mouseClicked(MouseEvent e) {
+                resetCard();
+            }
         });
 
         rollBtn.setFont(controlsFont);
@@ -285,8 +297,6 @@ public class Bingo {
                     rollNumberBtn.setBackground(Color.white);
                     rollNumberBtn.setForeground(Color.black);
             }
-
-            @Override
             public void mouseClicked(MouseEvent e) {
                 if (rollBtn.isEnabled()) {
                     rollNumber();
@@ -303,5 +313,6 @@ public class Bingo {
         frame.add(rolled);
         frame.add(controls);
         frame.setVisible(true);
+        mainGUIFrame = frame;
     }
 }
