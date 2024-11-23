@@ -3,8 +3,6 @@ package org.PayrollForm;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.util.HashSet;
 import java.util.Random;
@@ -14,12 +12,13 @@ public class Bingo {
     private final int BINGO_SIZE = 5;
     private final int MAX_NUMBER = 75;
     private final Random RANDOM = new Random();
+    private final int[][] cardNumbers;
+    private final JLabel[][] cardNumberLabels = new JLabel[BINGO_SIZE][BINGO_SIZE];
     private JLabel resultLabel;
-    private int[][] card;
     private Set<Integer> rolledNumbers = new HashSet<>();
 
     public Bingo() {
-        this.card = generateCard();
+        this.cardNumbers = generateCard();
         initializeGUI();
     }
 
@@ -52,7 +51,7 @@ public class Bingo {
         System.out.println(" B  I  N  G  O ");
         for (int row = 0; row < BINGO_SIZE; row++) {
             for (int col = 0; col < BINGO_SIZE; col++) {
-                System.out.printf("%2d ",card[row][col]);
+                System.out.printf("%2d ", cardNumbers[row][col]);
             }
             System.out.println();
         }
@@ -83,14 +82,28 @@ public class Bingo {
         shuffleTimer.start();
 
         Timer stopTimer = new Timer(1000, e -> {
+            shuffleTimer.stop();
             rolledNumbers.add(randomNumber[0]);
             resultLabel.setText(getNumberCode(randomNumber[0]));
             System.out.println("Rolled: " + getNumberCode(randomNumber[0]));
-            shuffleTimer.stop();
+            markNumber(randomNumber[0]);
         });
 
         stopTimer.setRepeats(false);
         stopTimer.start();
+    }
+
+    private void markNumber(int number) {
+        for (int row = 0; row < BINGO_SIZE; row++) {
+            for (int col = 0; col < BINGO_SIZE; col++) {
+                if (cardNumbers[row][col] == number) {
+                    cardNumbers[row][col] = -1;
+                    cardNumberLabels[row][col].setBackground(Color.red);
+                    System.out.println("Label: " +cardNumberLabels[row][col].getText()
+                    + " Row: " + row + " Col: " + col + " | " + cardNumbers[row][col]);
+                }
+            }
+        }
     }
 
     private void initializeGUI() {
@@ -139,10 +152,11 @@ public class Bingo {
         for (int row = 0; row < BINGO_SIZE; row++) {
             for (int col = 0; col < BINGO_SIZE; col++) {
                 JLabel label = new JLabel();
-                if (card[row][col] == 0) {
+                label.setOpaque(true);
+                if (cardNumbers[row][col] == 0) {
                     label.setText("FREE");
                 } else {
-                    label.setText(String.valueOf(card[row][col]));
+                    label.setText(String.valueOf(cardNumbers[row][col]));
                 }
                 label.setFont(numGridFont);
                 label.setBackground(Color.white);
@@ -151,6 +165,7 @@ public class Bingo {
                 label.setHorizontalAlignment(SwingConstants.CENTER);
                 label.setBorder(new LineBorder(Color.black, 2));
                 numGrid.add(label);
+                cardNumberLabels[row][col] = label;
             }
         }
 
