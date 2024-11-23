@@ -3,8 +3,12 @@ package org.PayrollForm;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 public class Bingo {
     private final int BINGO_SIZE = 5;
@@ -12,6 +16,7 @@ public class Bingo {
     private final Random RANDOM = new Random();
     private JLabel resultLabel;
     private int[][] card;
+    private Set<Integer> rolledNumbers = new HashSet<>();
 
     public Bingo() {
         this.card = generateCard();
@@ -51,6 +56,41 @@ public class Bingo {
             }
             System.out.println();
         }
+    }
+
+    private char determineNumberColumn(int number) {
+        char[] columns = {'B','I','N','G','O'};
+        int columnIndex = (number - 1) / 15;
+        return columns[columnIndex];
+    }
+    private String getNumberCode(int number) {
+        char column = determineNumberColumn(number);
+        StringBuilder code = new StringBuilder();
+        code.append(column);
+        code.append(number);
+        return code.toString();
+    }
+
+    private void rollNumber() {
+        final int[] randomNumber = new int[1];
+
+        Timer shuffleTimer = new Timer(50, e -> {
+            do {
+                randomNumber[0] = RANDOM.nextInt(MAX_NUMBER) + 1;
+            } while (rolledNumbers.contains(randomNumber[0]));
+            resultLabel.setText(getNumberCode(randomNumber[0]));
+        });
+        shuffleTimer.start();
+
+        Timer stopTimer = new Timer(1000, e -> {
+            rolledNumbers.add(randomNumber[0]);
+            resultLabel.setText(getNumberCode(randomNumber[0]));
+            System.out.println("Rolled: " + getNumberCode(randomNumber[0]));
+            shuffleTimer.stop();
+        });
+
+        stopTimer.setRepeats(false);
+        stopTimer.start();
     }
 
     private void initializeGUI() {
@@ -168,6 +208,11 @@ public class Bingo {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 rollNumberBtn.setBackground(Color.white);
                 rollNumberBtn.setForeground(Color.black);
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                rollNumber();
             }
         });
 
