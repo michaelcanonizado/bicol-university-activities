@@ -16,17 +16,21 @@ public class Bingo {
     private final int[][] cardNumbers = new int[BINGO_SIZE][BINGO_SIZE];
     private final JLabel[][] cardNumberLabels = new JLabel[BINGO_SIZE][BINGO_SIZE];
 
+    private boolean isRolling = false;
+    private int multipleRollsCount = 5;
+    private JLabel[] resultLabels =  new JLabel[multipleRollsCount];
     private JFrame mainGUIFrame;
-    private JLabel resultLabel;
+//    private JLabel resultLabel;
     private JPanel rolledPanel;
-    private JButton rollNumberBtn;
+    private JButton rollSingleNumberBtn;
+    private JButton rollMultipleNumberBtn;
     private Set<Integer> rolledNumbers = new HashSet<>();
     private final String GUI_TITLE = "Canonizado's Bingo Game!";
     private final String BINGO_HEADER = "BINGO";
     private final Font headerFont = new Font("Arial", Font.BOLD, 32);
     private final Font numGridFont = new Font("Arial", Font.PLAIN, 24);
-    private final Font rolledFont = new Font("Arial", Font.PLAIN, 24);
-    private final Font controlsFont = new Font("Arial", Font.PLAIN, 24);
+    private final Font rolledFont = new Font("Arial", Font.PLAIN, 18);
+    private final Font controlsFont = new Font("Arial", Font.PLAIN, 18);
 
     public Bingo() {
         generateCard(this.cardNumbers);
@@ -78,7 +82,7 @@ public class Bingo {
         return code.toString();
     }
 
-    private void rollNumber() {
+    private void rollNumber(JLabel resultLabel) {
         final int[] randomNumber = new int[1];
 
         Timer shuffleTimer = new Timer(50, e -> {
@@ -97,7 +101,8 @@ public class Bingo {
             numberOfRolls++;
             boolean isWinner = isWinningCard();
             if (isWinner) {
-                rollNumberBtn.setEnabled(false);
+                rollSingleNumberBtn.setEnabled(false);
+                rollMultipleNumberBtn.setEnabled(false);
                 rolledPanel.removeAll();
                 rolledPanel.setLayout(new BorderLayout());
                 JLabel winnerLabel = new JLabel("You have won! Number of rolls: " + numberOfRolls, SwingConstants.CENTER);
@@ -230,30 +235,38 @@ public class Bingo {
             }
         }
 
-        JPanel rolled = new JPanel(new GridLayout(0,2, 10, 0));
+        JPanel rolled = new JPanel();
+        rolled.setLayout(new BoxLayout(rolled, BoxLayout.X_AXIS));
+        rolled.setBorder(BorderFactory.createEmptyBorder(0, 50, 0, 0));
         rolled.setBackground(Color.white);
         rolled.setMaximumSize(new Dimension(GUI_WIDTH, PANEL_ROLLED_HEIGHT));
         JLabel rolledHeader = new JLabel();
-        JLabel rolledResult = new JLabel();
-        rolledHeader.setText("Rolled:");
-        rolledResult.setText("");
+        rolledHeader.setText("Rolled:  ");
         rolledHeader.setFont(rolledFont);
-        rolledResult.setFont(rolledFont);
         rolledHeader.setHorizontalAlignment(SwingConstants.RIGHT);
-        rolledResult.setHorizontalAlignment(SwingConstants.LEFT);
         rolledHeader.setVerticalAlignment(SwingConstants.CENTER);
-        rolledResult.setVerticalAlignment(SwingConstants.CENTER);
-        resultLabel = rolledResult;
         rolled.add(rolledHeader);
-        rolled.add(rolledResult);
+
+        JPanel rolledResults = new JPanel(new GridLayout(0,multipleRollsCount + 1, 0, 0));
+        rolledResults.setBackground(Color.white);
+        rolledResults.setMaximumSize(new Dimension(GUI_WIDTH, PANEL_ROLLED_HEIGHT));
+        for (int i = 0; i < multipleRollsCount; i++) {
+            JLabel rolledResult = new JLabel();
+            rolledResult.setText("");
+            rolledResult.setFont(rolledFont);
+            rolledResult.setHorizontalAlignment(SwingConstants.LEFT);
+            rolledResult.setVerticalAlignment(SwingConstants.CENTER);
+            resultLabels[i] = rolledResult;
+            rolledResults.add(rolledResult);
+        }
+        rolled.add(rolledResults);
         rolledPanel = rolled;
 
-        JPanel controls = new JPanel(new GridLayout(0,2));
+        JPanel controls = new JPanel(new GridLayout(0,3));
         controls.setBackground(Color.green);
         controls.setMaximumSize(new Dimension(GUI_WIDTH, PANEL_CONTROLS_HEIGHT));
-        JButton newCardBtn = new JButton("Get new card");
-        JButton rollBtn = new JButton("Roll number");
 
+        JButton newCardBtn = new JButton("Get new card");
         newCardBtn.setFont(controlsFont);
         newCardBtn.setBackground(Color.white);
         newCardBtn.setForeground(Color.black);
@@ -274,32 +287,62 @@ public class Bingo {
             }
         });
 
-        rollBtn.setFont(controlsFont);
-        rollBtn.setBackground(Color.white);
-        rollBtn.setForeground(Color.black);
-        rollBtn.setBorder(BorderFactory.createMatteBorder(2, 0, 2, 1, Color.BLACK));
-        rollBtn.setFocusPainted(false);
-        rollBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        rollBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+        JButton rollSingleBtn = new JButton("Roll 1 number");
+        rollSingleBtn.setFont(controlsFont);
+        rollSingleBtn.setBackground(Color.white);
+        rollSingleBtn.setForeground(Color.black);
+        rollSingleBtn.setBorder(BorderFactory.createMatteBorder(2, 0, 2, 1, Color.BLACK));
+        rollSingleBtn.setFocusPainted(false);
+        rollSingleBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        rollSingleBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent event) {
-                if (rollBtn.isEnabled()) {
-                    rollNumberBtn.setBackground(Color.black);
-                    rollNumberBtn.setForeground(Color.white);
+                if (rollSingleBtn.isEnabled()) {
+                    rollSingleNumberBtn.setBackground(Color.black);
+                    rollSingleNumberBtn.setForeground(Color.white);
                 }
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                    rollNumberBtn.setBackground(Color.white);
-                    rollNumberBtn.setForeground(Color.black);
+                    rollSingleNumberBtn.setBackground(Color.white);
+                    rollSingleNumberBtn.setForeground(Color.black);
             }
             public void mouseClicked(MouseEvent e) {
-                if (rollBtn.isEnabled()) {
-                    rollNumber();
+                if (rollSingleBtn.isEnabled()) {
+                    rollNumber(resultLabels[0]);
+                }
+            }
+        });rollSingleBtn.setFont(controlsFont);
+
+        JButton rollMultipleBtn = new JButton("Roll " + multipleRollsCount + " numbers");
+        rollMultipleBtn.setFont(controlsFont);
+        rollMultipleBtn.setBackground(Color.white);
+        rollMultipleBtn.setForeground(Color.black);
+        rollMultipleBtn.setBorder(BorderFactory.createMatteBorder(2, 0, 2, 1, Color.BLACK));
+        rollMultipleBtn.setFocusPainted(false);
+        rollMultipleBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        rollMultipleBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent event) {
+                if (rollMultipleBtn.isEnabled()) {
+                    rollMultipleNumberBtn.setBackground(Color.black);
+                    rollMultipleNumberBtn.setForeground(Color.white);
+                }
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                    rollMultipleNumberBtn.setBackground(Color.white);
+                    rollMultipleNumberBtn.setForeground(Color.black);
+            }
+            public void mouseClicked(MouseEvent e) {
+                if (rollMultipleBtn.isEnabled()) {
+                    for (int i = 0; i < multipleRollsCount; i++) {
+                        rollNumber(resultLabels[i]);
+                    }
                 }
             }
         });
 
-        rollNumberBtn = rollBtn;
-        controls.add(rollBtn);
+        rollSingleNumberBtn = rollSingleBtn;
+        rollMultipleNumberBtn = rollMultipleBtn;
+        controls.add(rollSingleBtn);
+        controls.add(rollMultipleBtn);
         controls.add(newCardBtn);
 
         frame.add(header);
