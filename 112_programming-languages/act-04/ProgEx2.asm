@@ -1,33 +1,37 @@
 section .data
-	msg DB 'gnimmargorp'
-	len EQU $ - msg
-    size EQU len - 1
-	newLine DB 10
+	msg DB 'gnimmargorp' ; Initialize string
+	len EQU $ - msg ; Extract length
+    size EQU len - 1 ; Offset length by 1
+	newLine DB 10 ; Store '\n'
 
 section .text
 global _start
 
 _start:
-	MOV esi,size
+	MOV ecx,size ; Move size to the counter
 
 _loop:
-	CMP esi,0
+	CMP ecx,0 ; Exit loop if counter reaches 0
 	JL _exit
 
-	MOV eax,4
-	MOV ebx,1
-	LEA ecx,[esi + msg]
-	MOV edx,1
-	INT 0x80
+    PUSH ecx ; Store counter
 
-	MOV eax,4
+	MOV eax,4 ; Call system write
 	MOV ebx,1
-	LEA ecx,newLine
-	MOV edx,1
-	INT 0x80
+	LEA ecx,[ecx + msg] ; Offset string by the counter
+	MOV edx,1 ; Number of bytes to write
+	INT 0x80 ; Start interupt
 
-	DEC esi
-	JMP _loop
+	MOV eax,4 ; CAll system write
+	MOV ebx,1
+	LEA ecx,newLine ; Print '\n'
+	MOV edx,1 ; Number of bytes to write
+	INT 0x80 ; Start interupt
+
+    POP ecx ; Retrieve counter
+
+	DEC ecx ; Decrement counter
+	JMP _loop ; Go back at the start of the loop
 
 _exit:
 	MOV eax,1
