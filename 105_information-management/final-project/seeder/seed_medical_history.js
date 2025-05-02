@@ -1,6 +1,7 @@
 const mysql = require('mysql2/promise');
 const { faker } = require('@faker-js/faker');
 const fs = require('fs');
+const { get_random_element } = require('./utils');
 
 const BLOOD_TYPES = [
 	'A+',
@@ -294,9 +295,71 @@ async function seed_database() {
 
 	// Generate rows with random data
 	const rows = [];
-	const insertCount = 50;
+	const insertCount = 10;
 	console.log(`Generating ${insertCount} random ${table} data...`);
-	for (let i = 0; i < insertCount; i++) {}
+	for (let i = 0; i < insertCount; i++) {
+		const patient = i + 1;
+
+		const blood_type = get_random_element(BLOOD_TYPES);
+
+		const allergies =
+			Math.random() < 0.25 ? get_random_element(ALLERGIES) : null;
+
+		const chronic_illnesses =
+			Math.random() < 0.6 ? get_random_element(CHRONIC_ILLNESSES) : null;
+
+		const number_of_medications = Math.floor(Math.random() * 5) + 1;
+		const medications = [...CURRENT_MEDICATIONS]
+			.sort(() => Math.random() - 0.5)
+			.slice(0, number_of_medications)
+			.join(', ');
+		const current_medication = chronic_illnesses ? medications : null;
+
+		const past_surgeries =
+			Math.random() < 0.2 ? get_random_element(PAST_SURGERIES) : null;
+
+		const bleeding_disorders =
+			Math.random() < 0.2 ? get_random_element(BLEEDING_DISORDERS) : null;
+
+		const heart_condition =
+			Math.random() < 0.2 ? get_random_element(HEART_CONDITIONS) : null;
+
+		const respiratory_issues =
+			Math.random() < 0.2 ? get_random_element(RESPIRATORY_ISSUES) : null;
+
+		const autoimmune_disease =
+			Math.random() < 0.2 ? get_random_element(AUTOIMMUNE_DISEASES) : null;
+
+		const is_pregnant = Math.random() < 0.1 ? 1 : 0;
+
+		const gum_disease_history =
+			Math.random() < 0.2 ? get_random_element(GUM_DISEASE_HISTORY) : null;
+
+		const genetic_conditions =
+			Math.random() < 0.2 ? get_random_element(GENETIC_CONDITIONS) : null;
+
+		const oral_cancer_history =
+			Math.random() < 0.1 ? get_random_element(ORAL_CANCER_HISTORY) : null;
+
+		console.log([
+			patient,
+			blood_type,
+			allergies,
+			chronic_illnesses,
+			current_medication,
+			past_surgeries,
+			bleeding_disorders,
+			heart_condition,
+			respiratory_issues,
+			autoimmune_disease,
+			is_pregnant,
+			gum_disease_history,
+			genetic_conditions,
+			oral_cancer_history,
+		]);
+	}
+
+	return;
 
 	// Output generated rows
 	console.log(rows);
