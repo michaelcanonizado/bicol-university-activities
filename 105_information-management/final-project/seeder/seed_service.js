@@ -293,7 +293,13 @@ async function seed_database() {
 	const rows = [];
 	const insertCount = DENTAL_SERVICES.length;
 	console.log(`Generating ${insertCount} random ${table} data...`);
-	for (let i = 0; i < insertCount; i++) {}
+	for (let i = 0; i < insertCount; i++) {
+		rows.push([
+			DENTAL_SERVICES[i].service_name,
+			DENTAL_SERVICES[i].description,
+			DENTAL_SERVICES[i].price,
+		]);
+	}
 
 	// Output generated rows
 	console.log(rows);
