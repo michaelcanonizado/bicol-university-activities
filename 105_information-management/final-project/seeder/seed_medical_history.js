@@ -281,7 +281,7 @@ const ORAL_CANCER_HISTORY = [
 async function seed_database() {
 	const database = 'iflair-dental-clinic-management-system';
 	const table = 'medical_history';
-	const insert_query_header = `INSERT INTO ${table} (patient_id, blood_type, allergies, chronic_illnesses, current_medication, past_surgeries, bleeding_disorders, heart_condition, respiratory_issues, autoimmune_disease, is_pregnant, gum_disease_history, genetic_conditions, oral_cancer_history)  VALUES\n\n`;
+	const insert_query_header = `INSERT INTO ${table} (patient_id, blood_type, allergies, chronic_illnesses, current_medication, past_surgeries, bleeding_disorders, heart_condition, respiratory_issues, autoimmune_disease, is_pregnant, gum_disease_history, genetic_conditions, oral_cancer_history) VALUES ?`;
 
 	// Establish SQL connection
 	const connection = await mysql.createConnection({
@@ -295,7 +295,7 @@ async function seed_database() {
 
 	// Generate rows with random data
 	const rows = [];
-	const insertCount = 10;
+	const insertCount = 50;
 	console.log(`Generating ${insertCount} random ${table} data...`);
 	for (let i = 0; i < insertCount; i++) {
 		const chronic_illnesses = choose_random_element(0.3, CHRONIC_ILLNESSES);
@@ -306,7 +306,9 @@ async function seed_database() {
 			.join(', ');
 		const current_medication = chronic_illnesses ? medications : null;
 
-		console.log([
+		const is_pregnant = Math.random() < 0.15 ? 1 : 0;
+
+		rows.push([
 			i + 1,
 			choose_random_element(1, BLOOD_TYPES),
 			choose_random_element(0.25, ALLERGIES),
@@ -317,26 +319,24 @@ async function seed_database() {
 			choose_random_element(0.2, HEART_CONDITIONS),
 			choose_random_element(0.2, RESPIRATORY_ISSUES),
 			choose_random_element(0.2, AUTOIMMUNE_DISEASES),
-			choose_random_element(0.2, [1, 0]),
+			is_pregnant,
 			choose_random_element(0.2, GUM_DISEASE_HISTORY),
 			choose_random_element(0.2, GENETIC_CONDITIONS),
 			choose_random_element(0.15, ORAL_CANCER_HISTORY),
 		]);
 	}
 
-	return;
-
 	// Output generated rows
 	console.log(rows);
 
 	// Delete all existing rows in table
 	console.log(`Deleting all rows in:  ${database}.${table}...`);
-	await connection.query('DELETE FROM patient');
+	await connection.query(`DELETE FROM ${table}`);
 	console.log(`Deleted all rows in:  ${database}.${table}!`);
 
 	// Reset primary key auto increment to 1
 	console.log(`Reseting AUTO_INCREMENT to 1 in:  ${database}.${table}...`);
-	await connection.query('ALTER TABLE patient AUTO_INCREMENT = 1');
+	await connection.query(`ALTER TABLE ${table} AUTO_INCREMENT = 1`);
 	console.log(`Reseted AUTO_INCREMENT to 1 in:  ${database}.${table}...`);
 
 	// Insert the generated data into the database

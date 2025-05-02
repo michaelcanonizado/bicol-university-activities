@@ -1,0 +1,102 @@
+DELETE FROM medical_history;
+ALTER TABLE medical_history AUTO_INCREMENT = 1;
+
+INSERT INTO medical_history (patient_id, blood_type, allergies, chronic_illnesses, current_medication, past_surgeries, bleeding_disorders, heart_condition, respiratory_issues, autoimmune_disease, is_pregnant, gum_disease_history, genetic_conditions, oral_cancer_history) VALUES ?(1, 'A+', 'Cats', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'Necrotizing periodontal disease', NULL, 'Difficulty swallowing from lesion'),
+
+(2, 'B-', 'Latex', NULL, NULL, NULL, NULL, 'CHF (congestive heart failure)', NULL, 'Addison’s disease', 0, NULL, NULL, 'Alcohol-related damage'),
+
+(3, 'A+', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'Color blindness', NULL),
+
+(4, 'B-', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'Diabetes (maternal)', NULL),
+
+(5, 'B+', 'Bee stings', NULL, NULL, NULL, NULL, 'Atrial fibrillation', NULL, NULL, 0, NULL, 'Phenylketonuria', NULL),
+
+(6, 'AB-', NULL, 'Heart disease', 'Atorvastatin 10mg daily, Metformin 500mg BID, Gabapentin 300mg TID, Sumatriptan PRN', NULL, 'Antiphospholipid syndrome', NULL, 'Pulmonary fibrosis', NULL, 0, 'Necrotizing periodontal disease', NULL, NULL),
+
+(7, 'A+', NULL, NULL, NULL, 'Mastectomy', 'Bernard–Soulier syndrome', NULL, NULL, NULL, 0, 'Bleeding gums', NULL, NULL),
+
+(8, 'AB+', NULL, 'Thyroid disorder', 'Sumatriptan PRN', NULL, NULL, NULL, NULL, NULL, 0, 'Necrotizing periodontal disease', NULL, NULL),
+
+(9, 'O+', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'Recurrent gingivitis', NULL, NULL),
+
+(10, 'O-', 'Sulfa drugs', NULL, NULL, 'ACL reconstruction', NULL, NULL, NULL, NULL, 0, NULL, NULL, 'White patch in mouth'),
+
+(11, 'A-', 'Dust', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL),
+
+(12, 'A+', NULL, 'Migraines', 'Sumatriptan PRN, Insulin glargine nightly, Montelukast 10mg nightly, Sertraline 50mg daily, Gabapentin 300mg TID', NULL, 'Acquired hemophilia', NULL, NULL, NULL, 0, NULL, NULL, NULL),
+
+(13, 'AB-', 'Dust', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'Bleeding gums', NULL, NULL),
+
+(14, 'AB+', NULL, NULL, NULL, NULL, NULL, NULL, 'Cystic fibrosis', NULL, 0, NULL, 'Thalassemia', 'White patch in mouth'),
+
+(15, 'AB+', NULL, 'High cholesterol', 'Gabapentin 300mg TID', 'Spinal fusion', 'Prothrombin gene mutation', NULL, NULL, NULL, 1, 'Advanced periodontitis', NULL, NULL),
+
+(16, 'AB+', NULL, 'COPD', 'Lisinopril 10mg daily, Insulin glargine nightly, Naproxen 250mg BID, Metformin 500mg BID', 'Spinal fusion', NULL, NULL, 'Vocal cord dysfunction', NULL, 0, NULL, NULL, 'Alcohol-related damage'),
+
+(17, 'O+', NULL, 'Thyroid disorder', 'Albuterol inhaler PRN, Prednisone taper', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL),
+
+(18, 'O+', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'Thalassemia', NULL),
+
+(19, 'A+', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL),
+
+(20, 'O+', NULL, NULL, NULL, NULL, NULL, NULL, 'Bronchiectasis', NULL, 0, NULL, NULL, NULL),
+
+(21, 'O+', NULL, 'Depression', 'Levothyroxine 75mcg daily, Sumatriptan PRN, Naproxen 250mg BID', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+
+(22, 'AB+', NULL, NULL, NULL, NULL, 'Disseminated intravascular coagulation', 'Pericarditis', 'COPD', 'Hashimoto’s thyroiditis', 0, NULL, NULL, NULL),
+
+(23, 'O+', NULL, NULL, NULL, NULL, NULL, 'Pericarditis', NULL, NULL, 0, NULL, NULL, NULL),
+
+(24, 'B-', 'Nickel', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'Periodontitis', NULL, NULL),
+
+(25, 'AB-', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Persistent sore throat'),
+
+(26, 'AB-', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dermatomyositis', 0, NULL, 'Thalassemia', NULL),
+
+(27, 'AB-', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Vasculitis', 0, 'Chronic periodontitis', 'Neurofibromatosis', 'Family history of oral cancer'),
+
+(28, 'AB+', NULL, NULL, NULL, 'ACL reconstruction', 'Hemophilia B', 'Tachycardia', NULL, NULL, 0, NULL, NULL, NULL),
+
+(29, 'O-', 'Aspirin', NULL, NULL, NULL, NULL, NULL, 'COPD', 'Hashimoto’s thyroiditis', 0, NULL, NULL, 'Ulcerated growth on cheek'),
+
+(30, 'AB+', 'Sulfa drugs', NULL, NULL, NULL, NULL, 'Congenital heart defect', 'Mild asthma', 'Addison’s disease', 0, NULL, NULL, NULL),
+
+(31, 'O+', NULL, 'Hypertension', 'Ibuprofen 400mg PRN, Sertraline 50mg daily, Amoxicillin 500mg TID, Cetirizine 10mg daily, Montelukast 10mg nightly', NULL, 'Platelet dysfunction', NULL, 'Allergic rhinitis', 'Graves’ disease', 0, NULL, NULL, NULL),
+
+(32, 'O+', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL),
+
+(33, 'AB-', NULL, NULL, NULL, 'Colonoscopy with polypectomy', NULL, 'Myocarditis', 'Mild asthma', NULL, 0, NULL, NULL, NULL),
+
+(34, 'O+', NULL, NULL, NULL, 'C-section', NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Voice change'),
+
+(35, 'A-', NULL, 'Sleep apnea', 'Sumatriptan PRN, Prednisone taper, Cetirizine 10mg daily, Hydrochlorothiazide 25mg daily, Naproxen 250mg BID', 'C-section', NULL, NULL, 'Sinusitis', NULL, 0, NULL, NULL, NULL),
+
+(36, 'A-', 'Pollen', 'Heart disease', 'Gabapentin 300mg TID', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+
+(37, 'B-', NULL, NULL, NULL, NULL, NULL, 'Aortic aneurysm', 'Vocal cord dysfunction', NULL, 0, 'Periodontitis', NULL, NULL),
+
+(38, 'O-', NULL, NULL, NULL, NULL, NULL, NULL, 'Sinusitis', NULL, 1, NULL, NULL, NULL),
+
+(39, 'O+', NULL, NULL, NULL, NULL, 'Factor V Leiden', 'CHF (congestive heart failure)', NULL, NULL, 0, NULL, NULL, NULL),
+
+(40, 'A-', NULL, NULL, NULL, NULL, 'Factor V Leiden', 'Heart valve prolapse', NULL, NULL, 0, NULL, NULL, NULL),
+
+(41, 'O+', 'Cats', NULL, NULL, 'Bunion surgery', NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+
+(42, 'A+', NULL, 'Chronic bronchitis', 'Insulin glargine nightly, Albuterol inhaler PRN', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'Abnormal gum growth'),
+
+(43, 'A+', NULL, NULL, NULL, NULL, NULL, NULL, 'Cystic fibrosis', NULL, 0, NULL, NULL, NULL),
+
+(44, 'AB-', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL),
+
+(45, 'A+', 'Latex', NULL, NULL, NULL, NULL, 'CHF (congestive heart failure)', NULL, NULL, 0, 'Periodontitis', NULL, 'Smoker with lesion'),
+
+(46, 'O-', NULL, 'Diabetes', 'Metoprolol 50mg BID, Lisinopril 10mg daily, Insulin glargine nightly', NULL, NULL, NULL, 'Pneumonia history', NULL, 0, NULL, 'Marfan syndrome', NULL),
+
+(47, 'B-', 'Bee stings', 'High cholesterol', 'Sertraline 50mg daily, Prednisone taper', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL),
+
+(48, 'A+', NULL, 'Migraines', 'Cetirizine 10mg daily, Lisinopril 10mg daily', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL),
+
+(49, 'A+', NULL, 'Depression', 'Albuterol inhaler PRN, Sumatriptan PRN, Prednisone taper, Insulin glargine nightly', NULL, 'Liver disease–induced coagulopathy', NULL, NULL, 'Type 1 diabetes', 0, NULL, 'Familial hypercholesterolemia', 'Lip lesion evaluated'),
+
+(50, 'AB+', NULL, NULL, NULL, NULL, NULL, 'CAD', NULL, 'Myasthenia gravis', 0, NULL, NULL, NULL);
