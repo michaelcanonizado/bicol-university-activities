@@ -206,6 +206,7 @@ async function seed_database() {
 	const database = 'iflair-dental-clinic-management-system';
 	const table = 'patient';
 
+	// Establish SQL connection
 	const connection = await mysql.createConnection({
 		host: 'localhost',
 		user: 'root',
@@ -213,9 +214,9 @@ async function seed_database() {
 		database,
 		connectTimeout: 10000,
 	});
-
 	console.log('Connected to MySQL.');
 
+	// Generate rows with random data
 	const patients = [];
 	const insertCount = 50;
 	console.log(`Generating ${insertCount} random ${table} data...`);
@@ -329,9 +330,10 @@ async function seed_database() {
 		]);
 	}
 
+	// Output generated rows
 	console.log(patients);
 
-	// Delete all rows in table
+	// Delete all existing rows in table
 	console.log(`Deleting all rows in:  ${database}.${table}...`);
 	await connection.query('DELETE FROM patient');
 	console.log(`Deleted all rows in:  ${database}.${table}!`);
@@ -341,7 +343,7 @@ async function seed_database() {
 	await connection.query('ALTER TABLE patient AUTO_INCREMENT = 1');
 	console.log(`Reseted AUTO_INCREMENT to 1 in:  ${database}.${table}...`);
 
-	// Insert the generated data
+	// Insert the generated data into the database
 	console.log(`Inserting ${insertCount} generated ${table} data...`);
 	await connection.query(
 		`INSERT INTO ${table} (first_name, middle_name, last_name, gender, contact_no, date_of_birth, age, religion, nationality, occupation, guardian_name, guardian_occupation, street, province, municipality, barangay, zip_code, civil_status) VALUES ?`,
@@ -349,7 +351,7 @@ async function seed_database() {
 	);
 	console.log('Seed successful!');
 
-	// Generate raw SQL for logging
+	// Generate the raw SQL of the actions above  for logging
 	const raw_sql =
 		`DELETE FROM ${table};\n` +
 		`ALTER TABLE ${table} AUTO_INCREMENT = 1;\n\n` +
@@ -361,8 +363,7 @@ async function seed_database() {
 
 	fs.writeFileSync(`queries/${table}.txt`, raw_sql, { flag: 'w' });
 
-	console.log(raw_sql);
-
+	// Terminate connection
 	await connection.end();
 }
 
