@@ -1,6 +1,7 @@
 const mysql = require('mysql2/promise');
 const { faker } = require('@faker-js/faker');
 const fs = require('fs');
+const { calculate_age } = require('./utils.js');
 
 const MALE_FIRST_NAMES = fs
 	.readFileSync('csv/male_first_names.csv', 'utf8')
@@ -183,23 +184,6 @@ const BARANGAYS = [
 ];
 
 const CIVIL_STATUSES = ['single', 'married', 'divorced', 'widower/widowed'];
-
-function calculate_age(birthDate) {
-	const today = new Date();
-	const birth = new Date(birthDate);
-
-	let age = today.getFullYear() - birth.getFullYear();
-	const hasHadBirthdayThisYear =
-		today.getMonth() > birth.getMonth() ||
-		(today.getMonth() === birth.getMonth() &&
-			today.getDate() >= birth.getDate());
-
-	if (!hasHadBirthdayThisYear) {
-		age--;
-	}
-
-	return age;
-}
 
 async function seed_database() {
 	const database = 'iflair-dental-clinic-management-system';
