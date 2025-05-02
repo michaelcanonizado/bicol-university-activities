@@ -1,7 +1,6 @@
 const mysql = require('mysql2/promise');
 const { faker } = require('@faker-js/faker');
 const fs = require('fs');
-const csv = require('csv-parser');
 
 const MALE_FIRST_NAMES = fs
 	.readFileSync('csv/male_first_names.csv', 'utf8')
