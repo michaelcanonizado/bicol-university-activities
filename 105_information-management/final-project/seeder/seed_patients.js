@@ -214,7 +214,7 @@ async function seed_database() {
 	console.log('Connected to MySQL.');
 
 	const patients = [];
-	const insertCount = 50;
+	const insertCount = 25;
 	for (let i = 0; i < insertCount; i++) {
 		const gender = Math.random() < 0.5 ? 'male' : 'female';
 
@@ -326,6 +326,11 @@ async function seed_database() {
 	}
 
 	console.log(patients);
+
+	await connection.query(
+		'INSERT INTO patient (first_name, middle_name, last_name, gender, contact_no, date_of_birth, age, religion, nationality, occupation, guardian_name, guardian_occupation, street, province, municipality, barangay, zip_code, civil_status) VALUES ?',
+		[patients]
+	);
 
 	await connection.end();
 }
