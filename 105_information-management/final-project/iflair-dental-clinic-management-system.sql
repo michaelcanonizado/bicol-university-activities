@@ -179,8 +179,7 @@ CREATE TABLE `service` (
   `service_id` int(11) NOT NULL,
   `service_name` varchar(50) NOT NULL,
   `description` varchar(255) NOT NULL,
-  `price` int(11) NOT NULL,
-  `category` varchar(100) NOT NULL
+  `price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
