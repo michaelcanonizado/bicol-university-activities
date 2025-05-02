@@ -2,6 +2,13 @@ export function get_random_element(array) {
 	return array[Math.floor(Math.random() * array.length)];
 }
 
+export function choose_random_element(probability, array) {
+	if (Math.random() < probability) {
+		return get_random_element(array);
+	}
+	return null;
+}
+
 export function calculate_age(birthDate) {
 	const today = new Date();
 	const birth = new Date(birthDate);
