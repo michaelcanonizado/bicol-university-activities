@@ -306,12 +306,12 @@ async function seed_database() {
 
 	// Delete all existing rows in table
 	console.log(`Deleting all rows in:  ${database}.${table}...`);
-	await connection.query('DELETE FROM patient');
+	await connection.query(`DELETE FROM ${table}`);
 	console.log(`Deleted all rows in:  ${database}.${table}!`);
 
 	// Reset primary key auto increment to 1
 	console.log(`Reseting AUTO_INCREMENT to 1 in:  ${database}.${table}...`);
-	await connection.query('ALTER TABLE patient AUTO_INCREMENT = 1');
+	await connection.query(`ALTER TABLE ${table} AUTO_INCREMENT = 1`);
 	console.log(`Reseted AUTO_INCREMENT to 1 in:  ${database}.${table}...`);
 
 	// Insert the generated data into the database
