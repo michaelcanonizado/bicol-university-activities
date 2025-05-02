@@ -1,7 +1,9 @@
 const mysql = require('mysql2/promise');
 const { faker } = require('@faker-js/faker');
 const fs = require('fs');
-const { calculate_age } = require('./utils.js');
+const { calculate_age, get_random_element } = require('./utils.js');
+
+const GENDERS = ['male', 'female'];
 
 const MALE_FIRST_NAMES = fs
 	.readFileSync('csv/male_first_names.csv', 'utf8')
@@ -205,27 +207,18 @@ async function seed_database() {
 	const insertCount = 50;
 	console.log(`Generating ${insertCount} random ${table} data...`);
 	for (let i = 0; i < insertCount; i++) {
-		const gender = Math.random() < 0.5 ? 'male' : 'female';
+		const gender = get_random_element(GENDERS);
 
 		const first_name =
 			gender == 'male'
-				? MALE_FIRST_NAMES[
-						Math.floor(Math.random() * MALE_FIRST_NAMES.length)
-				  ]
-				: FEMALE_FIRST_NAMES[
-						Math.floor(Math.random() * FEMALE_FIRST_NAMES.length)
-				  ];
+				? get_random_element(MALE_FIRST_NAMES)
+				: get_random_element(FEMALE_FIRST_NAMES);
 
-		const middle_name_index = Math.floor(Math.random() * MIDDLE_NAMES.length);
-		let middle_name;
 		// Add chance 1/6 chance for a patient to get no middle name
-		if (middle_name_index < MIDDLE_NAMES.length / 6) {
-			middle_name = null;
-		} else {
-			middle_name = MIDDLE_NAMES[middle_name_index];
-		}
+		const middle_name =
+			Math.random() < 0.17 ? null : get_random_element(MIDDLE_NAMES);
 
-		const last_name = LAST_NAMES[Math.floor(Math.random() * LAST_NAMES.length)];
+		const last_name = get_random_element(LAST_NAMES);
 
 		const contact_no = faker.phone.number({ style: 'international' });
 
@@ -239,7 +232,7 @@ async function seed_database() {
 
 		let occupation = null;
 		if (age > 22) {
-			occupation = OCCUPATIONS[Math.floor(Math.random() * OCCUPATIONS.length)];
+			occupation = get_random_element(OCCUPATIONS);
 		}
 
 		let guardian_name = null;
@@ -247,15 +240,10 @@ async function seed_database() {
 		if (age < 18) {
 			const guardian_first_name =
 				Math.random() < 0.5
-					? MALE_FIRST_NAMES[
-							Math.floor(Math.random() * MALE_FIRST_NAMES.length)
-					  ]
-					: FEMALE_FIRST_NAMES[
-							Math.floor(Math.random() * FEMALE_FIRST_NAMES.length)
-					  ];
+					? get_random_element(MALE_FIRST_NAMES)
+					: get_random_element(FEMALE_FIRST_NAMES);
 
-			const guardian_middle_name = (middle_name =
-				MIDDLE_NAMES[Math.floor(Math.random() * MIDDLE_NAMES.length)]);
+			const guardian_middle_name = get_random_element(MIDDLE_NAMES);
 
 			const guardian_last_name = last_name;
 
@@ -266,21 +254,17 @@ async function seed_database() {
 				' ' +
 				guardian_last_name;
 
-			guardian_occupation =
-				OCCUPATIONS[Math.floor(Math.random() * OCCUPATIONS.length)];
+			guardian_occupation = get_random_element(OCCUPATIONS);
 		}
 
 		const street =
 			Math.random() < 0.3 ? null : faker.location.secondaryAddress();
 
-		const province = PROVINCES[Math.floor(Math.random() * PROVINCES.length)];
+		const province = get_random_element(PROVINCES);
 
-		const municipality =
-			MUNICIPALITIES[province][
-				Math.floor(Math.random() * MUNICIPALITIES[province].length)
-			];
+		const municipality = get_random_element(MUNICIPALITIES[province]);
 
-		const barangay = BARANGAYS[Math.floor(Math.random() * BARANGAYS.length)];
+		const barangay = get_random_element(BARANGAYS);
 
 		const zip_code = faker.number.int({
 			min: 4400,
@@ -288,9 +272,7 @@ async function seed_database() {
 		});
 
 		const civil_status =
-			age > 30
-				? CIVIL_STATUSES[Math.floor(Math.random() * CIVIL_STATUSES.length)]
-				: 'single';
+			age > 30 ? get_random_element(CIVIL_STATUSES) : 'single';
 
 		patients.push([
 			first_name,
