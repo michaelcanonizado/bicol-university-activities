@@ -348,11 +348,7 @@ async function seed_database() {
 	const raw_sql =
 		`DELETE FROM ${table};\n` +
 		`ALTER TABLE ${table} AUTO_INCREMENT = 1;\n\n` +
-		insert_query_header +
-		rows
-			.map((row) => `(${row.map((v) => mysql.escape(v)).join(', ')})`)
-			.join(',\n\n') +
-		';';
+		mysql.format(insert_query_header, [rows]);
 
 	fs.writeFileSync(`queries/${table}.txt`, raw_sql, { flag: 'w' });
 
