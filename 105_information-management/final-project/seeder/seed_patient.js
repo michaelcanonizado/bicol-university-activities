@@ -207,7 +207,7 @@ async function seed_database() {
 	console.log('Connected to MySQL.');
 
 	// Generate rows with random data
-	const patients = [];
+	const rows = [];
 	const insertCount = 50;
 	console.log(`Generating ${insertCount} random ${table} data...`);
 	for (let i = 0; i < insertCount; i++) {
@@ -274,7 +274,7 @@ async function seed_database() {
 		const civil_status =
 			age > 30 ? choose_random_element(1, CIVIL_STATUSES) : 'single';
 
-		patients.push([
+		rows.push([
 			first_name,
 			middle_name,
 			last_name,
@@ -297,7 +297,7 @@ async function seed_database() {
 	}
 
 	// Output generated rows
-	console.log(patients);
+	console.log(rows);
 
 	// Delete all existing rows in table
 	console.log(`Deleting all rows in:  ${database}.${table}...`);
@@ -311,18 +311,14 @@ async function seed_database() {
 
 	// Insert the generated data into the database
 	console.log(`Inserting ${insertCount} generated ${table} data...`);
-	await connection.query(insert_query_header, [patients]);
+	await connection.query(insert_query_header, [rows]);
 	console.log('Seed successful!');
 
 	// Generate the raw SQL of the actions above  for logging
 	const raw_sql =
 		`DELETE FROM ${table};\n` +
 		`ALTER TABLE ${table} AUTO_INCREMENT = 1;\n\n` +
-		insert_query_header +
-		patients
-			.map((row) => `(${row.map((v) => mysql.escape(v)).join(', ')})`)
-			.join(',\n\n') +
-		';';
+		mysql.format(insert_query_header, [rows]);
 
 	fs.writeFileSync(`queries/${table}.txt`, raw_sql, { flag: 'w' });
 
