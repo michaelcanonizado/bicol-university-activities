@@ -203,18 +203,22 @@ function calculate_age(birthDate) {
 }
 
 async function seed_database() {
+	const database = 'iflair-dental-clinic-management-system';
+	const table = 'patient';
+
 	const connection = await mysql.createConnection({
 		host: 'localhost',
 		user: 'root',
 		password: '',
-		database: 'iflair-dental-clinic-management-system',
+		database,
 		connectTimeout: 10000,
 	});
 
 	console.log('Connected to MySQL.');
 
 	const patients = [];
-	const insertCount = 25;
+	const insertCount = 50;
+	console.log(`Generating ${insertCount} random ${table} data...`);
 	for (let i = 0; i < insertCount; i++) {
 		const gender = Math.random() < 0.5 ? 'male' : 'female';
 
@@ -327,10 +331,37 @@ async function seed_database() {
 
 	console.log(patients);
 
+	// Delete all rows in table
+	console.log(`Deleting all rows in:  ${database}.${table}...`);
+	await connection.query('DELETE FROM patient');
+	console.log(`Deleted all rows in:  ${database}.${table}!`);
+
+	// Reset primary key auto increment to 1
+	console.log(`Reseting AUTO_INCREMENT to 1 in:  ${database}.${table}...`);
+	await connection.query('ALTER TABLE patient AUTO_INCREMENT = 1');
+	console.log(`Reseted AUTO_INCREMENT to 1 in:  ${database}.${table}...`);
+
+	// Insert the generated data
+	console.log(`Inserting ${insertCount} generated ${table} data...`);
 	await connection.query(
-		'INSERT INTO patient (first_name, middle_name, last_name, gender, contact_no, date_of_birth, age, religion, nationality, occupation, guardian_name, guardian_occupation, street, province, municipality, barangay, zip_code, civil_status) VALUES ?',
+		`INSERT INTO ${table} (first_name, middle_name, last_name, gender, contact_no, date_of_birth, age, religion, nationality, occupation, guardian_name, guardian_occupation, street, province, municipality, barangay, zip_code, civil_status) VALUES ?`,
 		[patients]
 	);
+	console.log('Seed successful!');
+
+	// Generate raw SQL for logging
+	const raw_sql =
+		`DELETE FROM ${table};\n` +
+		`ALTER TABLE ${table} AUTO_INCREMENT = 1;\n\n` +
+		`INSERT INTO ${table} (first_name, middle_name, last_name, gender, contact_no, date_of_birth, age, religion, nationality, occupation, guardian_name, guardian_occupation, street, province, municipality, barangay, zip_code, civil_status) VALUES\n\n` +
+		patients
+			.map((row) => `(${row.map((v) => mysql.escape(v)).join(', ')})`)
+			.join(',\n\n') +
+		';';
+
+	fs.writeFileSync(`queries/${table}.txt`, raw_sql, { flag: 'w' });
+
+	console.log(raw_sql);
 
 	await connection.end();
 }
