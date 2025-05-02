@@ -1,104 +1,102 @@
 DELETE FROM patient;
 ALTER TABLE patient AUTO_INCREMENT = 1;
 
-INSERT INTO patient (first_name, middle_name, last_name, gender, contact_no, date_of_birth, age, religion, nationality, occupation, guardian_name, guardian_occupation, street, province, municipality, barangay, zip_code, civil_status) VALUES
+INSERT INTO patient (first_name, middle_name, last_name, gender, contact_no, date_of_birth, age, religion, nationality, occupation, guardian_name, guardian_occupation, street, province, municipality, barangay, zip_code, civil_status) VALUES ?('Norman', 'Hernandez', 'Fernandez', 'male', '+19202908453', '2017-09-06 16:10:44.581', 7, 'christian', 'filipino', NULL, 'Olga Hernandez Fernandez', 'teacher', 'Apt. 363', 'catanduanes', 'panganiban', 'barangay 9', 4588, 'single'),
 
-('Veronica', NULL, 'Mendoza', 'female', '+12786172005', '2006-08-08 07:26:12.290', 18, 'christian', 'filipino', NULL, NULL, NULL, NULL, 'camarinesSur', 'pasacao', 'barangay 2', 4652, 'single'),
+('Antonio', 'Legaspi', 'Lacson', 'male', '+13475005876', '1969-07-19 19:45:37.749', 55, 'christian', 'filipino', 'lawyer', NULL, NULL, 'Suite 666', 'sorsogon', 'bulusan', 'barangay 10', 4468, 'divorced'),
 
-('Juan', 'Ylagan', 'Estrella', 'male', '+18673951579', '1973-02-06 04:06:05.438', 52, 'christian', 'filipino', 'nurse', NULL, NULL, 'Apt. 374', 'camarinesNorte', 'vinzons', 'barangay 10', 4582, 'divorced'),
+('Lorna', 'Valenzuela', 'Lopez', 'female', '+17616448303', '2013-06-27 17:02:36.569', 11, 'christian', 'filipino', NULL, 'Rolando Valenzuela Lopez', 'plumber', 'Suite 455', 'sorsogon', 'casiguran', 'barangay 12', 4574, 'single'),
 
-('Gracia', 'Flores', 'Bailey', 'female', '+15694425058', '1940-04-30 21:27:05.942', 85, 'christian', 'filipino', 'journalist', NULL, NULL, 'Suite 645', 'catanduanes', 'gigmoto', 'barangay 14', 4514, 'single'),
+('Ernesto', 'Aguinaldo', 'Cook', 'male', '+15865164382', '1940-08-07 16:00:43.340', 84, 'christian', 'filipino', 'scientist', NULL, NULL, 'Apt. 806', 'masbate', 'palanas', 'barangay 2', 4447, 'widower/widowed'),
 
-('Raquel', 'Magpantay', 'Morgan', 'female', '+13214738078', '1997-03-22 00:52:04.943', 28, 'christian', 'filipino', 'lawyer', NULL, NULL, NULL, 'camarinesSur', 'lupi', 'barangay 14', 4609, 'single'),
+('Alfredo', 'Hostalero', 'Diaz', 'male', '+19409270874', '1992-01-28 21:26:42.635', 33, 'christian', 'filipino', 'designer', NULL, NULL, 'Apt. 258', 'camarinesSur', 'del gallego', 'barangay 5', 4496, 'divorced'),
 
-('Romualdo', 'Gatchalian', 'Thomas', 'male', '+16902170463', '1969-07-18 10:47:44.695', 55, 'christian', 'filipino', 'journalist', NULL, NULL, NULL, 'camarinesSur', 'del gallego', 'barangay 11', 4616, 'divorced'),
+('Mario', 'Jacinto', 'Fontanilla', 'male', '+14612510019', '1955-03-07 14:31:01.470', 70, 'christian', 'filipino', 'teacher', NULL, NULL, 'Apt. 752', 'camarinesSur', 'cabusao', 'barangay 7', 4559, 'widower/widowed'),
 
-('Felicidad', 'Estrella', 'De Vera', 'female', '+17388601001', '1943-09-20 15:44:04.440', 81, 'christian', 'filipino', 'developer', NULL, NULL, 'Apt. 256', 'sorsogon', 'magallanes', 'barangay 15', 4670, 'divorced'),
+('Lorena', 'Suarez', 'Ong', 'female', '+19053214804', '1958-03-24 19:28:18.165', 67, 'christian', 'filipino', 'lawyer', NULL, NULL, 'Suite 582', 'sorsogon', 'irosin', 'barangay 5', 4564, 'divorced'),
 
-('Lazaro', 'Villafuerte', 'Mabini', 'male', '+18214229928', '1972-09-08 13:11:30.344', 52, 'christian', 'filipino', 'doctor', NULL, NULL, 'Apt. 353', 'catanduanes', 'caramoran', 'barangay 10', 4433, 'married'),
+('Carmen', 'Santiago', 'Johnson', 'female', '+14948794317', '1947-06-21 00:19:22.036', 77, 'christian', 'filipino', 'artist', NULL, NULL, 'Suite 972', 'camarinesNorte', 'talisay', 'barangay 4', 4628, 'divorced'),
 
-('Leticia', 'Ferrer', 'Ignacio', 'female', '+12807218430', '1982-09-16 02:28:09.543', 42, 'christian', 'filipino', 'scientist', NULL, NULL, 'Suite 141', 'camarinesNorte', 'san lorenzo ruiz', 'barangay 2', 4618, 'single'),
+('Margarita', 'Camacho', 'De Leon', 'female', '+13929935967', '1991-07-12 19:14:23.261', 33, 'christian', 'filipino', 'artist', NULL, NULL, 'Suite 588', 'masbate', 'uason', 'barangay 11', 4551, 'divorced'),
 
-('Jorge', NULL, 'Yap', 'male', '+17173670862', '1962-04-25 02:42:43.188', 63, 'christian', 'filipino', 'developer', NULL, NULL, 'Suite 772', 'sorsogon', 'gubat', 'barangay 5', 4631, 'single'),
+('Monica', NULL, 'Bermudez', 'female', '+19745364553', '2006-03-04 14:53:40.523', 19, 'christian', 'filipino', NULL, NULL, NULL, NULL, 'albay', 'libon', 'barangay 2', 4581, 'single'),
 
-('Felicidad', 'Navarro', 'Soriano', 'female', '+18493826476', '1979-05-12 05:28:22.805', 45, 'christian', 'filipino', 'designer', NULL, NULL, 'Suite 287', 'catanduanes', 'pandan', 'barangay 4', 4478, 'divorced'),
+('Norman', 'Joven', 'Querubin', 'male', '+15189875040', '2011-06-10 00:37:28.787', 13, 'christian', 'filipino', NULL, 'Martin Joven Querubin', 'developer', 'Apt. 234', 'catanduanes', 'gigmoto', 'barangay 3', 4577, 'single'),
 
-('Salvador', 'Umali', 'Xerez-Burgos', 'male', '+17399545820', '1971-04-16 00:23:50.646', 54, 'christian', 'filipino', 'designer', NULL, NULL, 'Suite 944', 'camarinesNorte', 'capalonga', 'barangay 3', 4553, 'widower/widowed'),
+('Antonio', NULL, 'Urbano', 'male', '+16698045776', '1941-09-30 06:54:21.887', 83, 'christian', 'filipino', 'nurse', NULL, NULL, 'Apt. 837', 'catanduanes', 'panganiban', 'barangay 5', 4491, 'single'),
 
-('Victoria', 'Calderon', 'Bautista', 'female', '+13393107997', '2017-09-27 10:44:02.598', 7, 'christian', 'filipino', NULL, 'Celia Calderon Bautista', 'chef', 'Apt. 900', 'catanduanes', 'baras', 'barangay 15', 4454, 'single'),
+('Gloria', NULL, 'Mendoza', 'female', '+16483221832', '1958-01-20 18:54:59.136', 67, 'christian', 'filipino', 'engineer', NULL, NULL, 'Apt. 468', 'camarinesSur', 'del gallego', 'barangay 11', 4585, 'divorced'),
 
-('Emilio', 'Uson', 'Sy', 'male', '+13624381679', '1981-05-31 08:49:25.006', 43, 'christian', 'filipino', 'farmer', NULL, NULL, 'Apt. 796', 'sorsogon', 'gubat', 'barangay 5', 4531, 'married'),
+('Julia', 'Ortega', 'Santiago', 'female', '+19617446741', '1955-11-09 09:16:19.148', 69, 'christian', 'filipino', 'farmer', NULL, NULL, NULL, 'masbate', 'san pascual', 'barangay 6', 4572, 'widower/widowed'),
 
-('Claudia', 'Jacinto', 'Razon', 'female', '+19135413723', '1994-07-15 02:33:31.970', 30, 'christian', 'filipino', 'nurse', NULL, NULL, NULL, 'catanduanes', 'baras', 'barangay 14', 4645, 'single'),
+('Salvador', NULL, 'Martin', 'male', '+13496445119', '1953-08-15 09:56:22.447', 71, 'christian', 'filipino', 'chef', NULL, NULL, 'Suite 474', 'catanduanes', 'panganiban', 'barangay 4', 4586, 'widower/widowed'),
 
-('Francisco', 'Padilla', 'Kim', 'male', '+17117660547', '1991-06-30 23:16:15.220', 33, 'christian', 'filipino', 'artist', NULL, NULL, 'Apt. 637', 'catanduanes', 'baras', 'barangay 15', 4424, 'single'),
+('Mercedes', 'Dela Rosa', 'Collins', 'female', '+16248371008', '1969-10-27 07:50:38.300', 55, 'christian', 'filipino', 'engineer', NULL, NULL, 'Apt. 316', 'masbate', 'san fernando', 'barangay 6', 4697, 'single'),
 
-('Virginia', 'Fortuno', 'Stewart', 'female', '+14449997010', '2006-09-18 10:30:50.185', 18, 'christian', 'filipino', NULL, NULL, NULL, 'Suite 255', 'catanduanes', 'san miguel', 'barangay 1', 4481, 'single'),
+('Hernando', 'Eusebio', 'Luna', 'male', '+13919124736', '2001-11-09 22:08:54.300', 23, 'christian', 'filipino', 'chef', NULL, NULL, NULL, 'albay', 'manito', 'barangay 10', 4405, 'single'),
 
-('Marina', 'Francisco', 'De Vera', 'female', '+13543529677', '2019-07-17 08:21:14.414', 5, 'christian', 'filipino', NULL, 'Salvador Francisco De Vera', 'teacher', NULL, 'albay', 'pio duran', 'barangay 15', 4515, 'single'),
+('Manuel', NULL, 'Flores', 'male', '+12086722865', '2002-09-05 16:08:01.849', 22, 'christian', 'filipino', NULL, NULL, NULL, 'Apt. 184', 'sorsogon', 'casiguran', 'barangay 5', 4447, 'single'),
 
-('Lilia', 'Lorenzo', 'Green', 'female', '+15924880694', '2006-10-27 19:54:42.739', 18, 'christian', 'filipino', NULL, NULL, NULL, NULL, 'masbate', 'milagros', 'barangay 3', 4472, 'single'),
+('Ruben', 'Ocampo', 'Tiongson', 'male', '+19228994480', '1939-11-01 13:20:43.637', 85, 'christian', 'filipino', 'farmer', NULL, NULL, NULL, 'masbate', 'dimasalang', 'barangay 13', 4630, 'married'),
 
-('Olga', NULL, 'Domingo', 'female', '+14366695979', '1966-01-18 22:50:16.638', 59, 'christian', 'filipino', 'journalist', NULL, NULL, 'Suite 360', 'masbate', 'plaridel', 'barangay 11', 4690, 'divorced'),
+('Rosalia', 'Enriquez', 'Katigbak', 'female', '+16584846261', '1962-10-28 04:45:13.350', 62, 'christian', 'filipino', 'architect', NULL, NULL, NULL, 'albay', 'libon', 'barangay 1', 4571, 'divorced'),
 
-('Mercedes', 'Hermosa', 'Moore', 'female', '+14947902920', '2013-11-17 02:58:33.850', 11, 'christian', 'filipino', NULL, 'Rafael Hermosa Moore', 'teacher', 'Apt. 925', 'albay', 'camalig', 'barangay 13', 4406, 'single'),
+('Fernando', 'Fabian', 'Quirino', 'male', '+15008686354', '1992-10-04 18:54:12.236', 32, 'christian', 'filipino', 'teacher', NULL, NULL, NULL, 'albay', 'sto. domingo', 'barangay 10', 4541, 'divorced'),
 
-('Maricel', 'Santiago', 'Cooper', 'female', '+15015385306', '1957-03-15 03:58:17.065', 68, 'christian', 'filipino', 'scientist', NULL, NULL, NULL, 'sorsogon', 'gubat', 'barangay 4', 4431, 'divorced'),
+('Lilia', 'Flores', 'Tiongson', 'female', '+16498838598', '1944-06-15 05:49:12.971', 80, 'christian', 'filipino', 'farmer', NULL, NULL, NULL, 'camarinesNorte', 'paracale', 'barangay 6', 4578, 'married'),
 
-('Celia', 'Tabora', 'Mateo', 'female', '+18418125302', '1989-11-10 15:00:56.477', 35, 'christian', 'filipino', 'engineer', NULL, NULL, 'Apt. 279', 'catanduanes', 'san miguel', 'barangay 6', 4581, 'married'),
+('Vicenta', 'San Pedro', 'Katigbak', 'female', '+18385704676', '1934-11-12 15:25:10.920', 90, 'christian', 'filipino', 'teacher', NULL, NULL, 'Suite 556', 'albay', 'malilipot', 'barangay 4', 4537, 'widower/widowed'),
 
-('Carmen', 'Wenceslao', 'Magsaysay', 'female', '+18967983333', '1937-07-07 12:01:36.529', 87, 'christian', 'filipino', 'designer', NULL, NULL, 'Apt. 117', 'camarinesNorte', 'mercedes', 'barangay 12', 4661, 'single'),
+('Florencia', 'Macapagal', 'Ramirez', 'female', '+15867774316', '2011-06-27 10:51:19.509', 13, 'christian', 'filipino', NULL, 'Raquel Macapagal Ramirez', 'mechanic', NULL, 'camarinesNorte', 'jose panganiban', 'barangay 4', 4632, 'single'),
 
-('Rafael', 'Kintanar', 'Mitchell', 'male', '+19204716438', '1963-05-11 00:27:02.621', 61, 'christian', 'filipino', 'scientist', NULL, NULL, 'Apt. 458', 'catanduanes', 'gigmoto', 'barangay 12', 4402, 'single'),
+('Fabiola', 'Revilla', 'Nelson', 'female', '+15889697955', '1939-07-02 06:12:08.670', 85, 'christian', 'filipino', 'doctor', NULL, NULL, 'Apt. 960', 'masbate', 'balud', 'barangay 1', 4640, 'single'),
 
-('Humberto', 'Legaspi', 'Nieto', 'male', '+17836860858', '1998-02-13 16:05:02.097', 27, 'christian', 'filipino', 'journalist', NULL, NULL, NULL, 'masbate', 'milagros', 'barangay 7', 4562, 'single'),
+('Delia', 'Bautista', 'Rogers', 'female', '+12859808936', '1952-12-25 16:06:55.345', 72, 'christian', 'filipino', 'plumber', NULL, NULL, 'Suite 189', 'albay', 'malilipot', 'barangay 4', 4617, 'widower/widowed'),
 
-('Filomeno', 'Ontiveros', 'Thomas', 'male', '+12472169738', '2013-01-09 10:21:44.895', 12, 'christian', 'filipino', NULL, 'Gracia Ontiveros Thomas', 'nurse', 'Apt. 330', 'sorsogon', 'prieto diaz', 'barangay 5', 4618, 'single'),
+('Isabelita', 'Imperial', 'Mateo', 'female', '+14167715272', '1946-09-14 09:12:47.312', 78, 'christian', 'filipino', 'developer', NULL, NULL, NULL, 'masbate', 'san jacinto', 'barangay 1', 4421, 'divorced'),
 
-('Lorna', 'Escueta', 'Howard', 'female', '+12999102869', '1971-11-20 06:08:26.850', 53, 'christian', 'filipino', 'engineer', NULL, NULL, 'Suite 733', 'catanduanes', 'baras', 'barangay 10', 4547, 'widower/widowed'),
+('Felicidad', NULL, 'Edwards', 'female', '+14232210697', '1938-02-20 18:26:14.287', 87, 'christian', 'filipino', 'plumber', NULL, NULL, NULL, 'albay', 'jovellar', 'barangay 5', 4543, 'single'),
 
-('Adelardo', NULL, 'Tan', 'male', '+12189484958', '1944-02-05 10:28:44.466', 81, 'christian', 'filipino', 'nurse', NULL, NULL, 'Suite 524', 'camarinesSur', 'gainza', 'barangay 3', 4470, 'married'),
+('Gloria', 'Galvez', 'Lopez', 'female', '+13157357589', '1976-11-21 00:01:20.766', 48, 'christian', 'filipino', 'doctor', NULL, NULL, 'Suite 396', 'masbate', 'san fernando', 'barangay 9', 4488, 'divorced'),
 
-('Melania', 'Yambao', 'Natividad', 'female', '+16444697206', '1944-10-15 09:43:13.267', 80, 'christian', 'filipino', 'developer', NULL, NULL, 'Suite 783', 'camarinesNorte', 'mercedes', 'barangay 7', 4538, 'married'),
+('Pascual', NULL, 'De Leon', 'male', '+16134868980', '1937-09-16 00:06:20.034', 87, 'christian', 'filipino', 'developer', NULL, NULL, 'Apt. 821', 'catanduanes', 'baras', 'barangay 5', 4528, 'divorced'),
 
-('Rosario', 'Legaspi', 'Lim', 'female', '+16676164387', '2018-04-24 23:01:51.389', 7, 'christian', 'filipino', NULL, 'Jorge Legaspi Lim', 'journalist', 'Apt. 318', 'masbate', 'monreal', 'barangay 9', 4430, 'single'),
+('Carmen', 'Buenaventura', 'Garcia', 'female', '+14602379785', '2016-04-24 16:01:17.434', 9, 'christian', 'filipino', NULL, 'Salvador Buenaventura Garcia', 'nurse', 'Suite 566', 'camarinesSur', 'buhi', 'barangay 2', 4693, 'single'),
 
-('Lilia', 'Talavera', 'Zamora', 'female', '+19153810182', '1996-08-02 17:18:20.150', 28, 'christian', 'filipino', 'architect', NULL, NULL, 'Apt. 314', 'catanduanes', 'bagamanoc', 'barangay 4', 4545, 'single'),
+('Noemi', 'Revilla', 'De Leon', 'female', '+12986983837', '1945-11-10 17:19:53.271', 79, 'christian', 'filipino', 'developer', NULL, NULL, 'Suite 840', 'albay', 'pio duran', 'barangay 15', 4616, 'single'),
 
-('Carlos', 'De Vera', 'Tiu', 'male', '+18958845803', '1953-02-08 09:34:31.554', 72, 'christian', 'filipino', 'mechanic', NULL, NULL, NULL, 'sorsogon', 'donsol', 'barangay 3', 4436, 'married'),
+('Rita', 'Espiritu', 'Lee', 'female', '+14994690684', '1995-10-16 04:25:40.561', 29, 'christian', 'filipino', 'farmer', NULL, NULL, NULL, 'camarinesSur', 'canaman', 'barangay 10', 4605, 'single'),
 
-('Gilbert', 'Hernandez', 'Nelson', 'male', '+12257456986', '1983-12-16 10:54:17.292', 41, 'christian', 'filipino', 'lawyer', NULL, NULL, NULL, 'catanduanes', 'caramoran', 'barangay 7', 4462, 'divorced'),
+('Humberto', 'Calderon', 'Alvarez', 'male', '+12352656330', '1957-04-03 03:55:08.163', 68, 'christian', 'filipino', 'nurse', NULL, NULL, 'Apt. 791', 'sorsogon', 'bulusan', 'barangay 12', 4418, 'single'),
 
-('Pilar', 'Suarez', 'Dela Cruz', 'female', '+12377600905', '1956-12-28 13:27:05.531', 68, 'christian', 'filipino', 'designer', NULL, NULL, 'Suite 610', 'sorsogon', 'prieto diaz', 'barangay 2', 4560, 'widower/widowed'),
+('Adela', 'Manalo', 'Flores', 'female', '+13033310548', '1981-11-17 09:23:32.349', 43, 'christian', 'filipino', 'scientist', NULL, NULL, NULL, 'catanduanes', 'baras', 'barangay 11', 4602, 'widower/widowed'),
 
-('Eduardo', 'Tolentino', 'Morales', 'male', '+13927226870', '1985-01-14 00:10:40.345', 40, 'christian', 'filipino', 'nurse', NULL, NULL, NULL, 'camarinesNorte', 'basud', 'barangay 14', 4580, 'married'),
+('Lazaro', 'Fortuno', 'Soriano', 'male', '+16067057611', '2000-08-19 14:58:17.494', 24, 'christian', 'filipino', 'designer', NULL, NULL, 'Suite 796', 'masbate', 'esperanza', 'barangay 4', 4472, 'single'),
 
-('Juliana', 'Galvez', 'Santos', 'female', '+14648065322', '1969-10-16 15:00:04.764', 55, 'christian', 'filipino', 'developer', NULL, NULL, 'Suite 444', 'albay', 'malinao', 'barangay 11', 4519, 'single'),
+('Eusebio', 'Obispo', 'Velasco', 'male', '+13496475243', '1952-02-10 14:44:28.374', 73, 'christian', 'filipino', 'chef', NULL, NULL, 'Apt. 728', 'camarinesNorte', 'capalonga', 'barangay 11', 4420, 'widower/widowed'),
 
-('Eduardo', 'Ocampo', 'Bailey', 'male', '+17709426983', '2015-07-21 16:29:48.646', 9, 'christian', 'filipino', NULL, 'Eduardo Ocampo Bailey', 'designer', 'Suite 134', 'sorsogon', 'prieto diaz', 'barangay 12', 4612, 'single'),
+('Amador', 'Bautista', 'Baker', 'male', '+16068405476', '1991-08-28 11:23:09.809', 33, 'christian', 'filipino', 'scientist', NULL, NULL, 'Suite 693', 'masbate', 'balud', 'barangay 1', 4693, 'widower/widowed'),
 
-('Lazaro', 'Garibay', 'Flores', 'male', '+14706665844', '1989-06-25 15:45:48.278', 35, 'christian', 'filipino', 'engineer', NULL, NULL, 'Apt. 728', 'masbate', 'palanas', 'barangay 10', 4489, 'single'),
+('Isabel', 'Tiamzon', 'Quinto', 'female', '+15486876816', '1995-01-16 16:22:09.081', 30, 'christian', 'filipino', 'doctor', NULL, NULL, NULL, 'albay', 'oanob', 'barangay 11', 4476, 'single'),
 
-('Antonio', 'Reyes', 'Quirino', 'male', '+16753228690', '2014-05-11 22:37:44.412', 10, 'christian', 'filipino', NULL, 'Lilia Reyes Quirino', 'nurse', NULL, 'masbate', 'cataingan', 'barangay 10', 4552, 'single'),
+('Juan', NULL, 'Anderson', 'male', '+16922623479', '2000-07-05 17:22:15.335', 24, 'christian', 'filipino', 'artist', NULL, NULL, 'Suite 109', 'masbate', 'san fernando', 'barangay 11', 4421, 'single'),
 
-('Veronica', 'Dizon', 'Morgan', 'female', '+16467248505', '1969-09-22 02:31:20.724', 55, 'christian', 'filipino', 'plumber', NULL, NULL, NULL, 'camarinesSur', 'magarao', 'barangay 7', 4520, 'married'),
+('Tomas', 'Inocencio', 'Tabios', 'male', '+14927505183', '1968-06-01 06:46:40.377', 56, 'christian', 'filipino', 'teacher', NULL, NULL, 'Suite 822', 'albay', 'malilipot', 'barangay 10', 4468, 'divorced'),
 
-('Carlos', 'Balagtas', 'Javier', 'male', '+13202549397', '2007-11-30 12:22:12.278', 17, 'christian', 'filipino', NULL, 'Ricardo Balagtas Javier', 'engineer', 'Suite 598', 'camarinesNorte', 'mercedes', 'barangay 8', 4422, 'single'),
+('Valentino', 'Llamas', 'Urbano', 'male', '+12332099840', '1968-11-02 00:44:44.177', 56, 'christian', 'filipino', 'lawyer', NULL, NULL, 'Apt. 929', 'albay', 'jovellar', 'barangay 7', 4410, 'single'),
 
-('Lorna', 'Inocencio', 'Morris', 'female', '+15063058292', '1942-05-24 19:08:21.624', 82, 'christian', 'filipino', 'plumber', NULL, NULL, NULL, 'camarinesNorte', 'vinzons', 'barangay 2', 4602, 'widower/widowed'),
+('Dolores', 'Nierva', 'Sy', 'female', '+18543025486', '2005-11-21 19:00:00.649', 19, 'christian', 'filipino', NULL, NULL, NULL, NULL, 'camarinesNorte', 'vinzons', 'barangay 8', 4695, 'single'),
 
-('Adela', 'Dela Rosa', 'Smith', 'female', '+14412261898', '1966-07-06 01:58:14.145', 58, 'christian', 'filipino', 'plumber', NULL, NULL, NULL, 'camarinesSur', 'gainza', 'barangay 2', 4440, 'married'),
+('Delia', 'Obispo', 'Buenaventura', 'female', '+12049311939', '1985-11-08 23:46:39.334', 39, 'christian', 'filipino', 'scientist', NULL, NULL, 'Apt. 949', 'catanduanes', 'panganiban', 'barangay 4', 4573, 'divorced'),
 
-('Benjamin', 'Zubiri', 'Pascual', 'male', '+14633115763', '1994-03-21 10:08:09.664', 31, 'christian', 'filipino', 'teacher', NULL, NULL, 'Suite 160', 'camarinesNorte', 'labo', 'barangay 7', 4615, 'widower/widowed'),
+('Fabiola', 'Dizon', 'Tabios', 'female', '+15728044397', '1939-12-04 21:15:10.710', 85, 'christian', 'filipino', 'chef', NULL, NULL, 'Suite 920', 'camarinesNorte', 'san vicente', 'barangay 13', 4570, 'divorced'),
 
-('Lorenzo', 'Olivares', 'Martin', 'male', '+17118341333', '1978-08-26 07:14:35.489', 46, 'christian', 'filipino', 'scientist', NULL, NULL, 'Apt. 391', 'albay', 'rapu-rapu', 'barangay 9', 4454, 'widower/widowed'),
+('Carmen', 'Lapid', 'De Vera', 'female', '+18593004247', '1937-04-26 03:20:37.894', 88, 'christian', 'filipino', 'journalist', NULL, NULL, NULL, 'catanduanes', 'san miguel', 'barangay 8', 4470, 'single'),
 
-('Veronica', 'Hernandez', 'Nieto', 'female', '+18887320009', '1972-03-27 14:15:44.246', 53, 'christian', 'filipino', 'scientist', NULL, NULL, 'Apt. 921', 'sorsogon', 'juban', 'barangay 11', 4698, 'single'),
+('Florencia', 'Fausto', 'Turner', 'female', '+16602071474', '1958-03-10 08:42:37.320', 67, 'christian', 'filipino', 'architect', NULL, NULL, NULL, 'sorsogon', 'castilla', 'barangay 14', 4684, 'widower/widowed'),
 
-('Alfredo', 'Navarro', 'Ong', 'male', '+18802090347', '1950-08-15 11:20:51.660', 74, 'christian', 'filipino', 'developer', NULL, NULL, 'Apt. 173', 'albay', 'oanob', 'barangay 6', 4609, 'single'),
+('Cristina', 'Gatchalian', 'Sevilla', 'female', '+12055508870', '1994-03-15 23:19:22.050', 31, 'christian', 'filipino', 'developer', NULL, NULL, 'Apt. 499', 'catanduanes', 'panganiban', 'barangay 10', 4551, 'single'),
 
-('Alipio', 'Zaldarriaga', 'Wenceslao', 'male', '+16246947448', '2012-01-03 13:53:38.983', 13, 'christian', 'filipino', NULL, 'Simón Zaldarriaga Wenceslao', 'scientist', NULL, 'masbate', 'dimasalang', 'barangay 12', 4654, 'single'),
+('Consolacion', 'Suarez', 'Aguilar', 'female', '+12806172782', '2008-02-21 20:18:18.925', 17, 'christian', 'filipino', NULL, 'Jovita Suarez Aguilar', 'nurse', 'Suite 635', 'albay', 'guinobatan', 'barangay 13', 4518, 'single'),
 
-('Victor', 'Inocencio', 'David', 'male', '+14486548727', '2006-07-31 22:29:21.218', 18, 'christian', 'filipino', NULL, NULL, NULL, 'Apt. 315', 'catanduanes', 'san miguel', 'barangay 3', 4499, 'single'),
-
-('Pedro', 'Abad', 'Jacinto', 'male', '+15534353070', '1993-09-14 15:12:36.484', 31, 'christian', 'filipino', 'scientist', NULL, NULL, NULL, 'sorsogon', 'bulan', 'barangay 7', 4431, 'widower/widowed');
+('Esperanza', 'Santiago', 'Aquino', 'female', '+13516526740', '2019-06-21 15:36:57.618', 5, 'christian', 'filipino', NULL, 'Salvador Santiago Aquino', 'plumber', 'Suite 460', 'sorsogon', 'bulusan', 'barangay 3', 4635, 'single');

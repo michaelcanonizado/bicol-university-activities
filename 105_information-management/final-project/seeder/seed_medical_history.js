@@ -5,6 +5,7 @@ const fs = require('fs');
 async function seed_database() {
 	const database = 'iflair-dental-clinic-management-system';
 	const table = 'medical_history';
+	const insert_query_header = `INSERT INTO ${table} (patient_id, blood_type, allergies, chronic_illnesses, current_medication, past_surgeries, bleeding_disorders, heart_condition, respiratory_issues, autoimmune_disease, is_pregnant, gum_disease_history, genetic_conditions, oral_cancer_history)  VALUES\n\n`;
 
 	// Establish SQL connection
 	const connection = await mysql.createConnection({
@@ -37,17 +38,14 @@ async function seed_database() {
 
 	// Insert the generated data into the database
 	console.log(`Inserting ${insertCount} generated ${table} data...`);
-	await connection.query(
-		`INSERT INTO ${table} (first_name, middle_name, last_name, gender, contact_no, date_of_birth, age, religion, nationality, occupation, guardian_name, guardian_occupation, street, province, municipality, barangay, zip_code, civil_status) VALUES ?`,
-		[rows]
-	);
+	await connection.query(insert_query_header, [rows]);
 	console.log('Seed successful!');
 
 	// Generate the raw SQL of the actions above  for logging
 	const raw_sql =
 		`DELETE FROM ${table};\n` +
 		`ALTER TABLE ${table} AUTO_INCREMENT = 1;\n\n` +
-		`INSERT INTO ${table} (patient_id, blood_type, allergies, chronic_illnesses, current_medication, past_surgeries, bleeding_disorders, heart_condition, respiratory_issues, autoimmune_disease, is_pregnant, gum_disease_history, genetic_conditions, oral_cancer_history)  VALUES\n\n` +
+		insert_query_header +
 		rows
 			.map((row) => `(${row.map((v) => mysql.escape(v)).join(', ')})`)
 			.join(',\n\n') +
