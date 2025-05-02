@@ -89,7 +89,7 @@ CREATE TABLE `medical_history` (
   `blood_type` char(5) NOT NULL,
   `allergies` varchar(100) DEFAULT NULL,
   `chronic_illnesses` varchar(255) DEFAULT NULL,
-  `curr_medication` varchar(255) DEFAULT NULL,
+  `current_medication` varchar(255) DEFAULT NULL,
   `past_surgeries` varchar(255) DEFAULT NULL,
   `bleeding_disorders` varchar(255) DEFAULT NULL,
   `heart_condition` varchar(255) DEFAULT NULL,
