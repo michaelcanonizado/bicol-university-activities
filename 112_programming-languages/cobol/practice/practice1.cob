@@ -1,0 +1,14 @@
+        IDENTIFICATION DIVISION.
+        PROGRAM-ID. HELLO.
+        
+        DATA DIVISION.
+        WORKING-STORAGE SECTION.
+        01 NUM1 PIC 99.
+
+        PROCEDURE DIVISION.
+            INITIALIZE NUM1.
+            PERFORM LOOP-PARA VARYING NUM1 FROM 1 BY 1 UNTIL NUM1 > 9.
+            STOP RUN.
+
+        LOOP-PARA.
+            DISPLAY NUM1.
