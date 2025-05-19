@@ -1,0 +1,7 @@
+(dotimes (x 7)
+  (let* ((y (+ x 1))
+         (isOdd (mod y 2)))
+    (format t "~D is " y)
+    (if (= isOdd 1)
+        (format t "odd~%")
+        (format t "even~%"))))
