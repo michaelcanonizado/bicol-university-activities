@@ -1,0 +1,48 @@
+AI Schedule Builder for BU CORs
+
+A modern and aesthetic schedule builder designed for students of BU. Students can scan their COR and a schedule will be made. Similar to schedule makers like: [https://gizmoa.com/college-schedule-maker/] and [https://schedulemaker.io/], but with more customization.
+
+The AI scanning works by letting the student upload their COR, which the system processes with OCR (Optical Character Recognition) to extract course codes, names, sections, and schedules. This data is then parsed and structured into the app’s format. This model can specifically be trained on BU CORs (which is reliable and already structured) so high accuracy is feasible.
+
+Core Features: 
+    - COR Scanning 
+    - If AI servers are down, users can still manually input data to keep the app fully usable 
+    - Users can set background colors, fonts, table outlines, images, and overall theme 
+    - Users can also select from popular phone dimentions so schedules can perfectly fit their wallpaper 
+    - Schedule is stored in cache so even if they close the tab, window, or restart, the schedule is persisted. 
+    - Compare schedules with friends to find matching free time - Sharing schedule links so friends can see or copy
+
+Other Possible Features: 
+    - Sharing designs where users can see other users' design and upvote 
+    - Curated templates that users can choose from 
+    - Version history, users can ctrl + z ctrl + y to undo and redo
+
+
+=============================================================================
+
+CUE Card
+
+1) Inspiration
+    - Schedules easily visualize COR
+    - Schedule as wallpapers
+    - Current sites are not that customizable
+
+2) AI
+    - Easy datasets
+        - Everyone has COR
+        - CORs are easily mockable
+        - Take varrying samples (different lighting, resolution, types, etc.)
+        - Ask help from registrar
+    - Varrying Difficulty
+        - Can just a library or  premade OCR (easy) to improving existing OCRs (medium) to creating our own model (hard)
+    - CORs are stable and structured, so models will have an easier time. Therefor high accuracy, percision, and recall are feasible.
+
+3) Balanced
+    - The projects is not just AI, so we get to work on different aspects.
+    - Therefore, all contributions are just as important
+
+4) Perfect Target Audience, Useablity, and Trend Factor:
+    - BU students
+    - App is actually useful
+    - Gathering users will be easy. E.g: BU Deans List Calculator
+    - Looks really good on portfolio if there are actual users
