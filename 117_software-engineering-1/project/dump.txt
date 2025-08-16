@@ -1,0 +1,219 @@
+1) Instagram Spam Detection 
+
+(https://www.projectpro.io/article/artificial-intelligence-project-ideas/461)
+
+Have you ever received a notification that someone commented on your Instagram post? You excitedly pick up your phone and open the app only to find that it’s a bot promoting some knockoff brand of shoes. The comment section of many social media platforms’ posts is filled with bots. They can range from annoying to dangerous, depending on the type of call to action they require from you. You can build a spam detection model using AI techniques to identify the difference between spam and legitimate comments.
+
+Project Idea: You might not be able to find a dataset that has a collection of Instagram spam comments, but you can collect the data for this analysis by scraping the web. Access the Instagram API with Python to get unlabelled comments from Instagram. You can use a different set of data for training, like Kaggle’s YouTube spam collection dataset. Then, use keywords to classify words that commonly appear in spam comments. Use a technique like N-Gram to assign weightage to words that tend to appear in spam comments, then compare those words with each scraped comment from the web. Another approach you can take is the use of a distance-based algorithm like cosine similarity. These approaches will yield better results based on the type of pre-processing you apply. You can also use a pre-trained model like ALBERT for better results. While distance or weightage matching algorithms work well in finding similar words, they are unable to grasp the context of a sentence. Natural Language Processing models like BERT and ALBERT can do this better, as they consider factors like sentence context, coherence, and interpretability. 
+
+Dataset: YouTube Spam Collection Data Set
+
+Tools and Libraries: BERT, ALBERT, Python
+
+
+
+2) Fake Product Review Identification 
+
+(https://www.projectpro.io/article/artificial-intelligence-project-ideas/461)
+
+This AI project is similar to the Instagram spam detection project listed above.  There are many business owners out there who fabricate reviews for their products to get more sales misleading individuals who are looking to purchase high-quality products.
+
+Project Idea: You can build a fake reviews identification system to solve this problem. Kaggle has a dataset called Deceptive Opinion Spam Corpus that you can use for this project. This dataset contains 1600 hotel reviews where 800 of them are positive, and another 800 are negative. These reviews are already labelled, so you just need to do some data pre-processing and tokenisation on all this data before training your model. You can use transfer learning fto recognize fake reviews with pre-trained models like BERT, RoBERTa and XLNet. 
+
+Dataset: Deceptive Opinion Spam Corpus
+
+Tools and Libraries: BERT, RoBERTa, XLNet, Python
+
+
+3) Infinite Nature: Generating 3D Flythroughs from Still Photos
+
+(https://research.google/blog/infinite-nature-generating-3d-flythroughs-from-still-photos/)
+
+
+4) Building a Telegram Bot
+
+(https://www.projectpro.io/article/artificial-intelligence-project-ideas/461)
+
+A bot is a computer program that you can program to carry out specific activities. Bots usually imitate or completely replicate human behavior.
+
+Building a Telegram Bot
+
+Project Idea: One of the most exciting AI Python projects involves using the Telegram API to build a Telegram bot with Python. You must first obtain a Telegram bot API from the BotFather Telegram account. BotFather is a simple bot that provides a unique API to help build other bots. Once you have the API key to build your telegram bot, the next step is to install the telegram package. Making a “Hello World” program is the simplest method to get your bot up and running. You just need to simply program your chatbot with a command on which your telegram bot will respond with the message “Hello, World”.
+
+Tools and Libraries: Python, Telegram Bot API
+
+ADD ON: Something telegram bot related
+
+
+
+
+5) Car Price Prediction
+
+(https://www.projectpro.io/article/artificial-intelligence-project-ideas/461)
+
+Car price prediction is one of the most basic AI Python projects for final-year students. This project will show you how to use PyTorch to train a model that will help you predict automobile prices using Machine Learning. For this project, use a dataset that includes the costs of different cars and the variable you will predict, i.e., the selling price of the vehicles.
+
+Project Idea: Import all essential libraries, such as pandas, matplotlib, and others, and then load the dataset. To use the data for training, you must transform it from a dataframe to PyTorch Tensors, which require converting them to NumPy arrays. Convert these arrays to PyTorch tensors, then use them to build a variable dataset.
+
+Tools and Libraries: NumPy, PyTorch, Pandas, Matplorlib
+
+
+
+
+
+6) PDF-based Q&A System (fix numbering for projects)
+
+(https://www.projectpro.io/article/artificial-intelligence-project-ideas/461)
+
+Documents contain valuable knowledge, but searching through them is inefficient. AI-powered Q&A systems enable users to extract answers from PDFs instantly, transforming research, legal work, and corporate documentation by providing accurate, on-demand information.
+
+Project Idea: This project enables AI-driven question-answering on PDF documents using LangChain, Gradio, Hugging Face, and FAISS. It processes PDFs, generates embeddings, and retrieves answers with a pretrained LLM. Designed for Google Colab, it features a Gradio UI for seamless interaction. Learn more in this How to Build an LLM PDF.
+
+Source Code: How to Build an LLM from Scratch? 
+
+GitHub Repo: ProjectProRepo/How-to-Build-an-LLM-App-from-Scratch-
+
+ADD ON: Something similar where you provide the link to a quiz and dump the pdfs needed. It will then scrape the quiz webpage and scan the provided documents for answers. It will either inject answers to the quiz or give you the answers.
+
+
+
+
+7) Fake News Detector Project in AI
+
+(https://www.projectpro.io/article/artificial-intelligence-project-ideas/461)
+
+Fake news is misleading or false information that is circulated as news. It is often difficult to distinguish between fake and real news, and it isn’t until the situation gets blown out of proportion that it comes to light. The spreading of fake news becomes especially dangerous during times like elections or pandemic situations. Fake rumours and misinformation that pose harm to human lives are threatening to people and the society. Fake news needs to be detected and prevented early, before it causes panic and spreads to a large number of people.
+
+Project Idea: For this very interesting project, you will build a fake news detector, you can use the Real and Fake News dataset  You can use a pre-trained machine learning model called BERT to perform this classification. BERT is a Natural Language Processing (NLP) model that has been made open-source. You can load BERT into Python and just add one additional output layer for your text classification task.
+
+Tools and Libraries: Python, BERT
+
+Dataset: Fake News Dataset | IEEE DataPort
+
+
+8) https://www.reddit.com/r/ArtificialInteligence/comments/1epvi0n/what_practical_ai_projects_have_you_actually_built/
+
+"One of my jobs is a private English teacher. I use text books and there are some great ones out there, however they can become dated, or the exercises and format is great but the content isn't so relevant.
+
+I made a GPT connected to Pexels API in which I can upload some pages from a textbook I like and I enter the target level, some context of my student and a theme they are interested in and the it will recreate the pages, also supplying a selection of suitable images from the API.
+
+That's literally saved me over 8 hours work a week, and my student retention and the speed in which they learn has gone through the roof."
+
+What they built
+
+They created an AI tool that:
+
+Takes a textbook page as input
+
+The teacher can upload scanned or photographed pages they like (say, grammar exercises, reading comprehension pages, etc.).
+
+Lets them set specific customization info
+
+Target level (beginner, intermediate, advanced).
+
+Context about the student (age, profession, learning goals).
+
+Theme the student is interested in (sports, travel, fashion, tech, etc.).
+
+Uses GPT to recreate the page
+
+The AI rewrites the exercises, reading passages, and examples so they match the student’s interest, level, and context.
+
+For example, if the original page was about “A day at the farm” for beginners, and the student is into basketball, the AI might rewrite it into “A day at the basketball court” while keeping the same grammar focus.
+
+Integrates with the Pexels API
+
+Pexels is a free stock image site with an API.
+
+The AI also fetches relevant images to go along with the recreated content (so the textbook page looks visually appealing and connected to the topic).
+
+Why it’s valuable
+
+Saves the teacher 8+ hours per week because they no longer manually rewrite and find images.
+
+Keeps learning materials relevant and engaging for each student.
+
+Boosts retention and learning speed because students see topics they actually care about.
+
+In simpler terms:
+They built an AI textbook customizer that can rewrite and personalize teaching materials instantly, plus automatically add images that match the topic.
+
+
+
+
+
+9) 
+i made an agent that hosted my family’s secret santa. you used text messages to tell santa your wish list and address and it would also serve as an intermediary so gift givers and receivers could ask ask questions anonymously. all as an overly campy santa claus character.
+
+
+
+
+10) 
+Create a robot that can sort a physical pile of garbage (e.g. paper/organic/metal) by vision.
+
+Create an app that can predict (or advice) a vacation location given PolarSteps history.
+
+Create an algorithm that can generate an abstract given an article.
+
+
+Create an AI powered platform to create videos for online education (TikTok like family guy educational videos)
+
+Mark Zuckerberg 2.0 ML algorithm for HOT OR NOT, should be able to handle diverse candidates(Black, Brown, White, Yellow)
+
+
+
+11) Sentiment Analysis
+
+(https://www.projectpro.io/article/top-10-machine-learning-projects-for-beginners-in-2021/397)
+
+Social media platforms like Twitter, Facebook, YouTube, and Reddit generate vast amounts of big data that can be mined to understand trends, public sentiments, and opinions. Social media data today has become relevant for branding, marketing, and business. A sentiment analyzer learns about various sentiments behind a “content piece” (IM, email, tweet, or any other social media post) through machine learning and predicts the same using AI. Twitter data is a definitive entry point for beginners to practice sentiment analysis machine learning  problems.
+
+Project Idea: Using the Twitter dataset, one can get a captivating blend of tweet contents and related metadata such as hashtags, retweets, location, users, and more, which pave the way for insightful analysis. The Twitter dataset consists of 31,962 tweets and is 3MB in size.  Using Twitter data, you can find out what the world is saying about a topic, whether it is movies, sentiments about US elections, or any other trending topic like predicting who would win the FIFA World Cup 2018. Working with the Twitter dataset will help you understand the challenges associated with social media data mining and also learn about classifiers in depth.  The foremost problem you can start working on as a beginner is building a model to classify tweets as positive or negative. You can pick any machine learning or deep learning algorithm.
+
+ADD ON: Basically an app where the user's can view different topics and see how the "world" is feeling about it (positive or negative)
+
+
+
+
+
+
+12) Intelligent Document Processing
+
+(https://ai-cases.com/ai-for-supply-chain/smart-document-processing/)
+
+Quickly scan, digitize, and extract meaningful insights from supply chain documents like invoices, purchase orders, bills of lading, and customs documents. Automate the process of analyzing those documents instead of manual data entry.
+
+
+
+
+13) Procurement Contract Inspection
+
+(https://ai-cases.com/ai-for-supply-chain/procurement-contract-inspection/)
+
+Contracts are one category of enterprise documents that are very complex to manage. They carry legal terms, obligations, holes, and clauses that could increase the risk exposure for firms. AI can streamline the end to end contract management process in terms of 1. Auto-extraction of key obligations like important Contract Dates, Party names, Contract Types, Contract Value , Force Majeure, Termination clauses and much more. 2. Identifying Risky clauses and recommending alternatives 
+
+Business Impact: process more documents in less time, decrease processing costs, increase productivity, and reduce errors resulting from manual processing.
+
+
+
+
+14) Automated Grading
+
+(https://ai-cases.com/ai-for-education/automated-grading-system/)
+
+AI can automate the Grading process by Predicting grading scores (based on similarity with historical correct answers), grouping similar answers together to assign the same score, recognizing handwriting, and providing consistent and fast feedback to students. This can save teachers much time and provide a more accurate and fair grading
+
+
+
+
+15) Jigsaw - Agile Community Rules Classification
+
+(https://www.kaggle.com/competitions/jigsaw-agile-community-rules)
+
+If you’ve ever had a comment taken down on Reddit and wondered “why?”, you’re not alone. Each subreddit has its own set of guidelines, and trying to understand individual subreddit moderation can feel like chaos.
+
+In this competition, you’ll bring some ‘comment sense’ to the table and work with real data to build models that predict which rule (if any) a comment may have broken.
+
+
+
+16) Schedule maker tailored for BU CORs
