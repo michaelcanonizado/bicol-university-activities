@@ -1,0 +1,70 @@
+1) Instagram Spam Detection
+Difficulty: 7/10
+Link: https://www.projectpro.io/article/artificial-intelligence-project-ideas/461
+Build an AI model to detect spam comments on Instagram by scraping data or using YouTube’s spam dataset. Techniques like N-gram weighting or cosine similarity can flag spammy keywords, while advanced NLP models (BERT, ALBERT) improve accuracy by understanding context. The system could be expanded to other platforms like Twitter or TikTok for broader spam detection.
+
+
+
+2) Infinite Nature: 3D Flythroughs from Photos
+Difficulty: 9/10
+Link: https://research.google/blog/infinite-nature-generating-3d-flythroughs-from-still-photos/
+Use AI to generate immersive 3D flythrough videos from a single still image, simulating a virtual camera moving through the scene. This could be applied to virtual tourism, gaming, or real estate visualization.
+
+
+
+3) Telegram Bot for Automated Tasks
+Difficulty: 4/10
+Link: https://www.projectpro.io/article/artificial-intelligence-project-ideas/461
+Build a customizable Telegram bot using Python and the Telegram Bot API to automate responses, send notifications, or even scrape data. Advanced versions could integrate ChatGPT for conversational AI or handle tasks like scheduling, reminders, or quiz grading.
+
+Note: A Telegram bot can also be used as an additional Frontend for the app
+
+
+
+4) PDF-based Q&A System
+Difficulty: 8/10
+Link: https://www.projectpro.io/article/artificial-intelligence-project-ideas/461
+Create an AI-powered tool that extracts answers from PDFs using LangChain, Gradio, and FAISS for embeddings. A practical extension could be a quiz solver that scrapes questions from a webpage and scans provided documents to generate correct answers automatically.
+
+
+
+5) AI-Powered Textbook Customizer
+Difficulty: 6/10
+Link: https://www.reddit.com/r/ArtificialInteligence/comments/1epvi0n/what_practical_ai_projects_have_you_actually_built/
+Develop a GPT-based tool that personalizes textbook pages by rewriting exercises and fetching relevant images via Pexels API. Teachers input student interests and proficiency levels to generate engaging, tailored learning materials instantly.
+
+
+
+6) Sentiment Analysis for Social 
+Trends
+Difficulty: 7/10
+Link: https://www.projectpro.io/article/top-10-machine-learning-projects-for-beginners-in-2021/397
+Analyze Twitter data to gauge public sentiment on topics like movies, elections, or sports. A dashboard could visualize trends, showing real-time positivity/negativity ratios for user-selected keywords, letting users see how the world feels about certain topics.
+
+
+
+7) Smart Document Processing for Supply Chains
+Difficulty: 7/10
+Link: https://ai-cases.com/ai-for-supply-chain/smart-document-processing/
+Automate data extraction from invoices, purchase orders, and customs documents using OCR and NLP. The system reduces manual entry errors and speeds up logistics workflows.
+
+
+
+8 ) AI Contract Analyzer
+Difficulty: 8/10
+Link: https://ai-cases.com/ai-for-supply-chain/procurement-contract-inspection/
+Build a tool to scan contracts for key clauses (dates, termination terms) and flag risks. Ideal for legal teams to streamline review processes and mitigate exposure.
+
+
+
+9) Automated Essay Grading
+Difficulty: 6.5/10
+Link: https://ai-cases.com/ai-for-education/automated-grading-system/
+Train an AI to grade written assignments by comparing answers to benchmarks, grouping similar responses, and providing feedback. Saves teachers time while ensuring consistency.
+
+
+
+10) Reddit Moderation Assistant
+Difficulty: 7/10
+Link: https://www.kaggle.com/competitions/jigsaw-agile-community-rules
+Develop a model to predict which subreddit rules a comment violates, helping moderators flag inappropriate content faster. Uses real Reddit data for training.
