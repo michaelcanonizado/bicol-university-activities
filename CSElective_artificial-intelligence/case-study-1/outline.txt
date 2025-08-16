@@ -1,0 +1,10 @@
+1) TikTok Feed (Indirect)
+TikTok's FYP uses AI driven recommendation systems to personalize content for their users. It monitors the users' behavior, interest, location, watch time, skips, liked videos, and many more to determine the users' preferences. AI then predicts which videos they'll engage with the most, thus creating the "algorithm".
+
+2) Youtube Auto-Generated Captions (Direct)
+Youtube's automatic captions rely on AI-powered speech recognition. It breaks down the audio into segments, converts it to speech, and even uses NLP to correct grammar.
+
+3) Photoshop's Generative AI (Direct)
+Photoshop's generative AI like generative fill and expand use diffusion models. When the user enters a prompt, the AI generates possible pixel arrangements. It analyzes factors such as lighting, perspective, and the current style of the photo to make the result more natural.
+
+As a student, I love the rise of LLMs like ChatGPT as they act like my personal mentor and coach on my journey as a computer science student. I use them to guide me in learning more complex concepts that are otherwise harder to learn if I were to just search the internet for answers. Therefore, it would be way harder to discover new things if they didn't exist. It has revolutionized the way people live and work, reshaping how people approach learning. Prior to AI, I use to rely on internet sources like stack overflow, documentations, and Youtube videos to answer my questions. But now, I streamline this by asking ChatGPT to guide me towards the appropriate flow and list possible ways to solve the problem; I then research them individually to get more "human" answers and opinions. I am doing my best to adapt to this new era of learning to fully maximize the tools we have.
