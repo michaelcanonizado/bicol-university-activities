@@ -55,15 +55,15 @@ int customOpen(const char *path, const char *flag) {
     return -1;
 }
 
-int customClose(int ffileDescriptor) {
-    if (ffileDescriptor < 0) {
+int customClose(int fileDescriptor) {
+    if (fileDescriptor < 0) {
         return -1;
     }
-    return close(ffileDescriptor);
+    return close(fileDescriptor);
 }
 
-ssize_t customRead(int ffileDescriptor, void *buffer, size_t count) {
-    return read(ffileDescriptor, buffer, count);
+ssize_t customRead(int fileDescriptor, void *buffer, size_t count) {
+    return read(fileDescriptor, buffer, count);
 }
 
 ssize_t customWrite(int fileDescriptor, const void *buffer, size_t count) {
@@ -110,11 +110,12 @@ int main(void) {
         return 4;
     }
 
-    /* Copy contents of source file to desintation file */
-    char buffer[1];
-    ssize_t byte;
-    while ((byte = customRead(sourceFile, buffer, 1)) > 0) {
-        if (customWrite(destinationFile, buffer, 1) != 1) {
+    /* Copy contents of source file to desintation file.
+       Copy in chunks of 4kb. */
+    char buffer[4096];
+    ssize_t bytesRead;
+    while ((bytesRead = customRead(sourceFile, buffer, 1)) > 0) {
+        if (customWrite(destinationFile, buffer, bytesRead) != bytesRead) {
             customPrint(STDERR_FILENO, "Error: Something went wrong when copying data.\n");
             customClose(sourceFile);
             customClose(destinationFile);
@@ -123,7 +124,7 @@ int main(void) {
     }
 
     /* If an error occured while reading data */
-    if (byte < 0) {
+    if (bytesRead < 0) {
         customPrint(STDERR_FILENO, "Error: Reading from source file.\n");
         customClose(sourceFile);
         customClose(destinationFile);
