@@ -55,19 +55,19 @@ int customOpen(const char *path, const char *flag) {
     return -1;
 }
 
-int customClose(int fd) {
-    if (fd < 0) {
+int customClose(int ffileDescriptor) {
+    if (ffileDescriptor < 0) {
         return -1;
     }
-    return close(fd);
+    return close(ffileDescriptor);
 }
 
-ssize_t customRead(int fd, void *buffer, size_t count) {
-    return read(fd, buffer, count);
+ssize_t customRead(int ffileDescriptor, void *buffer, size_t count) {
+    return read(ffileDescriptor, buffer, count);
 }
 
-ssize_t customWrite(int fd, const void *buffer, size_t count) {
-    return write(fd, buffer, count);
+ssize_t customWrite(int fileDescriptor, const void *buffer, size_t count) {
+    return write(fileDescriptor, buffer, count);
 }
 
 int main(void) {
