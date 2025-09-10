@@ -15,7 +15,7 @@ int main() {
     /* Check if creating a child-process failed */
     if (pid < 0) {
         perror("Creating child process failed!");
-        return 1;;
+        exit(1);
     } 
 
     /* Child process */
