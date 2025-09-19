@@ -61,7 +61,7 @@ int main() {
     }
 
     /* Let thread run for some time */
-    sleep(3);
+    sleep(5);
 
     printf("[Main] Sending cancel request to asynchronous thread...\n");
     pthread_cancel(asyncThread);
@@ -77,7 +77,7 @@ int main() {
     }
 
     /* Let thread run for some time */
-    sleep(3);
+    sleep(5);
 
     printf("[Main] Sending cancel request to deferred thread...\n");
     pthread_cancel(deferredThread);
