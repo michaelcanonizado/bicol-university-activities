@@ -5,47 +5,69 @@
 
 /* Cleanup handler function that runs when a thread is canceled */
 void cleanupHandler(void* resource) {
-    printf("[Cleanup] Releasing resource: %s\n", (char*)resource);
+    FILE* fp = (FILE*)resource;
+    if (fp != NULL) {
+        printf("[Cleanup] Closing file\n");
+        fclose(fp);
+    }
 }
 
 /* Worker thread function for asynchronous cancellation */
 void* workerThreadAsync(void* argument) {
-    /* Register cleanup handler */
-    pthread_cleanup_push(cleanupHandler, "Async Resource");
+    FILE* fp = fopen("async_output.txt", "w");
+    if (!fp) {
+        perror("Failed to open async_output.txt");
+        return NULL;
+    }
+
+    pthread_cleanup_push(cleanupHandler, fp);
 
     /* Set thread cancellation type to asynchronous */
     pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS, NULL);
 
-    int counter = 1;
-    while (1) {
-        printf("[Async Worker] Number: %d\n", counter++);
-        /* Simulate some work */
-        sleep(1); 
+    int i = 0;
+    while(1) {
+        fprintf(fp, "Writing line %d\n", i);
+        fflush(fp);
+
+        fprintf(fp, "Start critical section %d\n", i);
+        sleep(1); // <-- async may interrupt here
+        fprintf(fp, "End critical section %d\n", i);
+        fflush(fp);  
+        i++;
     }
 
-    /* This will never be reached, but required for matching pthread_cleanup_push */
     pthread_cleanup_pop(1);
     return NULL;
 }
 
 /* Worker thread function for deferred cancellation */
 void* workerThreadDeferred(void* argument) {
-    /* Register cleanup handler */
-    pthread_cleanup_push(cleanupHandler, "Deferred Resource");
+    FILE* fp = fopen("deferred_output.txt", "w");
+    if (!fp) {
+        perror("Failed to open deferred_output.txt");
+        return NULL;
+    }
+
+    pthread_cleanup_push(cleanupHandler, fp);
 
     /* Set thread cancellation type to deferred */
     pthread_setcanceltype(PTHREAD_CANCEL_DEFERRED, NULL);
 
-    int counter = 1;
+    int i = 0;
     while (1) {
-        printf("[Deferred Worker] Number: %d\n", counter++);
-        /* Simulate some work */
+        fprintf(fp, "Writing line %d\n", i);
+        fflush(fp);
+
+        fprintf(fp, "Start critical section %d\n", i);
+        fprintf(fp, "End critical section %d\n", i);
+        fflush(fp);
+        /* Safe cancellation point */
+        pthread_testcancel();
         sleep(1);
-        /* Explicitly check for cancellation */
-        pthread_testcancel(); 
+        i++;
     }
 
-    /* Matching cleanup_pop */
     pthread_cleanup_pop(1);
     return NULL;
 }
@@ -60,7 +82,6 @@ int main() {
         exit(EXIT_FAILURE);
     }
 
-    /* Let thread run for some time */
     sleep(5);
 
     printf("[Main] Sending cancel request to asynchronous thread...\n");
@@ -76,7 +97,6 @@ int main() {
         exit(EXIT_FAILURE);
     }
 
-    /* Let thread run for some time */
     sleep(5);
 
     printf("[Main] Sending cancel request to deferred thread...\n");
@@ -84,6 +104,8 @@ int main() {
 
     pthread_join(deferredThread, NULL);
     printf("[Main] Deferred thread has been canceled.\n\n");
+
+    printf("Check 'async_output.txt' and 'deferred_output.txt' to see the difference.\n");
 
     return 0;
 }

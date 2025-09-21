@@ -1,0 +1,15 @@
+Writing line 0
+Start critical section 0
+End critical section 0
+Writing line 1
+Start critical section 1
+End critical section 1
+Writing line 2
+Start critical section 2
+End critical section 2
+Writing line 3
+Start critical section 3
+End critical section 3
+Writing line 4
+Start critical section 4
+End critical section 4

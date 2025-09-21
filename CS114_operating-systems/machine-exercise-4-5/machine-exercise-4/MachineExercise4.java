@@ -156,7 +156,7 @@ class MatrixUtil {
 
 public class MachineExercise4 {
     public static void main(String[] args) {
-        int size = 1000;
+        int size = 5000;
         MatrixUtil matrixUtil = new MatrixUtil();
         System.out.printf("Generating matrix 1 of size %d\n", size);
         Matrix m1 = matrixUtil.generateMatrix(size);
