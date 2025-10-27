@@ -1,3 +1,4 @@
+import { TextBody } from '@/components/text';
 import './global.css';
 
 import { Poppins_100Thin } from '@expo-google-fonts/poppins/100Thin';
@@ -20,7 +21,8 @@ import { Poppins_900Black } from '@expo-google-fonts/poppins/900Black';
 import { Poppins_900Black_Italic } from '@expo-google-fonts/poppins/900Black_Italic';
 import { useFonts } from '@expo-google-fonts/poppins/useFonts';
 
-import { Stack } from 'expo-router';
+import { Tabs } from 'expo-router';
+import { Image } from 'react-native';
 
 export default function RootLayout() {
 	let [fontsLoaded] = useFonts({
@@ -52,6 +54,123 @@ export default function RootLayout() {
 	if (!fontsLoaded) {
 		return null;
 	} else {
-		return <Stack />;
+		return (
+			<Tabs
+				screenOptions={{
+					tabBarStyle: {
+						backgroundColor: '#E4E3DD',
+						height: 80,
+					},
+					tabBarLabelStyle: {
+						fontFamily: 'Poppins_400Regular',
+					},
+					tabBarActiveTintColor: '#000000',
+					tabBarInactiveTintColor: '#666d80',
+
+					tabBarItemStyle: {
+						paddingVertical: 5,
+					},
+
+					tabBarIconStyle: {
+						marginBottom: 3,
+					},
+
+					tabBarLabel: ({ focused, color, children }) => (
+						<TextBody
+							style={{
+								color,
+								fontSize: focused ? 12 : 11,
+								fontFamily: focused
+									? 'Poppins_700Bold'
+									: 'Poppins_400Regular',
+							}}
+						>
+							{children}
+						</TextBody>
+					),
+				}}
+			>
+				<Tabs.Screen
+					name="about"
+					options={{
+						title: 'About',
+						tabBarIcon: ({ focused }) => (
+							<Image
+								source={
+									focused
+										? require('../assets/svgs/green-active.png')
+										: require('../assets/svgs/green-inactive.png')
+								}
+								style={{
+									width: 32,
+									height: 32,
+									resizeMode: 'contain',
+								}}
+							/>
+						),
+					}}
+				/>
+				<Tabs.Screen
+					name="projects"
+					options={{
+						title: 'Projects',
+						tabBarIcon: ({ focused }) => (
+							<Image
+								source={
+									focused
+										? require('../assets/svgs/pink-active.png')
+										: require('../assets/svgs/pink-inactive.png')
+								}
+								style={{
+									width: 32,
+									height: 32,
+									resizeMode: 'contain',
+								}}
+							/>
+						),
+					}}
+				/>
+				<Tabs.Screen
+					name="experience"
+					options={{
+						title: 'Experience',
+						tabBarIcon: ({ focused }) => (
+							<Image
+								source={
+									focused
+										? require('../assets/svgs/blue-active.png')
+										: require('../assets/svgs/blue-inactive.png')
+								}
+								style={{
+									width: 32,
+									height: 32,
+									resizeMode: 'contain',
+								}}
+							/>
+						),
+					}}
+				/>
+				<Tabs.Screen
+					name="chat"
+					options={{
+						title: 'Chat',
+						tabBarIcon: ({ focused }) => (
+							<Image
+								source={
+									focused
+										? require('../assets/svgs/orange-active.png')
+										: require('../assets/svgs/orange-inactive.png')
+								}
+								style={{
+									width: 32,
+									height: 32,
+									resizeMode: 'contain',
+								}}
+							/>
+						),
+					}}
+				/>
+			</Tabs>
+		);
 	}
 }

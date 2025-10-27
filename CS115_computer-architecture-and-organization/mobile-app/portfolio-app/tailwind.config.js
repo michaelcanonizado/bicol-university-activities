@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-	// NOTE: Update this to include the paths to all files that contain Nativewind classes.
 	content: ['./app/**/*.{js,jsx,ts,tsx}', './components/**/*.{js,jsx,ts,tsx}'],
 	presets: [require('nativewind/preset')],
 	theme: {
@@ -11,6 +10,11 @@ module.exports = {
 				'foreground-200': '#666d80',
 				muted: '#E4E3DD',
 				'muted-foreground': '#666d80',
+				'accent-yellow': '#FCAC0F',
+				'accent-green': '#00A652',
+				'accent-blue': '#0061EE',
+				'accent-orange': '#FB5500',
+				'accent-pink': '#FF77B9',
 			},
 		},
 	},
