@@ -139,7 +139,7 @@ export default function About() {
 						<View className="size-[250px] z-[99] absolute top-0 left-[-15%]">
 							<Image
 								resizeMode="contain"
-								source={require('../assets/images/character-cloud-black.png')}
+								source={require('../assets/images/character-cloud-black-1.png')}
 								className="h-full w-full object-center"
 							/>
 						</View>
@@ -160,7 +160,7 @@ export default function About() {
 						<View className="size-[250px] z-[99] absolute bottom-0 right-[-10%]">
 							<Image
 								resizeMode="contain"
-								source={require('../assets/images/character-cloud-yellow.png')}
+								source={require('../assets/images/character-cloud-yellow-1.png')}
 								className="h-full w-full object-center"
 							/>
 						</View>
@@ -220,13 +220,13 @@ export default function About() {
 								engineering.
 							</TextBody>
 							<TextBody>
-								{`I specialize in backend development and systems
-								architecture that's robust and scalable.`}
+								I specialize in backend development and systems
+								architecture that's robust and scalable.
 							</TextBody>
 							<TextBody>
-								{`I'll transform your ideas into a system that elevates
+								I'll transform your ideas into a system that elevates
 								your business. My strong work ethic and discipline
-								set me apart as a developer you can rely on!`}
+								set me apart as a developer you can rely on!
 							</TextBody>
 						</View>
 					</View>
@@ -264,7 +264,7 @@ export default function About() {
 						</TextBody>
 					</View>
 				</View>
-				<View className="mt-[40px] mb-4 w-full flex flex-col gap-4">
+				<View className="mt-[60px] mb-4 w-full flex flex-col gap-4">
 					<View className="bg-muted rounded-2xl flex flex-row items-center justify-between px-4 py-8 mx-4">
 						<View className="">
 							<TextHeading>Follow Me 📩</TextHeading>

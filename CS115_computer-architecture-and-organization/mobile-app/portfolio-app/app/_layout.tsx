@@ -148,6 +148,7 @@ export default function RootLayout() {
 					name="experience"
 					options={{
 						title: 'Experience',
+						// headerShown: false,
 						tabBarIcon: ({ focused }) => (
 							<Image
 								source={
