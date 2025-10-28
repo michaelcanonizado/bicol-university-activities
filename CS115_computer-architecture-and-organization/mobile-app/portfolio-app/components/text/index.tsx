@@ -27,7 +27,7 @@ export function TextHeading({ className, children, ...props }: CustomTextProps) 
 				fontFamily: 'Poppins_700Bold',
 			}}
 			className={cn(
-				'text-foreground-100 text-[21px] leading-[32px] tracking-[0px]',
+				'text-foreground-100 text-[21px] leading-[24px] tracking-[0px]',
 				className
 			)}
 			{...props}

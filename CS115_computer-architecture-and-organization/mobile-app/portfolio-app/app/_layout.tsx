@@ -57,6 +57,19 @@ export default function RootLayout() {
 		return (
 			<Tabs
 				screenOptions={{
+					/* Top Header */
+					headerShown: true,
+					headerStyle: {
+						backgroundColor: '#E4E3DD',
+					},
+					headerTitleStyle: {
+						fontFamily: 'Poppins_700Bold',
+						fontSize: 18,
+						color: '#000000',
+					},
+					headerTitleAlign: 'center',
+
+					/* Bottom Tab */
 					tabBarStyle: {
 						backgroundColor: '#E4E3DD',
 						height: 80,
@@ -91,15 +104,16 @@ export default function RootLayout() {
 				}}
 			>
 				<Tabs.Screen
-					name="about"
+					name="index"
 					options={{
 						title: 'About',
+						headerShown: false,
 						tabBarIcon: ({ focused }) => (
 							<Image
 								source={
 									focused
-										? require('../assets/svgs/green-active.png')
-										: require('../assets/svgs/green-inactive.png')
+										? require('../assets/icons/green-active.png')
+										: require('../assets/icons/green-inactive.png')
 								}
 								style={{
 									width: 32,
@@ -118,8 +132,8 @@ export default function RootLayout() {
 							<Image
 								source={
 									focused
-										? require('../assets/svgs/pink-active.png')
-										: require('../assets/svgs/pink-inactive.png')
+										? require('../assets/icons/pink-active.png')
+										: require('../assets/icons/pink-inactive.png')
 								}
 								style={{
 									width: 32,
@@ -138,8 +152,8 @@ export default function RootLayout() {
 							<Image
 								source={
 									focused
-										? require('../assets/svgs/blue-active.png')
-										: require('../assets/svgs/blue-inactive.png')
+										? require('../assets/icons/blue-active.png')
+										: require('../assets/icons/blue-inactive.png')
 								}
 								style={{
 									width: 32,
@@ -158,8 +172,8 @@ export default function RootLayout() {
 							<Image
 								source={
 									focused
-										? require('../assets/svgs/orange-active.png')
-										: require('../assets/svgs/orange-inactive.png')
+										? require('../assets/icons/orange-active.png')
+										: require('../assets/icons/orange-inactive.png')
 								}
 								style={{
 									width: 32,
