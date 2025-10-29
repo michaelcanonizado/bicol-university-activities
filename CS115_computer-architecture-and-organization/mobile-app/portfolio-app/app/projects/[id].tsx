@@ -7,10 +7,10 @@ import ChevronLeft from '../../assets/images/chevron-left.svg';
 import ExternalLink from '../../assets/images/external-link.svg';
 
 export default function ProjectDetails() {
-	const { id } = useLocalSearchParams<{ id: string }>();
+	const { titleId } = useLocalSearchParams<{ titleId: string }>();
 
 	const [parentHeight, setParentHeight] = useState(0);
-	const project = projects.find((p) => p.id === id);
+	const project = projects.find((p) => p.title === titleId);
 
 	if (!project) return null;
 
@@ -107,7 +107,7 @@ export default function ProjectDetails() {
 					<TextBody className="mt-4">{description}</TextBody>
 				</View>
 
-				<View className="flex flex-row justify-center mt-8">
+				<View className="flex flex-row justify-center mt-8 mb-8">
 					<TouchableOpacity
 						onPress={handlePress}
 						className="bg-accent-yellow pl-8 pr-7 py-4 rounded-full flex flex-row gap-1 items-end"

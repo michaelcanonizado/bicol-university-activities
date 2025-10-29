@@ -20,7 +20,7 @@ function TimelineSeparator({ children }: ComponentChildrenProp) {
 export default function Experience() {
 	return (
 		<ScrollView className="bg-background">
-			<View className="flex flex-col justify-start items-center">
+			<View className="flex flex-col justify-start items-center mb-8">
 				<View className="w-full mb-4 relative flex flex-col justify-center items-center">
 					<View className="w-[2px] rounded-full  h-[20px] bg-foreground-100" />
 					<View className="size-[10px] bg-foreground-100 rounded-full" />
