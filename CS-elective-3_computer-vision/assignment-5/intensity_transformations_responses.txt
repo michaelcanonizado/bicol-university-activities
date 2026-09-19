@@ -1,0 +1,64 @@
+COMPUTER VISION — INTENSITY TRANSFORMATIONS
+
+=== Learning Objectives ===
+
+=== Preparation — Google Colab ===
+The image I used was a picture taken of me during our football match of this year's BU Olympics
+720x1280
+
+=== 1. Meet Your Pixels ===
+1.0
+2. 255
+3. Black, since it has no intensity
+4. White, since it has high intensity
+5. The dark areas have lower values, while the lighter areas have higher values
+
+=== 2. Brightness — Make It Lighter or Darker ===
+1. As the values increase, the picture becomes darker
+2. When the i use a really large value like 200, the whole picture becomes black
+3. Because an 8-bits means 2^8, which results to 256, and ince 0 is included, it cant hold values greater than 255
+4. Brightness changes the pixel values, not the positions of objects.
+
+=== 3. Contrast — Stretch the Difference ===
+Barely no difference in the picture
+Slight brightness change
+Picture becomes significantly brighter
+Picture becomes nearly totally white
+Brightness adjustment changes the overall lightness or darkness of an image, while contrast adjustment changes the difference between dark and bright pixels.
+
+=== 4. Negative Transformation 👻 ===
+218
+The formula reverses the intensity values, white (0) becomes black (255), Dark gray (37) - Bright gray (218), etc. Therefore, dark areas become bright and bright areas become dark
+
+=== 5. Thresholding — Black or White? ===
+1. Most pixels will have values greater than the threshold, so they become white. If the image will contain mostly white areas, with only the darkest regions remaining black.
+2. Most pixels will be below the threshold, so they become black. Only the brightest areas will remain white.
+3. 128, it clearly separates me out from the background
+4. Thresholding separates pixels into foreground and background. This makes it easier to identify an object based on its brightness.
+
+=== 6. Gamma Correction ===
+0.5
+3.0
+No gamma correction uses a different formula to determine the value, therefore, different pixel values are changed by different amounts.
+Simple brightness adjustment typically adds or subtracts a fixed amount from every pixel, gamma correction is nonlinear, meaning it changes different intensity ranges differently
+
+=== 7. Intensity Transformation Challenge 🎯 ===
+The
+Brightness
+I could change the brightness or darkness of the image. My image was quite dark since it was taken at night, so i made it brighter to make it look better
+Contrast
+When I increased the contrast, it made the darker areas darker and the lighter areas lighter, and vice-versa
+Negative
+The darker areas became light, and the light areas became dark
+Threshold
+I am separated from the background of the image, and I can clearly see the outlines of my body
+Threshold. I could see how this could be useful in computer vision task such as object detection and OCR
+
+=== Final Reflection — Geometric vs. Intensity Transformation ===
+Situation A is a geometric transformation because the image is moved 100 pixels to the right, changing the positions of the objects. Situation B is an intensity transformation because the pixel values become brighter while their positions remain the same.
+This is an intensity transformation because only the pixel intensity values are changed. The objects remain in their original positions.
+Intensity transformation is a process of changing the brightness or intensity of pixels in an image. It does not move the objects or change their positions in the image. Instead, it changes how light or dark the pixels appear. For example, increasing brightness makes the pixels lighter, while decreasing brightness makes them darker. Contrast adjustment changes the difference between dark and bright areas. Negative transformation reverses the brightness values, while thresholding changes pixels into black or white based on a specific value. These transformations can make important parts of an image easier to see and analyze.
+Intensity transformation can make objects and important features easier to see in an image. It can improve object detection, segmentation, and feature extraction by making differences between objects and their backgrounds more noticeable.
+
+=== Submission Checklist ===
+
