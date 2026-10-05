@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Vision Lab Assignment: Image Filtering & Enhancement</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            800: '#0c4a6e',
+                            900: '#0f172a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'Fira Code', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- MathJax for TeX Rendering -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        code, pre {
+            font-family: 'Fira Code', monospace;
+        }
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            .print-card {
+                border: 1px solid #ccc !important;
+                box-shadow: none !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+                background: white !important;
+                color: black !important;
+            }
+            .print-card * {
+                color: black !important;
+            }
+            pre, code {
+                background-color: #f4f4f5 !important;
+                border: 1px solid #ddd !important;
+                color: #111 !important;
+            }
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.1);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(100,116,139,0.5);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen antialiased selection:bg-sky-500 selection:text-white dark:bg-slate-900 dark:text-slate-100">
+
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-900/90 dark:bg-slate-900/90 border-b border-slate-800 no-print transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="p-2 bg-sky-600 rounded-lg text-white font-bold text-lg">
+                    <i class="fa-solid fa-eye"></i>
+                </div>
+                <div>
+                    <span class="text-xs font-semibold tracking-wider uppercase text-sky-400 block">Course Lab Specification</span>
+                    <h1 class="text-lg font-bold text-slate-100">CS Elective 3: Computer Vision</h1>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-3">
+                <!-- Theme Toggle -->
+                <button id="themeToggleBtn" onclick="toggleTheme()" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 text-sm font-medium transition flex items-center space-x-2">
+                    <i id="themeIcon" class="fa-solid fa-moon"></i>
+                    <span id="themeText" class="hidden sm:inline">Dark</span>
+                </button>
+
+                <!-- Export PDF Button -->
+                <button onclick="window.print()" class="px-4 py-2 rounded-lg bg-sky-600 hover:bg-sky-500 text-white text-sm font-semibold shadow-md transition flex items-center space-x-2">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    <span>Print / Save PDF</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
+
+        <!-- Hero Title Banner -->
+        <section class="print-card bg-slate-800/80 border border-slate-700 rounded-2xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 -mt-8 -mr-8 w-64 h-64 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="relative z-10">
+                <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-700/80 pb-4 mb-6">
+                    <span class="px-3 py-1 bg-sky-950 text-sky-300 border border-sky-800 rounded-full text-xs font-semibold uppercase tracking-wider">
+                        Lab Assignment #6
+                    </span>
+                    <div class="flex items-center space-x-6 text-xs text-slate-400 font-medium">
+                        <span><i class="fa-solid fa-graduation-cap text-sky-400 mr-1.5"></i>4th-Year Computer Science</span>
+                        <span><i class="fa-solid fa-clock text-sky-400 mr-1.5"></i>Estimated Duration: 3 Hours</span>
+                    </div>
+                </div>
+
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">
+                    Image Filtering & Spatial/Frequency Enhancement
+                </h2>
+                <p class="text-slate-300 text-sm sm:text-base max-w-4xl leading-relaxed">
+                    This hands-on laboratory assignment explores the practical design, quantitative evaluation, and algorithmic implementation of 2D spatial filtering kernels and frequency-domain spectral operators. You will build and test spatial noise reduction pipelines, band-pass frequency masks, and a parametric unsharp masking engine using OpenCV and NumPy.
+                </p>
+            </div>
+        </section>
+
+        <section class="print-card bg-slate-800/50 border border-slate-700/80 rounded-xl p-6 shadow-md">
+            <h3 class="text-lg font-bold text-white mb-4 flex items-center">
+                <i class="fa-solid fa-list-check text-sky-400 mr-2.5"></i> Prerequisites & Environment Setup
+            </h3>
+            <div class="grid md:grid-cols-2 gap-6 text-sm text-slate-300">
+                <div class="space-y-3">
+                    <h4 class="font-semibold text-slate-200 text-xs uppercase tracking-wider">Required Libraries & Runtime</h4>
+                    <ul class="space-y-2 list-disc list-inside text-slate-300">
+                        <li><strong class="text-slate-100">Python 3.8+</strong></li>
+                        <li><strong class="text-slate-100">OpenCV:</strong> <code class="px-1.5 py-0.5 bg-slate-900 border border-slate-700 rounded text-sky-300 text-xs">pip install opencv-python</code></li>
+                        <li><strong class="text-slate-100">NumPy:</strong> <code class="px-1.5 py-0.5 bg-slate-900 border border-slate-700 rounded text-sky-300 text-xs">pip install numpy</code></li>
+                        <li><strong class="text-slate-100">Matplotlib:</strong> <code class="px-1.5 py-0.5 bg-slate-900 border border-slate-700 rounded text-sky-300 text-xs">pip install matplotlib</code></li>
+                    </ul>
+                </div>
+
+                <div class="space-y-3">
+                    <h4 class="font-semibold text-slate-200 text-xs uppercase tracking-wider">Submission Guidelines</h4>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Submit a unified Jupyter Notebook (<code class="text-sky-300">.ipynb</code>) containing all executable code cells, side-by-side subplot visual grids, quantitative benchmark tables (PSNR/MSE), and written technical explanations for each deliverable question.
+                    </p>
+                    <div class="p-3 bg-amber-950/40 border border-amber-800/60 rounded-lg text-amber-200/90 text-xs">
+                        <i class="fa-solid fa-triangle-exclamation text-amber-400 mr-1.5"></i>
+                        <strong>Crucial:</strong> Always cast float calculations back to <code class="text-amber-300">np.uint8</code> using <code class="text-amber-300">np.clip(img, 0, 255)</code> to prevent integer wrapping artifacts.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="print-card bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-xl no-print">
+            <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-700 pb-4 mb-6 gap-2">
+                <div>
+                    <span class="px-2.5 py-0.5 bg-indigo-950 text-indigo-300 border border-indigo-800 rounded text-xs font-semibold uppercase tracking-wider">Interactive Playground</span>
+                    <h3 class="text-xl font-bold text-white mt-1">Live Filter & Noise Simulator</h3>
+                </div>
+                <p class="text-xs text-slate-400 max-w-md">
+                    Test spatial noise models and real-time filter response before running your local Python scripts.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-6">
+                <!-- Controls Column -->
+                <div class="lg:col-span-4 space-y-5 bg-slate-900/60 p-5 rounded-xl border border-slate-700/60">
+                    <!-- Noise Controls -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">1. Select Noise Profile</label>
+                        <select id="simNoiseType" onchange="runSimulation()" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-sky-500">
+                            <option value="none">Clean Signal (No Noise)</option>
+                            <option value="saltpepper">Salt & Pepper Noise (Impulse)</option>
+                            <option value="gaussian">Gaussian Noise (Additive)</option>
+                        </select>
+                    </div>
+
+                    <!-- Noise Intensity Slider -->
+                    <div>
+                        <div class="flex justify-between text-xs font-medium mb-1">
+                            <span class="text-slate-400">Noise Level:</span>
+                            <span id="noiseValText" class="text-sky-400 font-mono">10%</span>
+                        </div>
+                        <input type="range" id="simNoiseIntensity" min="1" max="30" value="10" oninput="runSimulation()" class="w-full accent-sky-500">
+                    </div>
+
+                    <!-- Filter Mode -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">2. Apply Spatial Filter</label>
+                        <select id="simFilterType" onchange="runSimulation()" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-sky-500">
+                            <option value="box">Box / Mean Filter</option>
+                            <option value="median">Median Filter (Non-linear)</option>
+                            <option value="sharpen">Unsharp Masking (High-Boost)</option>
+                        </select>
+                    </div>
+
+                    <!-- Filter Kernel Size -->
+                    <div>
+                        <div class="flex justify-between text-xs font-medium mb-1">
+                            <span class="text-slate-400">Kernel Size ($N \times N$):</span>
+                            <span id="kernelValText" class="text-sky-400 font-mono">3x3</span>
+                        </div>
+                        <input type="range" id="simKernelSize" min="3" max="7" step="2" value="3" oninput="runSimulation()" class="w-full accent-sky-500">
+                    </div>
+
+                    <!-- Unsharp Mask Gain k -->
+                    <div id="unsharpGainGroup">
+                        <div class="flex justify-between text-xs font-medium mb-1">
+                            <span class="text-slate-400">Sharpening Gain ($k$):</span>
+                            <span id="gainValText" class="text-sky-400 font-mono">1.5</span>
+                        </div>
+                        <input type="range" id="simGain" min="0.5" max="3.0" step="0.1" value="1.5" oninput="runSimulation()" class="w-full accent-sky-500">
+                    </div>
+
+                    <button onclick="resetCanvas()" class="w-full py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 rounded-lg text-xs font-semibold transition">
+                        <i class="fa-solid fa-arrows-rotate mr-1.5"></i> Reset Canvas
+                    </button>
+                </div>
+
+                <!-- Canvas Visualizers -->
+                <div class="lg:col-span-8 space-y-4">
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div class="bg-slate-900 p-3 rounded-xl border border-slate-700 text-center">
+                            <span class="text-xs font-semibold text-slate-400 block mb-2">Original Corrupted Input</span>
+                            <canvas id="canvasInput" width="280" height="200" class="mx-auto rounded border border-slate-800 max-w-full h-auto"></canvas>
+                        </div>
+                        <div class="bg-slate-900 p-3 rounded-xl border border-slate-700 text-center">
+                            <span class="text-xs font-semibold text-sky-400 block mb-2">Filtered Restored Output</span>
+                            <canvas id="canvasOutput" width="280" height="200" class="mx-auto rounded border border-slate-800 max-w-full h-auto"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Live Metric Status -->
+                    <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-700/80 flex flex-wrap items-center justify-around gap-4 text-center">
+                        <div>
+                            <span class="text-xs text-slate-400 block">Peak Signal-to-Noise Ratio</span>
+                            <span id="metricPSNR" class="text-xl font-bold font-mono text-emerald-400">0.00 dB</span>
+                        </div>
+                        <div class="h-8 w-px bg-slate-700 hidden sm:block"></div>
+                        <div>
+                            <span class="text-xs text-slate-400 block">Mean Squared Error</span>
+                            <span id="metricMSE" class="text-xl font-bold font-mono text-amber-400">0.00</span>
+                        </div>
+                        <div class="h-8 w-px bg-slate-700 hidden sm:block"></div>
+                        <div>
+                            <span class="text-xs text-slate-400 block">Relative Quality Grade</span>
+                            <span id="metricGrade" class="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-800 text-sky-300 border border-slate-700">Baseline</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="print-card bg-slate-800 border border-slate-700 rounded-2xl p-6 sm:p-8 shadow-xl space-y-6">
+            <div class="flex items-start justify-between border-b border-slate-700 pb-4">
+                <div>
+                    <span class="text-xs font-bold text-sky-400 uppercase tracking-widest">Task 1</span>
+                    <h3 class="text-2xl font-bold text-white mt-1">Spatial Noise Removal & Filter Selection Analysis</h3>
+                </div>
+                <span class="px-3 py-1 bg-slate-900 text-slate-300 border border-slate-700 text-xs font-mono rounded-lg">Weight: 35 Points</span>
+            </div>
+
+            <div>
+                <h4 class="text-sm font-bold text-slate-200 uppercase tracking-wider mb-2">Objective</h4>
+                <p class="text-slate-300 text-sm leading-relaxed">
+                    Compare linear (Box/Mean, Gaussian) and non-linear (Median) spatial filters quantitatively and qualitatively when restoring imagery corrupted by two distinct noise profiles: zero-mean additive Gaussian noise vs. impulse salt-and-pepper noise.
+                </p>
+            </div>
+
+            <!-- Math Equations -->
+            <div class="p-4 bg-slate-900/80 rounded-xl border border-slate-700/80 text-sm">
+                <h5 class="text-xs font-semibold text-sky-400 uppercase tracking-wider mb-2">Quantitative Metrics Formulation</h5>
+                <div class="grid md:grid-cols-2 gap-4 text-center">
+                    <div>
+                        <p class="text-xs text-slate-400 mb-1">Mean Squared Error (MSE)</p>
+                        $$\text{MSE} = \frac{1}{M \times N} \sum_{i=0}^{M-1} \sum_{j=0}^{N-1} [I(i,j) - K(i,j)]^2$$
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-400 mb-1">Peak Signal-to-Noise Ratio (PSNR)</p>
+                        $$\text{PSNR} = 10 \cdot \log_{10} \left( \frac{\text{MAX}_I^2}{\text{MSE}} \right)$$
+                    </div>
+                </div>
+            </div>
+
+            <!-- Task Requirements -->
+            <div>
+                <h4 class="text-sm font-bold text-slate-200 uppercase tracking-wider mb-3">Implementation Requirements</h4>
+                <ol class="list-decimal list-inside text-sm text-slate-300 space-y-2 leading-relaxed">
+                    <li>Load a clean grayscale reference image and generate two corrupted test images:
+                        <ul class="list-disc list-inside ml-6 text-slate-400 text-xs mt-1 space-y-1">
+                            <li><strong>Additive Gaussian Noise:</strong> Zero mean ($\mu = 0$) with standard deviation $\sigma = 25$.</li>
+                            <li><strong>Impulse Noise:</strong> Salt-and-pepper noise affecting $5\%$ of total image pixels.</li>
+                        </ul>
+                    </li>
+                    <li>Apply a $5 \times 5$ Box Filter (<code class="text-sky-300">cv2.blur</code>), $5 \times 5$ Gaussian Filter ($\sigma=0$), and $5 \times 5$ Median Filter (<code class="text-sky-300">cv2.medianBlur</code>) to both noisy images.</li>
+                    <li>Calculate PSNR and MSE between the restored outputs and the clean ground-truth image.</li>
+                    <li>Construct a $2 \times 4$ Matplotlib subplot grid comparing original, noisy, and filtered images with their calculated PSNR scores explicitly printed in the subplot headers.</li>
+                </ol>
+            </div>
+
+            <!-- Starter Code -->
+            <div>
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Starter Python Implementation</span>
+                    <button onclick="copyCode('codeTask1')" class="text-xs text-sky-400 hover:text-sky-300 font-medium transition flex items-center space-x-1">
+                        <i class="fa-regular fa-copy"></i> <span>Copy Code</span>
+                    </button>
+                </div>
+                <pre class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs text-slate-200 overflow-x-auto custom-scrollbar"><code id="codeTask1">import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+def compute_psnr(original, filtered):
+    """Computes Peak Signal-to-Noise Ratio (PSNR) between two images."""
+    mse = np.mean((original.astype(np.float64) - filtered.astype(np.float64)) ** 2)
+    if mse == 0:
+        return float('inf')
+    max_pixel = 255.0
+    return 10 * np.log10((max_pixel ** 2) / mse)
+
+# 1. Load clean image
+img_clean = cv2.imread('input.jpg', cv2.IMREAD_GRAYSCALE)
+
+# 2. Synthesize Gaussian Noise
+gaussian_noise = np.random.normal(0, 25, img_clean.shape).astype(np.float32)
+img_gaussian = np.clip(img_clean.astype(np.float32) + gaussian_noise, 0, 255).astype(np.uint8)
+
+# 3. Synthesize Salt-and-Pepper Noise
+img_sp = img_clean.copy()
+prob = 0.05
+num_salt = np.ceil(prob * img_clean.size * 0.5)
+num_pepper = np.ceil(prob * img_clean.size * 0.5)
+
+# Add Salt
+coords = [np.random.randint(0, i - 1, int(num_salt)) for i in img_clean.shape]
+img_sp[tuple(coords)] = 255
+# Add Pepper
+coords = [np.random.randint(0, i - 1, int(num_pepper)) for i in img_clean.shape]
+img_sp[tuple(coords)] = 0
+
+# 4. Apply Filters (5x5 Kernels)
+# TODO: Implement cv2.blur, cv2.GaussianBlur, and cv2.medianBlur for both corrupted images
+# TODO: Plot 2x4 Grid with Matplotlib and display computed PSNR metrics
+</code></pre>
+            </div>
+
+            <!-- Deliverable Question -->
+            <div class="p-4 bg-slate-900/90 rounded-xl border border-sky-900/60 text-sm">
+                <h5 class="text-xs font-bold text-sky-400 uppercase tracking-wider mb-1">
+                    <i class="fa-solid fa-pen-to-square mr-1.5"></i> Deliverable Question #1
+                </h5>
+                <p class="text-slate-300 text-xs leading-relaxed">
+                    Explain why the Median filter significantly outperforms Gaussian smoothing on salt-and-pepper noise both quantitatively (PSNR/MSE) and qualitatively (edge boundary sharpness). Include mathematical reasoning regarding order statistics versus linear weighted averaging.
+                </p>
+            </div>
+        </section>
+
+        <section class="print-card bg-slate-800 border border-slate-700 rounded-2xl p-6 sm:p-8 shadow-xl space-y-6">
+            <div class="flex items-start justify-between border-b border-slate-700 pb-4">
+                <div>
+                    <span class="text-xs font-bold text-sky-400 uppercase tracking-widest">Task 2</span>
+                    <h3 class="text-2xl font-bold text-white mt-1">Frequency Domain Band-Pass Filter Design</h3>
+                </div>
+                <span class="px-3 py-1 bg-slate-900 text-slate-300 border border-slate-700 text-xs font-mono rounded-lg">Weight: 35 Points</span>
+            </div>
+
+            <div>
+                <h4 class="text-sm font-bold text-slate-200 uppercase tracking-wider mb-2">Objective</h4>
+                <p class="text-slate-300 text-sm leading-relaxed">
+                    Construct custom 2D spectral frequency masks using the Discrete Fourier Transform (DFT) to isolate specific spatial frequency bands. Evaluate the visual and mathematical differences between **Ideal Band-Pass** and **Butterworth Band-Pass** filters.
+                </p>
+            </div>
+
+            <!-- Math Equations -->
+            <div class="p-4 bg-slate-900/80 rounded-xl border border-slate-700/80 text-sm space-y-3">
+                <h5 class="text-xs font-semibold text-sky-400 uppercase tracking-wider">Transfer Functions</h5>
+                <div class="grid md:grid-cols-2 gap-4 text-center">
+                    <div>
+                        <p class="text-xs text-slate-400 mb-1">Ideal Band-Pass Filter Mask $H_{\text{IBP}}(u,v)$</p>
+                        $$H_{\text{IBP}}(u,v) = \begin{cases} 1 & \text{if } D_0 \le D(u,v) \le D_1 \\ 0 & \text{otherwise} \end{cases}$$
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-400 mb-1">Butterworth Band-Pass Mask $H_{\text{BBP}}(u,v)$ ($n$-th order)</p>
+                        $$H_{\text{BBP}}(u,v) = 1 - \frac{1}{1 + \left( \frac{D(u,v) \cdot W}{D(u,v)^2 - D_0^2} \right)^{2n}}$$
+                    </div>
+                </div>
+            </div>
+
+            <!-- Implementation Requirements -->
+            <div>
+                <h4 class="text-sm font-bold text-slate-200 uppercase tracking-wider mb-3">Implementation Requirements</h4>
+                <ol class="list-decimal list-inside text-sm text-slate-300 space-y-2 leading-relaxed">
+                    <li>Compute the 2D DFT of a grayscale image using <code class="text-sky-300">cv2.dft(..., flags=cv2.DFT_COMPLEX_OUTPUT)</code> and shift the DC zero-frequency component to the array center via <code class="text-sky-300">np.fft.fftshift()</code>.</li>
+                    <li>Construct a 2-channel 2D **Ideal Band-Pass Filter Mask** with inner cutoff radius $D_0 = 15$ and outer cutoff radius $D_1 = 60$.</li>
+                    <li>Construct a 2-channel 2D **Butterworth Band-Pass Filter Mask** of order $n=2$ using identical radial cutoffs.</li>
+                    <li>Perform element-wise spectral multiplication (<code class="text-sky-300">fshift * mask</code>), apply inverse DC shift (<code class="text-sky-300">np.fft.ifftshift</code>), compute Inverse DFT (<code class="text-sky-300">cv2.idft</code>), and derive spatial magnitude outputs using <code class="text-sky-300">cv2.magnitude()</code>.</li>
+                </ol>
+            </div>
+
+            <!-- Starter Code -->
+            <div>
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Starter Python Implementation</span>
+                    <button onclick="copyCode('codeTask2')" class="text-xs text-sky-400 hover:text-sky-300 font-medium transition flex items-center space-x-1">
+                        <i class="fa-regular fa-copy"></i> <span>Copy Code</span>
+                    </button>
+                </div>
+                <pre class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs text-slate-200 overflow-x-auto custom-scrollbar"><code id="codeTask2">import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+# 1. Load image and compute centered DFT
+img = cv2.imread('input.jpg', cv2.IMREAD_GRAYSCALE)
+dft = cv2.dft(np.float32(img), flags=cv2.DFT_COMPLEX_OUTPUT)
+dft_shift = np.fft.fftshift(dft)
+
+rows, cols = img.shape
+crow, ccol = rows // 2, cols // 2
+
+# 2. Build Euclidean distance grid D(u, v)
+y, x = np.ogrid[-crow:rows-crow, -ccol:cols-ccol]
+d_matrix = np.sqrt(x**2 + y**2)
+
+# 3. Create Ideal Band-Pass Mask
+D0, D1 = 15, 60
+mask_ideal = np.zeros((rows, cols, 2), np.float32)
+band_indices = (d_matrix >= D0) & (d_matrix <= D1)
+mask_ideal[band_indices] = 1.0
+
+# 4. Apply mask and reconstruct spatial signal
+fshift_filtered = dft_shift * mask_ideal
+f_ishift = np.fft.ifftshift(fshift_filtered)
+img_back = cv2.idft(f_ishift)
+img_reconstructed = cv2.magnitude(img_back[:, :, 0], img_back[:, :, 1])
+
+# TODO: Implement Butterworth Band-Pass formulation and visualize comparison
+</code></pre>
+            </div>
+
+            <!-- Deliverable Question -->
+            <div class="p-4 bg-slate-900/90 rounded-xl border border-sky-900/60 text-sm">
+                <h5 class="text-xs font-bold text-sky-400 uppercase tracking-wider mb-1">
+                    <i class="fa-solid fa-pen-to-square mr-1.5"></i> Deliverable Question #2
+                </h5>
+                <p class="text-slate-300 text-xs leading-relaxed">
+                    Compare the reconstructed spatial output of the Ideal Band-Pass filter against the Butterworth Band-Pass filter. Describe the mathematical cause of the visual ripple/ringing artifacts (Gibbs phenomenon) observed around high-contrast edge boundaries in the Ideal filter output.
+                </p>
+            </div>
+        </section>
+
+        <section class="print-card bg-slate-800 border border-slate-700 rounded-2xl p-6 sm:p-8 shadow-xl space-y-6">
+            <div class="flex items-start justify-between border-b border-slate-700 pb-4">
+                <div>
+                    <span class="text-xs font-bold text-sky-400 uppercase tracking-widest">Task 3</span>
+                    <h3 class="text-2xl font-bold text-white mt-1">Custom Unsharp Masking Pipeline (From Scratch)</h3>
+                </div>
+                <span class="px-3 py-1 bg-slate-900 text-slate-300 border border-slate-700 text-xs font-mono rounded-lg">Weight: 30 Points</span>
+            </div>
+
+            <div>
+                <h4 class="text-sm font-bold text-slate-200 uppercase tracking-wider mb-2">Objective</h4>
+                <p class="text-slate-300 text-sm leading-relaxed">
+                    Implement an edge-enhancing **Unsharp Masking** pipeline from first principles without using high-level cv2 sharpening wrappers. Explore parameter tuning across Gaussian blur scales ($\sigma$) and high-boost scaling factors ($k$).
+                </p>
+            </div>
+
+            <!-- Math Equations -->
+            <div class="p-4 bg-slate-900/80 rounded-xl border border-slate-700/80 text-sm space-y-2 text-center">
+                <h5 class="text-xs font-semibold text-sky-400 uppercase tracking-wider">Unsharp Masking Formulation</h5>
+                $$g(x,y) = f(x,y) - f_{\text{smooth}}(x,y)$$
+                $$f_{\text{sharp}}(x,y) = f(x,y) + k \cdot g(x,y)$$
+                <p class="text-xs text-slate-400 italic">where $g(x,y)$ represents the isolated high-frequency detail signal and $k \ge 0$ is the amplification gain factor.</p>
+            </div>
+
+            <!-- Implementation Requirements -->
+            <div>
+                <h4 class="text-sm font-bold text-slate-200 uppercase tracking-wider mb-3">Implementation Requirements</h4>
+                <ol class="list-decimal list-inside text-sm text-slate-300 space-y-2 leading-relaxed">
+                    <li>Define a custom Python function <code class="text-sky-300">unsharp_mask(image, kernel_size, sigma, k)</code>.</li>
+                    <li>Generate the smoothed low-pass base image $f_{\text{smooth}}$ using a Gaussian spatial filter (<code class="text-sky-300">cv2.GaussianBlur</code>).</li>
+                    <li>Subtract the blurred image from the original signal to isolate the high-frequency unsharp mask $g(x,y)$.</li>
+                    <li>Add the scaled mask $k \cdot g(x,y)$ back to the original image array, applying <code class="text-sky-300">np.clip(..., 0, 255)</code> and casting to <code class="text-sky-300">np.uint8</code>.</li>
+                    <li>Compare your custom unsharp mask output against direct spatial convolution using the discrete high-boost Laplacian matrix:
+                        $$\begin{bmatrix} 0 & -1 & 0 \\ -1 & 5 & -1 \\ 0 & -1 & 0 \end{bmatrix}$$
+                    </li>
+                </ol>
+            </div>
+
+            <!-- Starter Code -->
+            <div>
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Starter Python Implementation</span>
+                    <button onclick="copyCode('codeTask3')" class="text-xs text-sky-400 hover:text-sky-300 font-medium transition flex items-center space-x-1">
+                        <i class="fa-regular fa-copy"></i> <span>Copy Code</span>
+                    </button>
+                </div>
+                <pre class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs text-slate-200 overflow-x-auto custom-scrollbar"><code id="codeTask3">import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+def unsharp_mask(img, kernel_size=(5, 5), sigma=1.0, k=1.5):
+    """
+    Applies custom Unsharp Masking enhancement to a grayscale image.
+    """
+    # 1. Smooth signal with Gaussian low-pass filter
+    blurred = cv2.GaussianBlur(img, kernel_size, sigma)
+    
+    # 2. Subtract smooth signal to isolate high-frequency edges
+    mask = img.astype(np.float32) - blurred.astype(np.float32)
+    
+    # 3. Scale and add back to original image
+    sharpened = img.astype(np.float32) + (k * mask)
+    
+    # 4. Handle overflow/underflow clipping
+    return np.clip(sharpened, 0, 255).astype(np.uint8)
+
+# Load input image
+img = cv2.imread('input.jpg', cv2.IMREAD_GRAYSCALE)
+
+# Evaluate across multiple amplification factors k
+sharpened_k05 = unsharp_mask(img, k=0.5)
+sharpened_k15 = unsharp_mask(img, k=1.5)
+sharpened_k25 = unsharp_mask(img, k=2.5)
+
+# TODO: Implement 3x3 Laplacian spatial kernel convolution using cv2.filter2D and compare
+</code></pre>
+            </div>
+
+            <!-- Deliverable Question -->
+            <div class="p-4 bg-slate-900/90 rounded-xl border border-sky-900/60 text-sm">
+                <h5 class="text-xs font-bold text-sky-400 uppercase tracking-wider mb-1">
+                    <i class="fa-solid fa-pen-to-square mr-1.5"></i> Deliverable Question #3
+                </h5>
+                <p class="text-slate-300 text-xs leading-relaxed">
+                    What occurs visually when the high-boost factor $k$ is set significantly higher than $2.0$? Discuss how unsharp masking affects pixel standard deviation in flat homogeneous regions versus high-contrast boundary regions.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="border-t border-slate-800 bg-slate-950 py-6 text-center text-xs text-slate-400 no-print">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>Computer Science Department • CS 4xx Computer Vision Courseware</p>
+            <p class="mt-1">Designed for academic instruction, laboratory evaluation, and code demonstration.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Copy Code to Clipboard ---
+        function copyCode(elementId) {
+            const codeText = document.getElementById(elementId).innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeText;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            try {
+                document.execCommand('copy');
+                alert('Code snippet copied to clipboard!');
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+            }
+            document.body.removeChild(tempTextArea);
+        }
+
+        // --- Theme Toggle Engine ---
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('themeIcon');
+            const themeText = document.getElementById('themeText');
+
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                themeIcon.className = 'fa-solid fa-sun';
+                themeText.innerText = 'Light';
+            } else {
+                html.classList.add('dark');
+                themeIcon.className = 'fa-solid fa-moon';
+                themeText.innerText = 'Dark';
+            }
+        }
+
+        // --- Interactive Filter Simulator Engine ---
+        const canvasInput = document.getElementById('canvasInput');
+        const canvasOutput = document.getElementById('canvasOutput');
+        const ctxInput = canvasInput.getContext('2d');
+        const ctxOutput = canvasOutput.getContext('2d');
+
+        let originalImgData = null;
+
+        // Draw Synthetic Base Image onto Input Canvas
+        function initCanvasImage() {
+            const w = canvasInput.width;
+            const h = canvasInput.height;
+
+            // Generate high-contrast synthetic shape scene
+            ctxInput.fillStyle = '#1e293b'; // Slate background
+            ctxInput.fillRect(0, 0, w, h);
+
+            // Draw central geometric shapes
+            ctxInput.fillStyle = '#f1f5f9';
+            ctxInput.beginPath();
+            ctxInput.arc(80, 100, 45, 0, Math.PI * 2);
+            ctxInput.fill();
+
+            ctxInput.fillStyle = '#38bdf8';
+            ctxInput.fillRect(150, 50, 80, 80);
+
+            ctxInput.fillStyle = '#f59e0b';
+            ctxInput.beginPath();
+            ctxInput.moveTo(80, 170);
+            ctxInput.lineTo(130, 120);
+            ctxInput.lineTo(180, 170);
+            ctxInput.closePath();
+            ctxInput.fill();
+
+            originalImgData = ctxInput.getImageData(0, 0, w, h);
+            runSimulation();
+        }
+
+        function resetCanvas() {
+            document.getElementById('simNoiseType').value = 'none';
+            document.getElementById('simNoiseIntensity').value = '10';
+            document.getElementById('simFilterType').value = 'box';
+            document.getElementById('simKernelSize').value = '3';
+            document.getElementById('simGain').value = '1.5';
+            initCanvasImage();
+        }
+
+        function runSimulation() {
+            if (!originalImgData) return;
+
+            const w = canvasInput.width;
+            const h = canvasInput.height;
+
+            const noiseType = document.getElementById('simNoiseType').value;
+            const noiseIntensity = parseInt(document.getElementById('simNoiseIntensity').value);
+            const filterType = document.getElementById('simFilterType').value;
+            const kernelSize = parseInt(document.getElementById('simKernelSize').value);
+            const gain = parseFloat(document.getElementById('simGain').value);
+
+            // Update Text Displays
+            document.getElementById('noiseValText').innerText = noiseIntensity + '%';
+            document.getElementById('kernelValText').innerText = kernelSize + 'x' + kernelSize;
+            document.getElementById('gainValText').innerText = gain.toFixed(1);
+
+            // Show/Hide Gain slider
+            const unsharpGainGroup = document.getElementById('unsharpGainGroup');
+            unsharpGainGroup.style.display = (filterType === 'sharpen') ? 'block' : 'none';
+
+            // 1. Create Working Copy for Input + Noise
+            const noisyData = ctxInput.createImageData(w, h);
+            for (let i = 0; i < originalImgData.data.length; i++) {
+                noisyData.data[i] = originalImgData.data[i];
+            }
+
+            // 2. Add Synthetic Noise
+            const p = noisyData.data;
+            if (noiseType === 'saltpepper') {
+                const totalPixels = w * h;
+                const numNoise = Math.floor(totalPixels * (noiseIntensity / 100));
+                for (let n = 0; n < numNoise; n++) {
+                    const idx = Math.floor(Math.random() * totalPixels) * 4;
+                    const val = Math.random() < 0.5 ? 0 : 255;
+                    p[idx] = val;
+                    p[idx + 1] = val;
+                    p[idx + 2] = val;
+                }
+            } else if (noiseType === 'gaussian') {
+                const stdDev = noiseIntensity * 2;
+                for (let i = 0; i < p.length; i += 4) {
+                    const u1 = Math.random();
+                    const u2 = Math.random();
+                    const randStdNormal = Math.sqrt(-2.0 * Math.log(u1)) * Math.sin(2.0 * Math.PI * u2);
+                    const noise = randStdNormal * stdDev;
+
+                    p[i] = Math.min(255, Math.max(0, p[i] + noise));
+                    p[i + 1] = Math.min(255, Math.max(0, p[i + 1] + noise));
+                    p[i + 2] = Math.min(255, Math.max(0, p[i + 2] + noise));
+                }
+            }
+
+            // Render Noisy Input to Left Canvas
+            ctxInput.putImageData(noisyData, 0, 0);
+
+            // 3. Process Spatial Filter onto Output Canvas
+            const filteredData = ctxOutput.createImageData(w, h);
+            const src = noisyData.data;
+            textDst = filteredData.data;
+
+            const radius = Math.floor(kernelSize / 2);
+
+            for (let y = 0; y < h; y++) {
+                for (let x = 0; x < w; x++) {
+                    const dstIdx = (y * w + x) * 4;
+
+                    if (filterType === 'box') {
+                        let rSum = 0, gSum = 0, bSum = 0, count = 0;
+                        for (let ky = -radius; ky <= radius; ky++) {
+                            for (let kx = -radius; kx <= radius; kx++) {
+                                const px = Math.min(w - 1, Math.max(0, x + kx));
+                                const py = Math.min(h - 1, Math.max(0, y + ky));
+                                const kIdx = (py * w + px) * 4;
+                                rSum += src[kIdx];
+                                gSum += src[kIdx + 1];
+                                bSum += src[kIdx + 2];
+                                count++;
+                            }
+                        }
+                        textDst[dstIdx] = rSum / count;
+                        textDst[dstIdx + 1] = gSum / count;
+                        textDst[dstIdx + 2] = bSum / count;
+                        textDst[dstIdx + 3] = 255;
+                    } 
+                    else if (filterType === 'median') {
+                        let rArr = [], gArr = [], bArr = [];
+                        for (let ky = -radius; ky <= radius; ky++) {
+                            for (let kx = -radius; kx <= radius; kx++) {
+                                const px = Math.min(w - 1, Math.max(0, x + kx));
+                                const py = Math.min(h - 1, Math.max(0, y + ky));
+                                const kIdx = (py * w + px) * 4;
+                                rArr.push(src[kIdx]);
+                                gArr.push(src[kIdx + 1]);
+                                bArr.push(src[kIdx + 2]);
+                            }
+                        }
+                        rArr.sort((a, b) => a - b);
+                        gArr.sort((a, b) => a - b);
+                        bArr.sort((a, b) => a - b);
+                        const mid = Math.floor(rArr.length / 2);
+                        textDst[dstIdx] = rArr[mid];
+                        textDst[dstIdx + 1] = gArr[mid];
+                        textDst[dstIdx + 2] = bArr[mid];
+                        textDst[dstIdx + 3] = 255;
+                    }
+                    else if (filterType === 'sharpen') {
+                        // Unsharp masking: Output = Orig + Gain * (Orig - Blur)
+                        let rSum = 0, gSum = 0, bSum = 0, count = 0;
+                        for (let ky = -radius; ky <= radius; ky++) {
+                            for (let kx = -radius; kx <= radius; kx++) {
+                                const px = Math.min(w - 1, Math.max(0, x + kx));
+                                const py = Math.min(h - 1, Math.max(0, y + ky));
+                                const kIdx = (py * w + px) * 4;
+                                rSum += src[kIdx];
+                                gSum += src[kIdx + 1];
+                                bSum += src[kIdx + 2];
+                                count++;
+                            }
+                        }
+                        const rBlur = rSum / count;
+                        const gBlur = gSum / count;
+                        const bBlur = bSum / count;
+
+                        const rMask = src[dstIdx] - rBlur;
+                        const gMask = src[dstIdx + 1] - gBlur;
+                        const bMask = src[dstIdx + 2] - bBlur;
+
+                        textDst[dstIdx] = Math.min(255, Math.max(0, src[dstIdx] + gain * rMask));
+                        textDst[dstIdx + 1] = Math.min(255, Math.max(0, src[dstIdx + 1] + gain * gMask));
+                        textDst[dstIdx + 2] = Math.min(255, Math.max(0, src[dstIdx + 2] + gain * bMask));
+                        textDst[dstIdx + 3] = 255;
+                    }
+                }
+            }
+
+            ctxOutput.putImageData(filteredData, 0, 0);
+
+            // 4. Compute PSNR & MSE Metrics comparing Output against Original Ground Truth
+            let totalMse = 0;
+            const origPixels = originalImgData.data;
+            const filtPixels = filteredData.data;
+            const numVals = w * h * 3; // R, G, B channels
+
+            for (let i = 0; i < origPixels.length; i += 4) {
+                const diffR = origPixels[i] - filtPixels[i];
+                const diffG = origPixels[i + 1] - filtPixels[i + 1];
+                const diffB = origPixels[i + 2] - filtPixels[i + 2];
+                totalMse += (diffR * diffR + diffG * diffG + diffB * diffB);
+            }
+
+            const mse = totalMse / numVals;
+            let psnr = 0;
+            if (mse > 0) {
+                psnr = 10 * Math.log10((255 * 255) / mse);
+            } else {
+                psnr = 99.99;
+            }
+
+            // Update UI Metrics
+            document.getElementById('metricMSE').innerText = mse.toFixed(2);
+            document.getElementById('metricPSNR').innerText = psnr.toFixed(2) + ' dB';
+
+            const gradeElem = document.getElementById('metricGrade');
+            if (psnr > 32) {
+                gradeElem.innerText = 'Excellent Restoration';
+                gradeElem.className = 'text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-800';
+            } else if (psnr > 25) {
+                gradeElem.innerText = 'Moderate Quality';
+                gradeElem.className = 'text-xs font-bold px-2.5 py-1 rounded-full bg-sky-950 text-sky-300 border border-sky-800';
+            } else {
+                gradeElem.innerText = 'Severe Distortion';
+                gradeElem.className = 'text-xs font-bold px-2.5 py-1 rounded-full bg-rose-950 text-rose-300 border border-rose-800';
+            }
+        }
+
+        // Initialize simulation on window load
+        window.onload = function() {
+            initCanvasImage();
+        };
+    </script>
+</body>
+</html>
